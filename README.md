@@ -12,5 +12,8 @@ It is possible because it uses neither the original VST SDK nor a direct pascal 
  * http://www.kvraudio.com/forum/printview.php?t=143587&start=0
  * http://asseca.com/vst-24-specs/
  
+# Additional informations
+
+Borland Delphi 7 is needed for compilation, and VSTi\VSTCore\UnitVSTiGUI.pas should be installed as IDE visual component.
  
  
