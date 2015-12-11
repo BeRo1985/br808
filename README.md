@@ -10,7 +10,7 @@ It is possible because it uses neither the original VST SDK nor a direct pascal 
  * http://sourceforge.net/projects/delphiasiovst/
  * http://www.kvraudio.com/forum/viewtopic.php?p=1905347
  * http://www.kvraudio.com/forum/printview.php?t=143587&start=0
- * http://asseca.com/vst-24-specs/
+ * http://www.asseca.org/vst-24-specs/index.html
  
 # Additional informations
 
