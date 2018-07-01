@@ -4,7 +4,7 @@
  *       http://sourceforge.net/projects/delphiasiovst/
  *       http://www.kvraudio.com/forum/viewtopic.php?p=1905347
  *       http://www.kvraudio.com/forum/printview.php?t=143587&start=0
- *       http://www.asseca.org/vst-24-specs/index.html
+ *       https://web.archive.org/web/20150811000350/http://asseca.org/vst-24-specs/index.html (was: http://www.asseca.org/vst-24-specs/index.html )
  *
  * Zlib license:
  * 
