@@ -90,7 +90,7 @@ type ppchar=^pchar;
 
      PRangeCoder=^TRangeCoder;
      TRangeCoder=record
-      Buffer:ppchar;
+      Buffer:ppansichar;
       BufferPosition,BufferSize:plongword;
       Value,Low,High,Middle,Bytes,LiteralContext,FlagContext:longword;
       LiteralProbabilities:TRangeCoderLiteralProbabilities;

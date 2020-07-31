@@ -2584,7 +2584,7 @@ type pbyte=^byte;
       Track:PSynthTrack;
       ThreadNumber:longint;
       ThreadHandle:THandle;
-      ThreadID:THandle;
+      ThreadID:{$ifdef fpc}THandle{$else}TThreadID{$endif};
       Event:{$ifdef fpc}PRTLEvent{$else}THandle{$endif};
       DoneEvent:{$ifdef fpc}PRTLEvent{$else}THandle{$endif};
      end;
@@ -3650,7 +3650,7 @@ asm
  POP ESI
 end;
 
-procedure FillChar(var Dest;Count:longint;Value:char); assembler; {$ifdef cpu386}register;{$endif} {$ifdef FPC}NOSTACKFRAME;{$endif}
+procedure FillChar(var Dest;Count:longint;Value:ansichar); assembler; {$ifdef cpu386}register;{$endif} {$ifdef FPC}NOSTACKFRAME;{$endif}
 asm
  PUSH EDI
  PUSH ECX
@@ -3694,8 +3694,8 @@ begin
  end;
 end;
 
-procedure FillChar(var Dest;Count:longint;Value:char);
-var Dst:pchar;
+procedure FillChar(var Dest;Count:longint;Value:ansichar);
+var Dst:pansichar;
     Counter:longint;
 begin
  Dst:=@Dest;
@@ -12820,7 +12820,7 @@ end;
 
 procedure SynthInit(Track:PSynthTrack;SampleRate,BufferSamples:longint;ThreadPlay:longbool=true;SoundOutput:longbool=true); {$ifdef csdk}stdcall; [public,alias:'_SynthInit@20'];{$else}{$ifdef cpu386}register;{$endif}{$endif}
 {$ifndef cpu386}
-const verinfo:pchar='BeRo''s BR808 software synthesizer - Copyright (C) 2004-2011, Benjamin ''BeRo'' Rosseaux'+' - http://www.farbrausch.de/br404/ - http://www.rosseaux.com/';
+const verinfo:pansichar='BeRo''s BR808 software synthesizer - Copyright (C) 2004-2011, Benjamin ''BeRo'' Rosseaux'+' - http://www.farbrausch.de/br404/ - http://www.rosseaux.com/';
 {$endif}
 var Counter,SubCounter:longint;
 {$ifdef WIN32Plain}
@@ -15028,7 +15028,7 @@ type PImportMIDIEvent=^TImportMIDIEvent;
       EventFirst,EventLast,CurrentEvent:PImportMIDIEvent;
      end;
 
-     TRIFFSignature=array[1..4] of char;
+     TRIFFSignature=array[1..4] of ansichar;
 
      TRIFFChunk=packed record
       Signature:TRIFFSignature;
@@ -15167,15 +15167,15 @@ const EventSizes:array[0..$f] of byte=(0,0,0,0,0,0,0,0,2,2,2,2,1,1,2,0);
  end;
 
  function ReadMIDIDataStream(Data:pbyte;DataSize:longword):boolean;
- const cMThd:array[1..4] of char='MThd';
-       cMTrk:array[1..4] of char='MTrk';
+ const cMThd:array[1..4] of ansichar='MThd';
+       cMTrk:array[1..4] of ansichar='MTrk';
  type TFileHeader=packed record
-       Signature:array[1..4] of char;
+       Signature:array[1..4] of ansichar;
        HeaderSize:longword;
        FileFormat,CountOfTracks,TicksPerQuarterNote:word;
       end;
       TTrackHeader=packed record
-       Signature:array[1..4] of char;
+       Signature:array[1..4] of ansichar;
        TrackSize:longword;
       end;
  var SourcePointer:pbyte;
@@ -15448,9 +15448,9 @@ const EventSizes:array[0..$f] of byte=(0,0,0,0,0,0,0,0,2,2,2,2,1,1,2,0);
   end;
  end;
 
-const cRIFF:array[1..4] of char='RIFF';
-      cRMID:array[1..4] of char='RMID';
-      cdata:array[1..4] of char='data';
+const cRIFF:array[1..4] of ansichar='RIFF';
+      cRMID:array[1..4] of ansichar='RMID';
+      cdata:array[1..4] of ansichar='data';
 var RIFFHeader:TRIFFHeaderChunk;
     RIFFChunk:TRIFFChunk;
     SourcePointer:pbyte;
@@ -24090,7 +24090,7 @@ procedure SynthJobCreateThreads(Track:PSynthTrack);
 var i,j:longint;
 {$ifdef win32}
     sinfo:SYSTEM_INFO;
-    dwProcessAffinityMask,dwSystemAffinityMask:longword;
+    dwProcessAffinityMask,dwSystemAffinityMask:{$if declared(NativeUInt)}NativeUInt{$else}longword{$ifend};
  {$endif}
     Cores:array[0..MaxThreads-1] of longint;
 begin

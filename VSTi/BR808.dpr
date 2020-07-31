@@ -1,11 +1,13 @@
 library BR808;
 
-uses
-  FastMM4 in 'Delphi\FastMM4.pas',
+{  FastMM4 in 'Delphi\FastMM4.pas',
   FastMove in 'Delphi\FastMove.pas',
   FastcodeCPUID in 'Delphi\FastcodeCPUID.pas',
   FastMM4Messages in 'Delphi\FastMM4Messages.pas',
   ControlResizeBugFix in 'VSTCore\ControlResizeBugFix.pas',
+}
+
+uses
   UnitVSTiPlugin in 'VSTCore\UnitVSTiPlugin.pas',
   UnitMIDIEvent in 'VSTCore\UnitMIDIEvent.pas',
   UnitMIDIEventList in 'VSTCore\UnitMIDIEventList.pas',

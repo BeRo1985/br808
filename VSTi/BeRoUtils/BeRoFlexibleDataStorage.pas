@@ -47,7 +47,7 @@ const MaxListSize=2147483647 div sizeof(pointer);
       bfdstSTREAM=$80;
       bfdstEND=bfdstSTREAM;
 
-type TBeRoFlexibleDataStorageListSignature=packed array[1..4] of char;
+type TBeRoFlexibleDataStorageListSignature=packed array[1..4] of ansichar;
 
      TBeRoFlexibleDataStorageDataType=byte;
 
@@ -59,7 +59,7 @@ type TBeRoFlexibleDataStorageListSignature=packed array[1..4] of char;
        bfdstNONE:();
        bfdstBYTE:(ValueBYTE:byte);
        bfdstSHORTINT:(ValueSHORTINT:shortint);
-       bfdstCHAR:(ValueCHAR:char);
+       bfdstCHAR:(ValueCHAR:ansichar);
        bfdstWORD:(ValueWORD:word);
        bfdstSMALLINT:(ValueSMALLINT:smallint);
        bfdstINT:(ValueINT:longint);
@@ -125,7 +125,7 @@ type TBeRoFlexibleDataStorageListSignature=packed array[1..4] of char;
 
 function BYTEToStorageValue(Value:byte):TBeRoFlexibleDataStorageValue;
 function SHORTINTToStorageValue(Value:shortint):TBeRoFlexibleDataStorageValue;
-function CHARToStorageValue(Value:char):TBeRoFlexibleDataStorageValue;
+function CHARToStorageValue(Value:ansichar):TBeRoFlexibleDataStorageValue;
 function WORDToStorageValue(Value:word):TBeRoFlexibleDataStorageValue;
 function SMALLINTToStorageValue(Value:smallint):TBeRoFlexibleDataStorageValue;
 function INTToStorageValue(Value:longint):TBeRoFlexibleDataStorageValue;
@@ -157,7 +157,7 @@ begin
  result.ValueSHORTINT:=Value;
 end;
 
-function CHARToStorageValue(Value:char):TBeRoFlexibleDataStorageValue;
+function CHARToStorageValue(Value:ansichar):TBeRoFlexibleDataStorageValue;
 begin
  FILLCHAR(result,sizeof(TBeRoFlexibleDataStorageValue),#0);
  result.DataType:=bfdstCHAR;
@@ -534,7 +534,7 @@ begin
     case Value.DataType of
      bfdstBYTE:Size:=sizeof(byte);
      bfdstSHORTINT:Size:=sizeof(shortint);
-     bfdstCHAR:Size:=sizeof(char);
+     bfdstCHAR:Size:=sizeof(ansichar);
      bfdstWORD:Size:=sizeof(word);
      bfdstSMALLINT:Size:=sizeof(smallint);
      bfdstINT:Size:=sizeof(longint);
@@ -558,7 +558,7 @@ begin
       if Stream.read(Value.ValueSHORTINT,sizeof(shortint))<>sizeof(shortint) then exit;
      end;
      bfdstCHAR:begin
-      if Stream.read(Value.ValueCHAR,sizeof(char))<>sizeof(char) then exit;
+      if Stream.read(Value.ValueCHAR,sizeof(ansichar))<>sizeof(ansichar) then exit;
      end;
      bfdstWORD:begin
       if Stream.read(Value.ValueWORD,sizeof(word))<>sizeof(word) then exit;
@@ -651,7 +651,7 @@ begin
        if Stream.write(AItem.Value.ValueSHORTINT,sizeof(shortint))<>sizeof(shortint) then exit;
       end;
       bfdstCHAR:begin
-       if Stream.write(AItem.Value.ValueCHAR,sizeof(char))<>sizeof(char) then exit;
+       if Stream.write(AItem.Value.ValueCHAR,sizeof(ansichar))<>sizeof(ansichar) then exit;
       end;
       bfdstWORD:begin
        if Stream.write(AItem.Value.ValueWORD,sizeof(word))<>sizeof(word) then exit;

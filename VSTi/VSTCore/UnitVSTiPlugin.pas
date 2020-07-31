@@ -3466,7 +3466,7 @@ type TImportMIDIEventData=array[1..4] of byte;
       EventFirst,EventLast,CurrentEvent:PImportMIDIEvent;
      end;
 
-     TRIFFSignature=array[1..4] of char;
+     TRIFFSignature=array[1..4] of ansichar;
 
      TRIFFChunk=packed record
       Signature:TRIFFSignature;
@@ -3605,15 +3605,15 @@ const EventSizes:array[0..$f] of byte=(0,0,0,0,0,0,0,0,2,2,2,2,1,1,2,0);
  end;
 
  function ReadMIDIDataStream(Data:pbyte;DataSize:longword):boolean;
- const cMThd:array[1..4] of char='MThd';
-       cMTrk:array[1..4] of char='MTrk';
+ const cMThd:array[1..4] of ansichar='MThd';
+       cMTrk:array[1..4] of ansichar='MTrk';
  type TFileHeader=packed record
-       Signature:array[1..4] of char;
+       Signature:array[1..4] of ansichar;
        HeaderSize:longword;
        FileFormat,CountOfTracks,TicksPerQuarterNote:word;
       end;
       TTrackHeader=packed record
-       Signature:array[1..4] of char;
+       Signature:array[1..4] of ansichar;
        TrackSize:longword;
       end;
  var SourcePointer:pbyte;
@@ -3891,9 +3891,9 @@ const EventSizes:array[0..$f] of byte=(0,0,0,0,0,0,0,0,2,2,2,2,1,1,2,0);
   end;
  end;
 
-const cRIFF:array[1..4] of char='RIFF';
-      cRMID:array[1..4] of char='RMID';
-      cdata:array[1..4] of char='data';
+const cRIFF:array[1..4] of ansichar='RIFF';
+      cRMID:array[1..4] of ansichar='RMID';
+      cdata:array[1..4] of ansichar='data';
 var RIFFHeader:TRIFFHeaderChunk;
     RIFFChunk:TRIFFChunk;
     SourcePointer:pbyte;

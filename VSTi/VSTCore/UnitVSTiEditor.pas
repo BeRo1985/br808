@@ -12,8 +12,7 @@ uses PEUtilsEx{,Core},
   BeRoCriticalSection,Spin, ComCtrls, CheckLst, Synth, MMSYSTEM,
   UnitFormEnvelopeEditor, AppEvnts, Menus, UnitVSTiGUI,
   UnitVSTiFormModulationMatrixitem, UnitWaveEditor, BeRoUtils, BeRoFFT,
-  BeRoStringToDouble, BeRoDoubleToString, SynEditHighlighter,
-  SynHighlighterPas, SynEdit;
+  BeRoStringToDouble, BeRoDoubleToString, SynEdit;
 
 const Software='BR808';
       RegPath='Software\Benjamin Rosseaux\'+Software+'\';
@@ -1339,8 +1338,6 @@ type
     SGTK0ButtonInstrumentSampleScriptGenerate: TSGTK0Button;
     SGTK0ComboBoxInstrumentSampleScriptLanguage: TSGTK0ComboBox;
     SGTK0ButtonInstrumentSampleGetExample: TSGTK0Button;
-    SynMemoInstrumentSampleScriptCode: TSynEdit;
-    SynPasSyn1: TSynPasSyn;
     PopupMenuEditor: TPopupMenu;
     Undo2: TMenuItem;
     Redo2: TMenuItem;
@@ -2595,9 +2592,9 @@ const Sample8DivFaktor=1/(1 shl 7);
       Sample24DivFaktorEx=1/(1 shl 31);
 
 type TWaveFileHeader=packed record
-      Signatur:array[1..4] of char;
+      Signatur:array[1..4] of ansichar;
       Groesse:longword;
-      WAVESignatur:array[1..4] of char;
+      WAVESignatur:array[1..4] of ansichar;
      end;
 
      TWaveFormatHeader=packed record
@@ -2630,7 +2627,7 @@ type TWaveFileHeader=packed record
       AnzahlSpielen:longword;
      end;
 
-     TWaveInfoHeader=array[1..4] of char;
+     TWaveInfoHeader=array[1..4] of ansichar;
 
      TWaveXtraHeader=packed record
       Flags:longword;
@@ -2645,7 +2642,7 @@ type TWaveFileHeader=packed record
      end;
 
      TWaveChunkHeader=packed record
-      Signatur:array[1..4] of char;
+      Signatur:array[1..4] of ansichar;
       Groesse:longword;
      end;
 
@@ -3557,7 +3554,7 @@ begin
  try
   if DoSynMemoInstrumentSampleScriptCodeSelLength then begin
    DoSynMemoInstrumentSampleScriptCodeSelLength:=false;
-   SynMemoInstrumentSampleScriptCode.SelLength:=0;
+   //SynMemoInstrumentSampleScriptCode.SelLength:=0;
   end;
  finally
  end;
@@ -4148,9 +4145,9 @@ begin
    except
    end;
    try
-    if SynMemoInstrumentSampleScriptCode.Text<>APlugin.SampleScripts[APlugin.CurrentProgram and $7f,index and $7f] then begin
-    SynMemoInstrumentSampleScriptCode.Text:=APlugin.SampleScripts[APlugin.CurrentProgram and $7f,index and $7f];
-    end;
+ {  if SynMemoInstrumentSampleScriptCode.Text<>APlugin.SampleScripts[APlugin.CurrentProgram and $7f,index and $7f] then begin
+     SynMemoInstrumentSampleScriptCode.Text:=APlugin.SampleScripts[APlugin.CurrentProgram and $7f,index and $7f];
+    end;}
    except
    end;
   finally
@@ -13997,12 +13994,12 @@ begin
  end;
 end;
 
-type TEQFSignature=array[1..27] of char;
+type TEQFSignature=array[1..27] of ansichar;
      TEQFHeader=packed record
       Signature:TEQFSignature;
       Unknown:array[1..4] of char;
      end;
-     TEQFName=array[1..257] of char;
+     TEQFName=array[1..257] of ansichar;
 const EQFSignatureText='Winamp EQ library file v1.1';
       EQFSignature:TEQFSignature=EQFSignatureText;
       EQFHeader:TEQFHeader=(Signature:EQFSignatureText;Unknown:#$1a#$21#$2d#$2d);
@@ -17538,7 +17535,7 @@ begin
     try
      OK:=false;
      try
-      PascalScript.Compile(SynMemoInstrumentSampleScriptCode.Text);
+//      PascalScript.Compile(SynMemoInstrumentSampleScriptCode.Text);
       PascalScript.Run;
       OK:=true;
      except
@@ -17590,7 +17587,7 @@ begin
  if  MessageBox(Handle,'Overwrite the current script code?','BR808',MB_YESNO OR MB_ICONQUESTION)=ID_YES then begin
   case SGTK0ComboBoxInstrumentSampleScriptLanguage.ItemIndex of
    0:begin
-    SynMemoInstrumentSampleScriptCode.Text:='program example;'+#13#10+
+{   SynMemoInstrumentSampleScriptCode.Text:='program example;'+#13#10+
                                             'var'+#13#10+
                                             '  i : integer;'+#13#10+
                                             '  f, v : single;'+#13#10+
@@ -17605,63 +17602,63 @@ begin
                                             '    SetSample(i * 2, v); // left'+#13#10+
                                             '    SetSample((i * 2) + 1, v); // right'+#13#10+
                                             '  end;'+#13#10+
-                                            'end.';
+                                            'end.';   }
    end;
   end;
-  SynMemoInstrumentSampleScriptCodeChange(SynMemoInstrumentSampleScriptCode);
+  //SynMemoInstrumentSampleScriptCodeChange(SynMemoInstrumentSampleScriptCode);
  end;
 end;
 
 procedure TVSTiEditor.Undo2Click(Sender: TObject);
 begin
- SynMemoInstrumentSampleScriptCode.Undo;
+//SynMemoInstrumentSampleScriptCode.Undo;
 end;
 
 procedure TVSTiEditor.Redo2Click(Sender: TObject);
 begin
- SynMemoInstrumentSampleScriptCode.Redo;
+// SynMemoInstrumentSampleScriptCode.Redo;
 end;
 
 procedure TVSTiEditor.Cut2Click(Sender: TObject);
 begin
- SynMemoInstrumentSampleScriptCode.CutToClipboard;
+// SynMemoInstrumentSampleScriptCode.CutToClipboard;
 end;
 
 procedure TVSTiEditor.Copy2Click(Sender: TObject);
 begin
- SynMemoInstrumentSampleScriptCode.CopyToClipboard;
+// SynMemoInstrumentSampleScriptCode.CopyToClipboard;
 end;
 
 procedure TVSTiEditor.Paste2Click(Sender: TObject);
 begin
- SynMemoInstrumentSampleScriptCode.PasteFromClipboard;
+// SynMemoInstrumentSampleScriptCode.PasteFromClipboard;
 end;
 
 procedure TVSTiEditor.Delete2Click(Sender: TObject);
 begin
- SynMemoInstrumentSampleScriptCode.SelText:='';
+// SynMemoInstrumentSampleScriptCode.SelText:='';
 end;
 
 procedure TVSTiEditor.Selectall2Click(Sender: TObject);
 begin
- SynMemoInstrumentSampleScriptCode.SelectAll;
+// SynMemoInstrumentSampleScriptCode.SelectAll;
 end;
 
 procedure TVSTiEditor.Unselectall2Click(Sender: TObject);
 begin
- SynMemoInstrumentSampleScriptCode.SelLength:=0;
+// SynMemoInstrumentSampleScriptCode.SelLength:=0;
 end;
 
 procedure TVSTiEditor.PopupMenuEditorPopup(Sender: TObject);
-begin                                                                              
- Undo2.Enabled:=SynMemoInstrumentSampleScriptCode.CanUndo;
+begin
+{Undo2.Enabled:=SynMemoInstrumentSampleScriptCode.CanUndo;
  Redo2.Enabled:=SynMemoInstrumentSampleScriptCode.CanRedo;
  Cut2.Enabled:=SynMemoInstrumentSampleScriptCode.SelLength>0;
  Copy2.Enabled:=SynMemoInstrumentSampleScriptCode.SelLength>0;
  Paste2.Enabled:=SynMemoInstrumentSampleScriptCode.CanPaste;
  Delete2.Enabled:=SynMemoInstrumentSampleScriptCode.SelLength>0;
  SelectAll2.Enabled:=SynMemoInstrumentSampleScriptCode.Lines.Count>0;
- UnselectAll2.Enabled:=SynMemoInstrumentSampleScriptCode.SelLength>0;
+ UnselectAll2.Enabled:=SynMemoInstrumentSampleScriptCode.SelLength>0;}
 end;
 
 procedure TVSTiEditor.SynMemoInstrumentSampleScriptCodeChange(
@@ -17676,7 +17673,7 @@ begin
     APlugin:=TVSTiPlugin(Plugin);
     index:=ComboBoxSamples.ItemIndex;
     if (index>=0) and (index<MaxSamples) then begin
-     APlugin.SampleScripts[APlugin.CurrentProgram and $7f,index and $7f]:=SynMemoInstrumentSampleScriptCode.Text;
+//    APlugin.SampleScripts[APlugin.CurrentProgram and $7f,index and $7f]:=SynMemoInstrumentSampleScriptCode.Text;
     end;
    finally
     DataCriticalSection.Leave;
@@ -17709,14 +17706,14 @@ end;
 procedure TVSTiEditor.SynMemoInstrumentSampleScriptCodeEnter(
   Sender: TObject);
 begin
- SynMemoInstrumentSampleScriptCode.SetBounds(0,0,605+16,260+63);
+//SynMemoInstrumentSampleScriptCode.SetBounds(0,0,605+16,260+63);
  DoSynMemoInstrumentSampleScriptCodeSelLength:=true;
 end;
 
 procedure TVSTiEditor.SynMemoInstrumentSampleScriptCodeExit(
   Sender: TObject);
 begin
- SynMemoInstrumentSampleScriptCode.SetBounds(16,260,605,63);
+// SynMemoInstrumentSampleScriptCode.SetBounds(16,260,605,63);
 end;
 
 procedure TVSTiEditor.SGTK0Panel84Click(Sender: TObject);
@@ -17746,12 +17743,12 @@ end;
 
 procedure TVSTiEditor.TabSheetSampleScriptShow(Sender: TObject);
 begin
- SynMemoInstrumentSampleScriptCode.Visible:=true;
+// SynMemoInstrumentSampleScriptCode.Visible:=true;
 end;
 
 procedure TVSTiEditor.TabSheetSampleScriptHide(Sender: TObject);
 begin
- SynMemoInstrumentSampleScriptCode.Visible:=false;
+// SynMemoInstrumentSampleScriptCode.Visible:=false;
 end;
 
 procedure TVSTiEditor.Panel9Click(Sender: TObject);

@@ -1160,7 +1160,7 @@ begin
     end else if CurrentChar='#' then begin
      ReadChar;
      CurrentStringLength:=CurrentStringLength+1;
-     CurrentString[CurrentStringLength]:=chr(ReadNumber);
+     CurrentString[CurrentStringLength]:=ansichar(byte(ReadNumber));
     end else begin
      StrEnd:=true;
     end;

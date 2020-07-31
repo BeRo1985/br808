@@ -1327,7 +1327,7 @@ type TDoubleValue=record
    if Len>=length(Buffer) then begin
     setlength(Buffer,Len*2);
    end;
-   Buffer[Len]:=chr(ord('0')+Digit);
+   Buffer[Len]:=ansichar(byte(ord('0')+Digit));
    if IsEven then begin
     InDeltaRoomMinus:=BigNumCompare(Numerator,DeltaMinus)<=0;
    end else begin
@@ -1375,7 +1375,7 @@ type TDoubleValue=record
    if Len>=length(Buffer) then begin
     setlength(Buffer,Len*2);
    end;
-   Buffer[Len]:=chr(ord('0')+Digit);
+   Buffer[Len]:=ansichar(byte(ord('0')+Digit));
    BigNumMultiplyByUInt32(Numerator,10);
   end;
   Digit:=BigNumDivideModuloIntBigNum(Numerator,Denominator);
@@ -1386,7 +1386,7 @@ type TDoubleValue=record
   if Len>=length(Buffer) then begin
    setlength(Buffer,Len*2);
   end;
-  Buffer[Len]:=chr(ord('0')+Digit);
+  Buffer[Len]:=ansichar(byte(ord('0')+Digit));
   for i:=Len downto 2 do begin
    if ord(Buffer[i])<>(ord('0')+10) then begin
     break;
@@ -1944,7 +1944,7 @@ type TDoubleValue=record
      if Len>=length(Buffer) then begin
       setlength(Buffer,Len*2);
      end;
-     Buffer[Len]:=chr(ord('0')+Digit);
+     Buffer[Len]:=ansichar(byte(ord('0')+Digit));
      dec(Capacity);
      Rest:=qword(qword(Integrals) shl (-One.Exponent))+Fractionals;
      if QWordLess(Rest,UnsafeInterval.SignificantMantissa) then begin
@@ -1963,7 +1963,7 @@ type TDoubleValue=record
       if Len>=length(Buffer) then begin
        setlength(Buffer,Len*2);
       end;
-      Buffer[Len]:=chr(ord('0')+Digit);
+      Buffer[Len]:=ansichar(byte(ord('0')+Digit));
       dec(Capacity);
       Fractionals:=Fractionals and (One.SignificantMantissa-1);
       if QWordLess(Fractionals,UnsafeInterval.SignificantMantissa) then begin
@@ -2000,7 +2000,7 @@ type TDoubleValue=record
      if Len>=length(Buffer) then begin
       setlength(Buffer,Len*2);
      end;
-     Buffer[Len]:=chr(ord('0')+Digit);
+     Buffer[Len]:=ansichar(byte(ord('0')+Digit));
      dec(RequestedDigits);
      dec(Capacity);
      if RequestedDigits=0 then begin
@@ -2021,7 +2021,7 @@ type TDoubleValue=record
       if Len>=length(Buffer) then begin
        setlength(Buffer,Len*2);
       end;
-      Buffer[Len]:=chr(ord('0')+Digit);
+      Buffer[Len]:=ansichar(byte(ord('0')+Digit));
       dec(RequestedDigits);
       dec(Capacity);
       Fractionals:=Fractionals and (One.SignificantMantissa-1);
@@ -2166,7 +2166,7 @@ type TDoubleValue=record
     setlength(Buffer,Len*2);
    end;
    for i:=RequestedLength downto 1 do begin
-    Buffer[l+i]:=chr(ord('0')+(Number mod 10));
+    Buffer[l+i]:=ansichar(byte(ord('0')+(Number mod 10)));
     Number:=Number div 10;
    end;
   end;
@@ -2188,7 +2188,7 @@ type TDoubleValue=record
     end;
     Number:=OldNumber;
     for i:=NumberLength downto 1 do begin
-     Buffer[l+i]:=chr(ord('0')+(Number mod 10));
+     Buffer[l+i]:=ansichar(byte(ord('0')+(Number mod 10)));
      Number:=Number div 10;
     end;
    end;
@@ -2260,7 +2260,7 @@ type TDoubleValue=record
      if Len>=length(Buffer) then begin
       setlength(Buffer,Len*2);
      end;
-     Buffer[Len]:=chr(ord('0')+Digit);
+     Buffer[Len]:=ansichar(byte(ord('0')+Digit));
      dec(Fractionals,qword(Digit) shl Point);
     end;
     if ((Fractionals shr (Point-1)) and 1)<>0 then begin
@@ -2283,7 +2283,7 @@ type TDoubleValue=record
      if Len>=length(Buffer) then begin
       setlength(Buffer,Len*2);
      end;
-     Buffer[Len]:=chr(ord('0')+Digit);
+     Buffer[Len]:=ansichar(byte(ord('0')+Digit));
     end;
     if Int128BitAt(Fractionals128,Point-1) then begin
      RoundUp(Buffer,Len,DecimalPoint);

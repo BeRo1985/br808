@@ -58,7 +58,8 @@ type TBeRoThreadMethod=procedure of object;
 
      TBeRoThread=class
       private
-       FHandle,FThreadID:THandle;
+       FHandle:THandle;
+       FThreadID:TThreadID;
        FFinished,FSuspended,FTerminated,FFreeOnTerminate:boolean;
        FReturnValue:longword;
        function GetPriority:TBeRoThreadPriority;
@@ -81,7 +82,7 @@ type TBeRoThreadMethod=procedure of object;
        property Handle:THandle read FHandle;
        property Priority:TBeRoThreadPriority read GetPriority write SetPriority;
        property Suspended:boolean read FSuspended write SetSuspended;
-       property ThreadID:THandle read FThreadID;
+       property ThreadID:TThreadID read FThreadID;
      end;
 {$ELSE}
  {$IFDEF FPC}

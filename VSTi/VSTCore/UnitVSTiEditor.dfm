@@ -547,6 +547,10 @@ object VSTiEditor: TVSTiEditor
       object TabSheetInstruments: TSGTK0TabSheet
         BorderWidth = 1
         Caption = 'Instruments'
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Panel5: TSGTK0Panel
           Left = 0
           Top = 0
@@ -659,7 +663,6 @@ object VSTiEditor: TVSTiEditor
                   Width = 40
                   Height = 21
                   Style = csDropDownList
-                  ItemHeight = 13
                   Items.Strings = (
                     '01'
                     '02'
@@ -757,6 +760,10 @@ object VSTiEditor: TVSTiEditor
                 ActivePage = TabSheetInstrumentGlobals
                 object TabSheetInstrumentGlobals: TSGTK0TabSheet
                   Caption = 'Globals'
+                  ExplicitLeft = 0
+                  ExplicitTop = 0
+                  ExplicitWidth = 0
+                  ExplicitHeight = 0
                   object Panel46: TSGTK0Panel
                     Left = 0
                     Top = 0
@@ -1285,6 +1292,10 @@ object VSTiEditor: TVSTiEditor
                 object TabSheetInstrumentVoice: TSGTK0TabSheet
                   BorderWidth = 5
                   Caption = 'Voice'
+                  ExplicitLeft = 0
+                  ExplicitTop = 0
+                  ExplicitWidth = 0
+                  ExplicitHeight = 0
                   object PageControlInstrumentVoice: TSGTK0PageControl
                     Left = 0
                     Top = 0
@@ -1307,6 +1318,10 @@ object VSTiEditor: TVSTiEditor
                     object TabSheetInstrumentVoiceOscillators: TSGTK0TabSheet
                       BorderWidth = 5
                       Caption = 'Oscillators'
+                      ExplicitLeft = 0
+                      ExplicitTop = 0
+                      ExplicitWidth = 0
+                      ExplicitHeight = 0
                       object TabControlInstrumentVoiceOscillators: TSGTK0TabControl
                         Left = 0
                         Top = 0
@@ -1549,7 +1564,6 @@ object VSTiEditor: TVSTiEditor
                               Width = 163
                               Height = 21
                               Style = csDropDownList
-                              ItemHeight = 13
                               Items.Strings = (
                                 'Nearest'
                                 'Linear'
@@ -1594,7 +1608,6 @@ object VSTiEditor: TVSTiEditor
                               Width = 163
                               Height = 21
                               Style = csDropDownList
-                              ItemHeight = 13
                               Items.Strings = (
                                 'None'
                                 'Sine'
@@ -1648,7 +1661,6 @@ object VSTiEditor: TVSTiEditor
                               Width = 163
                               Height = 21
                               Style = csDropDownList
-                              ItemHeight = 13
                               Items.Strings = (
                                 'None'
                                 'Phase Modulation'
@@ -1694,7 +1706,6 @@ object VSTiEditor: TVSTiEditor
                               Width = 50
                               Height = 21
                               Style = csDropDownList
-                              ItemHeight = 13
                               Items.Strings = (
                                 'C-0'
                                 'C#0'
@@ -1829,7 +1840,6 @@ object VSTiEditor: TVSTiEditor
                               Width = 50
                               Height = 21
                               Style = csDropDownList
-                              ItemHeight = 13
                               Items.Strings = (
                                 'C-0'
                                 'C#0'
@@ -2015,7 +2025,6 @@ object VSTiEditor: TVSTiEditor
                               Height = 21
                               Hint = 'Modulation source (index must be < current osc index)'
                               Style = csDropDownList
-                              ItemHeight = 13
                               Items.Strings = (
                                 'Last'
                                 '1'
@@ -2458,7 +2467,6 @@ object VSTiEditor: TVSTiEditor
                               Height = 21
                               Hint = 'HardSync source (index must be < current osc index)'
                               Style = csDropDownList
-                              ItemHeight = 13
                               Items.Strings = (
                                 'Last'
                                 '1'
@@ -2500,7 +2508,6 @@ object VSTiEditor: TVSTiEditor
                               Width = 163
                               Height = 21
                               Style = csDropDownList
-                              ItemHeight = 0
                               ParentShowHint = False
                               ShowHint = False
                               TabOrder = 0
@@ -2572,7 +2579,6 @@ object VSTiEditor: TVSTiEditor
                               Width = 44
                               Height = 21
                               Style = csDropDownList
-                              ItemHeight = 13
                               Items.Strings = (
                                 '1'
                                 '2'
@@ -2781,7 +2787,6 @@ object VSTiEditor: TVSTiEditor
                               Width = 163
                               Height = 21
                               Style = csDropDownList
-                              ItemHeight = 13
                               Items.Strings = (
                                 'SawUp'
                                 'SawDown'
@@ -2820,7 +2825,6 @@ object VSTiEditor: TVSTiEditor
                               Width = 163
                               Height = 21
                               Style = csDropDownList
-                              ItemHeight = 13
                               Items.Strings = (
                                 'Oldschool'
                                 'Symmetric'
@@ -2893,6 +2897,10 @@ object VSTiEditor: TVSTiEditor
                     object TabSheetInstrumentVoiceADSRs: TSGTK0TabSheet
                       BorderWidth = 5
                       Caption = 'ADSRs'
+                      ExplicitLeft = 0
+                      ExplicitTop = 0
+                      ExplicitWidth = 0
+                      ExplicitHeight = 0
                       object TabControlInstrumentVoiceADSRs: TSGTK0TabControl
                         Left = 0
                         Top = 0
@@ -3013,7 +3021,6 @@ object VSTiEditor: TVSTiEditor
                               Width = 60
                               Height = 21
                               Style = csDropDownList
-                              ItemHeight = 13
                               Items.Strings = (
                                 'Off'
                                 'Linear'
@@ -3039,7 +3046,6 @@ object VSTiEditor: TVSTiEditor
                               Width = 60
                               Height = 21
                               Style = csDropDownList
-                              ItemHeight = 13
                               Items.Strings = (
                                 'Off'
                                 'Linear'
@@ -3065,7 +3071,6 @@ object VSTiEditor: TVSTiEditor
                               Width = 60
                               Height = 21
                               Style = csDropDownList
-                              ItemHeight = 13
                               Items.Strings = (
                                 'Off'
                                 'On'
@@ -3090,7 +3095,6 @@ object VSTiEditor: TVSTiEditor
                               Width = 60
                               Height = 21
                               Style = csDropDownList
-                              ItemHeight = 13
                               Items.Strings = (
                                 'Off'
                                 'Linear'
@@ -3489,6 +3493,10 @@ object VSTiEditor: TVSTiEditor
                     object TabSheetInstrumentVoiceEnvelopes: TSGTK0TabSheet
                       BorderWidth = 5
                       Caption = 'Envelopes'
+                      ExplicitLeft = 0
+                      ExplicitTop = 0
+                      ExplicitWidth = 0
+                      ExplicitHeight = 0
                       object TabControlInstrumentVoiceEnvelopes: TSGTK0TabControl
                         Left = 0
                         Top = 0
@@ -3669,6 +3677,10 @@ object VSTiEditor: TVSTiEditor
                             ActivePage = TabSheetEnvEdit
                             object TabSheetEnvEdit: TSGTK0TabSheet
                               Caption = 'Edit'
+                              ExplicitLeft = 0
+                              ExplicitTop = 0
+                              ExplicitWidth = 0
+                              ExplicitHeight = 0
                               object Label22: TLabel
                                 Left = 20
                                 Top = 10
@@ -3735,6 +3747,10 @@ object VSTiEditor: TVSTiEditor
                             end
                             object TabSheetEnvADSR: TSGTK0TabSheet
                               Caption = 'ADSR'
+                              ExplicitLeft = 0
+                              ExplicitTop = 0
+                              ExplicitWidth = 0
+                              ExplicitHeight = 0
                               object Label92: TLabel
                                 Left = 6
                                 Top = 9
@@ -3904,6 +3920,10 @@ object VSTiEditor: TVSTiEditor
                             end
                             object TabSheetEnvTranceGate: TSGTK0TabSheet
                               Caption = 'TranceGate'
+                              ExplicitLeft = 0
+                              ExplicitTop = 0
+                              ExplicitWidth = 0
+                              ExplicitHeight = 0
                               object Label102: TLabel
                                 Left = 437
                                 Top = 5
@@ -4188,7 +4208,6 @@ object VSTiEditor: TVSTiEditor
                                 Width = 66
                                 Height = 21
                                 Style = csDropDownList
-                                ItemHeight = 13
                                 Items.Strings = (
                                   '1*2'
                                   '1/1'
@@ -4217,6 +4236,10 @@ object VSTiEditor: TVSTiEditor
                             end
                             object TabSheetEnvAmplifer: TSGTK0TabSheet
                               Caption = 'Amplifer'
+                              ExplicitLeft = 0
+                              ExplicitTop = 0
+                              ExplicitWidth = 0
+                              ExplicitHeight = 0
                               object Label104: TLabel
                                 Left = 4
                                 Top = 16
@@ -4269,6 +4292,10 @@ object VSTiEditor: TVSTiEditor
                     object TabSheetInstrumentVoiceLFOs: TSGTK0TabSheet
                       BorderWidth = 5
                       Caption = 'LFOs'
+                      ExplicitLeft = 0
+                      ExplicitTop = 0
+                      ExplicitWidth = 0
+                      ExplicitHeight = 0
                       object TabControlInstrumentVoiceLFOs: TSGTK0TabControl
                         Left = 0
                         Top = 0
@@ -4320,7 +4347,6 @@ object VSTiEditor: TVSTiEditor
                               Width = 163
                               Height = 21
                               Style = csDropDownList
-                              ItemHeight = 13
                               Items.Strings = (
                                 'None'
                                 'Sine'
@@ -4359,7 +4385,6 @@ object VSTiEditor: TVSTiEditor
                               Width = 163
                               Height = 21
                               Style = csDropDownList
-                              ItemHeight = 0
                               ParentShowHint = False
                               ShowHint = False
                               TabOrder = 0
@@ -4697,7 +4722,6 @@ object VSTiEditor: TVSTiEditor
                               Width = 163
                               Height = 21
                               Style = csDropDownList
-                              ItemHeight = 13
                               Items.Strings = (
                                 'Global'
                                 'Channel'
@@ -4716,6 +4740,10 @@ object VSTiEditor: TVSTiEditor
                     object TabSheetInstrumentVoiceFilters: TSGTK0TabSheet
                       BorderWidth = 5
                       Caption = 'Filters'
+                      ExplicitLeft = 0
+                      ExplicitTop = 0
+                      ExplicitWidth = 0
+                      ExplicitHeight = 0
                       object TabControlInstrumentVoiceFilters: TSGTK0TabControl
                         Left = 0
                         Top = 0
@@ -4767,7 +4795,6 @@ object VSTiEditor: TVSTiEditor
                               Width = 163
                               Height = 21
                               Style = csDropDownList
-                              ItemHeight = 13
                               Items.Strings = (
                                 'None'
                                 'SVF LowPass'
@@ -5136,6 +5163,10 @@ object VSTiEditor: TVSTiEditor
                     object TabSheetVoiceInstrumentDistortion: TSGTK0TabSheet
                       BorderWidth = 5
                       Caption = 'Distortion'
+                      ExplicitLeft = 0
+                      ExplicitTop = 0
+                      ExplicitWidth = 0
+                      ExplicitHeight = 0
                       object SGTK0TabControlVoiceDistortion: TSGTK0TabControl
                         Left = 0
                         Top = 0
@@ -5177,7 +5208,6 @@ object VSTiEditor: TVSTiEditor
                             Width = 163
                             Height = 21
                             Style = csDropDownList
-                            ItemHeight = 13
                             Items.Strings = (
                               'None'
                               'Soft'
@@ -5414,6 +5444,10 @@ object VSTiEditor: TVSTiEditor
                       BorderWidth = 5
                       Caption = 'Gate'
                       TabVisible = False
+                      ExplicitLeft = 0
+                      ExplicitTop = 0
+                      ExplicitWidth = 0
+                      ExplicitHeight = 0
                     end
                     object TabSheetInstrumentVoiceSignalRouteOrder: TSGTK0TabSheet
                       BorderWidth = 5
@@ -5453,6 +5487,10 @@ object VSTiEditor: TVSTiEditor
                 object TabSheetInstrumentChannel: TSGTK0TabSheet
                   BorderWidth = 5
                   Caption = 'Channel'
+                  ExplicitLeft = 0
+                  ExplicitTop = 0
+                  ExplicitWidth = 0
+                  ExplicitHeight = 0
                   object PageControlInstrumentChannel: TSGTK0PageControl
                     Left = 0
                     Top = 0
@@ -5477,6 +5515,10 @@ object VSTiEditor: TVSTiEditor
                     object TabSheetInstrumentChannelDistortion: TSGTK0TabSheet
                       BorderWidth = 5
                       Caption = 'Distortion'
+                      ExplicitLeft = 0
+                      ExplicitTop = 0
+                      ExplicitWidth = 0
+                      ExplicitHeight = 0
                       object SGTK0TabControlChannelDistortion: TSGTK0TabControl
                         Left = 0
                         Top = 0
@@ -5518,7 +5560,6 @@ object VSTiEditor: TVSTiEditor
                             Width = 163
                             Height = 21
                             Style = csDropDownList
-                            ItemHeight = 13
                             Items.Strings = (
                               'None'
                               'Soft'
@@ -5754,6 +5795,10 @@ object VSTiEditor: TVSTiEditor
                     object TabSheetInstrumentChannelFilter: TSGTK0TabSheet
                       BorderWidth = 5
                       Caption = 'Filter'
+                      ExplicitLeft = 0
+                      ExplicitTop = 0
+                      ExplicitWidth = 0
+                      ExplicitHeight = 0
                       object SGTK0TabControlChannelFilter: TSGTK0TabControl
                         Left = 0
                         Top = 0
@@ -5795,7 +5840,6 @@ object VSTiEditor: TVSTiEditor
                             Width = 163
                             Height = 21
                             Style = csDropDownList
-                            ItemHeight = 13
                             Items.Strings = (
                               'None'
                               'SVF LowPass'
@@ -6163,6 +6207,10 @@ object VSTiEditor: TVSTiEditor
                     object TabSheetInstrumentChannelDelay: TSGTK0TabSheet
                       BorderWidth = 5
                       Caption = 'Delay'
+                      ExplicitLeft = 0
+                      ExplicitTop = 0
+                      ExplicitWidth = 0
+                      ExplicitHeight = 0
                       object SGTK0TabControlChannelDelay: TSGTK0TabControl
                         Left = 0
                         Top = 0
@@ -6592,6 +6640,10 @@ object VSTiEditor: TVSTiEditor
                       Caption = 'Chorus/Flanger'
                       ParentShowHint = False
                       ShowHint = False
+                      ExplicitLeft = 0
+                      ExplicitTop = 0
+                      ExplicitWidth = 0
+                      ExplicitHeight = 0
                       object PanelInstrumentChannelChorusFlangerFeedBackLeft: TSGTK0Panel
                         Left = 0
                         Top = 70
@@ -7367,6 +7419,10 @@ object VSTiEditor: TVSTiEditor
                     object TabSheetInstrumentChannelCompressor: TSGTK0TabSheet
                       BorderWidth = 5
                       Caption = 'Compressor'
+                      ExplicitLeft = 0
+                      ExplicitTop = 0
+                      ExplicitWidth = 0
+                      ExplicitHeight = 0
                       object PanelInstrumentChannelCompressorMode: TSGTK0Panel
                         Left = 0
                         Top = 0
@@ -7389,7 +7445,6 @@ object VSTiEditor: TVSTiEditor
                           Width = 170
                           Height = 21
                           Style = csDropDownList
-                          ItemHeight = 13
                           Items.Strings = (
                             'None'
                             'Mono Env Follow Peak'
@@ -7835,7 +7890,6 @@ object VSTiEditor: TVSTiEditor
                           Width = 167
                           Height = 21
                           Style = csDropDownList
-                          ItemHeight = 13
                           Items.Strings = (
                             'None'
                             'Channel 1'
@@ -7865,6 +7919,10 @@ object VSTiEditor: TVSTiEditor
                     object TabSheetInstrumentChannelSpeech: TSGTK0TabSheet
                       BorderWidth = 5
                       Caption = 'Speech'
+                      ExplicitLeft = 0
+                      ExplicitTop = 0
+                      ExplicitWidth = 0
+                      ExplicitHeight = 0
                       object PanelInstrumentChannelSpeechFrameLength: TSGTK0Panel
                         Left = 241
                         Top = 0
@@ -8548,6 +8606,10 @@ object VSTiEditor: TVSTiEditor
                       Hint = 'PitchShifter'
                       BorderWidth = 5
                       Caption = 'PitchShifter'
+                      ExplicitLeft = 0
+                      ExplicitTop = 0
+                      ExplicitWidth = 0
+                      ExplicitHeight = 0
                       object SGTK0Panel109: TSGTK0Panel
                         Left = 0
                         Top = 0
@@ -8689,6 +8751,10 @@ object VSTiEditor: TVSTiEditor
                     object TabSheetInstrumentChannelEQ: TSGTK0TabSheet
                       BorderWidth = 5
                       Caption = 'EQ'
+                      ExplicitLeft = 0
+                      ExplicitTop = 0
+                      ExplicitWidth = 0
+                      ExplicitHeight = 0
                       object SGTK0Panel121: TSGTK0Panel
                         Left = 0
                         Top = 0
@@ -8724,7 +8790,6 @@ object VSTiEditor: TVSTiEditor
                           Width = 111
                           Height = 21
                           Style = csDropDownList
-                          ItemHeight = 13
                           Items.Strings = (
                             '-6 .. 6 dB'
                             '-12 .. 12 dB'
@@ -9581,6 +9646,10 @@ object VSTiEditor: TVSTiEditor
                     object TabSheetInstrumentChannelLFO: TSGTK0TabSheet
                       BorderWidth = 5
                       Caption = 'LFO'
+                      ExplicitLeft = 0
+                      ExplicitTop = 0
+                      ExplicitWidth = 0
+                      ExplicitHeight = 0
                       object SGTK0Panel106: TSGTK0Panel
                         Left = 243
                         Top = 5
@@ -9670,6 +9739,10 @@ object VSTiEditor: TVSTiEditor
                 object TabSheetInstrumentSamples: TSGTK0TabSheet
                   BorderWidth = 5
                   Caption = 'Samples'
+                  ExplicitLeft = 0
+                  ExplicitTop = 0
+                  ExplicitWidth = 0
+                  ExplicitHeight = 0
                   object SGTK0Panel71: TSGTK0Panel
                     Left = 0
                     Top = 0
@@ -9704,7 +9777,6 @@ object VSTiEditor: TVSTiEditor
                         Font.Height = -11
                         Font.Name = 'Courier New'
                         Font.Style = []
-                        ItemHeight = 0
                         ParentFont = False
                         TabOrder = 0
                         ItemIndex = -1
@@ -10089,6 +10161,10 @@ object VSTiEditor: TVSTiEditor
                           ActivePage = TabSheetSampleGeneralSettings
                           object TabSheetSampleGeneralSettings: TSGTK0TabSheet
                             Caption = 'General settings'
+                            ExplicitLeft = 0
+                            ExplicitTop = 0
+                            ExplicitWidth = 0
+                            ExplicitHeight = 0
                             object SGTK0Panel81: TSGTK0Panel
                               Left = 4
                               Top = 4
@@ -10179,7 +10255,6 @@ object VSTiEditor: TVSTiEditor
                                 Width = 143
                                 Height = 21
                                 Style = csDropDownList
-                                ItemHeight = 0
                                 TabOrder = 0
                                 ItemIndex = -1
                                 OnChange = ComboBoxSamplesNoteChange
@@ -10260,6 +10335,10 @@ object VSTiEditor: TVSTiEditor
                           end
                           object TabSheetSampleLoop: TSGTK0TabSheet
                             Caption = 'Loop'
+                            ExplicitLeft = 0
+                            ExplicitTop = 0
+                            ExplicitWidth = 0
+                            ExplicitHeight = 0
                             object Label34: TLabel
                               Left = 28
                               Top = 8
@@ -10290,7 +10369,6 @@ object VSTiEditor: TVSTiEditor
                               Width = 115
                               Height = 21
                               Style = csDropDownList
-                              ItemHeight = 13
                               Items.Strings = (
                                 'Off'
                                 'Forwards'
@@ -10324,6 +10402,10 @@ object VSTiEditor: TVSTiEditor
                           end
                           object TabSheetSampleSustainLoop: TSGTK0TabSheet
                             Caption = 'Sustain loop'
+                            ExplicitLeft = 0
+                            ExplicitTop = 0
+                            ExplicitWidth = 0
+                            ExplicitHeight = 0
                             object Label38: TLabel
                               Left = 28
                               Top = 8
@@ -10354,7 +10436,6 @@ object VSTiEditor: TVSTiEditor
                               Width = 115
                               Height = 21
                               Style = csDropDownList
-                              ItemHeight = 13
                               Items.Strings = (
                                 'Off'
                                 'Forwards'
@@ -10388,6 +10469,10 @@ object VSTiEditor: TVSTiEditor
                           end
                           object TabSheetSamplePadSynth: TSGTK0TabSheet
                             Caption = 'PadSynth'
+                            ExplicitLeft = 0
+                            ExplicitTop = 0
+                            ExplicitWidth = 0
+                            ExplicitHeight = 0
                             object SGTK0Panel52: TSGTK0Panel
                               Left = 4
                               Top = 4
@@ -10619,7 +10704,6 @@ object VSTiEditor: TVSTiEditor
                                 Width = 75
                                 Height = 21
                                 Style = csDropDownList
-                                ItemHeight = 13
                                 Items.Strings = (
                                   'Gauss'
                                   'Single'
@@ -10644,6 +10728,10 @@ object VSTiEditor: TVSTiEditor
                           end
                           object TabSheetSamplePadSynthHarmonics: TSGTK0TabSheet
                             Caption = 'PadSynth Harmonics'
+                            ExplicitLeft = 0
+                            ExplicitTop = 0
+                            ExplicitWidth = 0
+                            ExplicitHeight = 0
                             object SGTK0Panel188: TSGTK0Panel
                               Left = 4
                               Top = 4
@@ -10666,7 +10754,6 @@ object VSTiEditor: TVSTiEditor
                                 Width = 163
                                 Height = 21
                                 Style = csDropDownList
-                                ItemHeight = 13
                                 Items.Strings = (
                                   '1-(x/count)'
                                   '1/sqrt(x+1)'
@@ -10843,6 +10930,10 @@ object VSTiEditor: TVSTiEditor
                             Caption = 'Script'
                             OnHide = TabSheetSampleScriptHide
                             OnShow = TabSheetSampleScriptShow
+                            ExplicitLeft = 0
+                            ExplicitTop = 0
+                            ExplicitWidth = 0
+                            ExplicitHeight = 0
                             object SGTK0ButtonInstrumentSampleScriptGenerate: TSGTK0Button
                               Left = 614
                               Top = 42
@@ -10859,7 +10950,6 @@ object VSTiEditor: TVSTiEditor
                               Width = 81
                               Height = 21
                               Style = csDropDownList
-                              ItemHeight = 13
                               Items.Strings = (
                                 'Pascal')
                               TabOrder = 1
@@ -10881,54 +10971,15 @@ object VSTiEditor: TVSTiEditor
                         end
                       end
                     end
-                    object SynMemoInstrumentSampleScriptCode: TSynEdit
-                      Left = 16
-                      Top = 260
-                      Width = 605
-                      Height = 63
-                      Color = clNavy
-                      Font.Charset = DEFAULT_CHARSET
-                      Font.Color = clYellow
-                      Font.Height = -13
-                      Font.Name = 'Courier New'
-                      Font.Pitch = fpFixed
-                      Font.Style = []
-                      PopupMenu = PopupMenuEditor
-                      TabOrder = 5
-                      Visible = False
-                      OnEnter = SynMemoInstrumentSampleScriptCodeEnter
-                      OnExit = SynMemoInstrumentSampleScriptCodeExit
-                      Gutter.Font.Charset = DEFAULT_CHARSET
-                      Gutter.Font.Color = clWindowText
-                      Gutter.Font.Height = -11
-                      Gutter.Font.Name = 'Terminal'
-                      Gutter.Font.Style = []
-                      Gutter.LeftOffset = 8
-                      Gutter.ShowLineNumbers = True
-                      Highlighter = SynPasSyn1
-                      Lines.UnicodeStrings = 'program ProgramName;'#13#10'begin'#13#10' // Insert here your code'#13#10'end.'
-                      Options = [eoAutoIndent, eoKeepCaretX, eoScrollByOneLess, eoSmartTabs, eoTabsToSpaces, eoTrimTrailingSpaces]
-                      ScrollBars = ssVertical
-                      SelectedColor.Background = clSilver
-                      SelectedColor.Foreground = clNavy
-                      WordWrap = True
-                      OnChange = SynMemoInstrumentSampleScriptCodeChange
-                      RemovedKeystrokes = <
-                        item
-                          Command = ecLineBreak
-                          ShortCut = 8205
-                        end
-                        item
-                          Command = ecContextHelp
-                          ShortCut = 112
-                        end>
-                      AddedKeystrokes = <>
-                    end
                   end
                 end
                 object TabSheetInstrumentSpeech: TSGTK0TabSheet
                   BorderWidth = 5
                   Caption = 'Speech'
+                  ExplicitLeft = 0
+                  ExplicitTop = 0
+                  ExplicitWidth = 0
+                  ExplicitHeight = 0
                   object SGTK0Panel96: TSGTK0Panel
                     Left = 0
                     Top = 0
@@ -10961,7 +11012,6 @@ object VSTiEditor: TVSTiEditor
                         Font.Height = -11
                         Font.Name = 'Courier New'
                         Font.Style = []
-                        ItemHeight = 0
                         ParentFont = False
                         TabOrder = 0
                         ItemIndex = -1
@@ -11105,7 +11155,6 @@ object VSTiEditor: TVSTiEditor
                             Width = 103
                             Height = 21
                             Style = csDropDownList
-                            ItemHeight = 13
                             Items.Strings = (
                               'Text'
                               'Alvey'
@@ -11136,7 +11185,6 @@ object VSTiEditor: TVSTiEditor
                             Top = 8
                             Width = 39
                             Height = 21
-                            ItemHeight = 13
                             Items.Strings = (
                               'UK'
                               'US')
@@ -11237,6 +11285,10 @@ object VSTiEditor: TVSTiEditor
                 object TabSheetInstrumentLink: TSGTK0TabSheet
                   BorderWidth = 5
                   Caption = 'Link'
+                  ExplicitLeft = 0
+                  ExplicitTop = 0
+                  ExplicitWidth = 0
+                  ExplicitHeight = 0
                   object SGTK0Panel198: TSGTK0Panel
                     Left = 0
                     Top = 0
@@ -11379,6 +11431,10 @@ object VSTiEditor: TVSTiEditor
                 object TabSheetInstrumentController: TSGTK0TabSheet
                   BorderWidth = 5
                   Caption = 'Controller'
+                  ExplicitLeft = 0
+                  ExplicitTop = 0
+                  ExplicitWidth = 0
+                  ExplicitHeight = 0
                   object SGTK0PanelInstrumentController: TSGTK0Panel
                     Left = 0
                     Top = 0
@@ -11402,6 +11458,10 @@ object VSTiEditor: TVSTiEditor
                 object TabSheetInstrumentTunings: TSGTK0TabSheet
                   BorderWidth = 5
                   Caption = 'Tunings'
+                  ExplicitLeft = 0
+                  ExplicitTop = 0
+                  ExplicitWidth = 0
+                  ExplicitHeight = 0
                   object CheckBoxInstrumentUseTuningTable: TSGTK0CheckBox
                     Left = 400
                     Top = 2
@@ -11623,6 +11683,10 @@ object VSTiEditor: TVSTiEditor
       object TabSheetGlobals: TSGTK0TabSheet
         BorderWidth = 1
         Caption = 'Globals'
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object PageControl1: TSGTK0PageControl
           Left = 0
           Top = 0
@@ -11651,6 +11715,10 @@ object VSTiEditor: TVSTiEditor
           object TabSheetGlobalsReverb: TSGTK0TabSheet
             BorderWidth = 5
             Caption = 'Reverb'
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object PanelGlobalsReverbOptions: TSGTK0Panel
               Left = 0
               Top = 0
@@ -12115,6 +12183,10 @@ object VSTiEditor: TVSTiEditor
           object TabSheetGlobalsDelay: TSGTK0TabSheet
             BorderWidth = 5
             Caption = 'Delay'
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object PanelGlobalsDelayWet: TSGTK0Panel
               Left = 0
               Top = 0
@@ -12521,6 +12593,10 @@ object VSTiEditor: TVSTiEditor
           object TabSheetGlobalsChorusFlanger: TSGTK0TabSheet
             BorderWidth = 5
             Caption = 'Chorus/Flanger'
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object PanelGlobalsChorusFlangerWet: TSGTK0Panel
               Left = 0
               Top = 0
@@ -13295,6 +13371,10 @@ object VSTiEditor: TVSTiEditor
           object TabSheetGlobalsPitchShifter: TSGTK0TabSheet
             BorderWidth = 5
             Caption = 'PitchShifter'
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object SGTK0Panel113: TSGTK0Panel
               Left = 241
               Top = 0
@@ -13437,6 +13517,10 @@ object VSTiEditor: TVSTiEditor
           object TabSheetGlobalsEndFilter: TSGTK0TabSheet
             BorderWidth = 5
             Caption = 'End Filter'
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object PanelGlobalsEndFilterOptions: TSGTK0Panel
               Left = 0
               Top = 0
@@ -13577,6 +13661,10 @@ object VSTiEditor: TVSTiEditor
           object TabSheetGlobalsEQ: TSGTK0TabSheet
             BorderWidth = 5
             Caption = 'EQ'
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object SGTK0Panel130: TSGTK0Panel
               Left = 0
               Top = 0
@@ -13612,7 +13700,6 @@ object VSTiEditor: TVSTiEditor
                 Width = 111
                 Height = 21
                 Style = csDropDownList
-                ItemHeight = 13
                 Items.Strings = (
                   '-6 .. 6 dB'
                   '-12 .. 12 dB'
@@ -14430,6 +14517,10 @@ object VSTiEditor: TVSTiEditor
           object TabSheetGlobalsCompressor: TSGTK0TabSheet
             BorderWidth = 5
             Caption = 'Compressor'
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object PanelGlobalsCompressorMode: TSGTK0Panel
               Left = 0
               Top = 0
@@ -14452,7 +14543,6 @@ object VSTiEditor: TVSTiEditor
                 Width = 170
                 Height = 21
                 Style = csDropDownList
-                ItemHeight = 13
                 Items.Strings = (
                   'None'
                   'Mono Env Follow Peak'
@@ -14915,6 +15005,10 @@ object VSTiEditor: TVSTiEditor
           object TabSheetGlobalsClock: TSGTK0TabSheet
             BorderWidth = 5
             Caption = 'Clock'
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object SGTK0Panel79: TSGTK0Panel
               Left = 0
               Top = 0
@@ -15029,6 +15123,10 @@ object VSTiEditor: TVSTiEditor
           object TabSheetGlobalsVoices: TSGTK0TabSheet
             BorderWidth = 5
             Caption = 'Voices'
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object SGTK0Panel172: TSGTK0Panel
               Left = 0
               Top = 0
@@ -15088,6 +15186,10 @@ object VSTiEditor: TVSTiEditor
           object TabSheetGlobalsFinalCompressor: TSGTK0TabSheet
             BorderWidth = 5
             Caption = 'Final Compressor'
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object PanelGlobalsFinalCompressorMode: TSGTK0Panel
               Left = 0
               Top = 0
@@ -15110,7 +15212,6 @@ object VSTiEditor: TVSTiEditor
                 Width = 170
                 Height = 21
                 Style = csDropDownList
-                ItemHeight = 13
                 Items.Strings = (
                   'None'
                   'Mono Env Follow Peak'
@@ -15538,6 +15639,10 @@ object VSTiEditor: TVSTiEditor
           object TabSheetGlobalsOversample: TSGTK0TabSheet
             BorderWidth = 5
             Caption = 'Oversample'
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object SGTK0Panel169: TSGTK0Panel
               Left = 0
               Top = 0
@@ -15694,6 +15799,10 @@ object VSTiEditor: TVSTiEditor
           object TabSheetGlobalsOutput: TSGTK0TabSheet
             BorderWidth = 5
             Caption = 'Output'
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object SGTK0Panel194: TSGTK0Panel
               Left = 0
               Top = 0
@@ -15728,6 +15837,10 @@ object VSTiEditor: TVSTiEditor
           object TabSheetGlobalsRamping: TSGTK0TabSheet
             BorderWidth = 5
             Caption = 'Ramping'
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object SGTK0Panel202: TSGTK0Panel
               Left = 0
               Top = 0
@@ -15805,7 +15918,6 @@ object VSTiEditor: TVSTiEditor
                 Width = 170
                 Height = 21
                 Style = csDropDownList
-                ItemHeight = 13
                 Items.Strings = (
                   'Linear'
                   'Exponential')
@@ -15822,6 +15934,10 @@ object VSTiEditor: TVSTiEditor
       object TabSheetExport: TSGTK0TabSheet
         BorderWidth = 1
         Caption = 'Export'
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object SGTK0Panel145: TSGTK0Panel
           Left = 4
           Top = 4
@@ -16398,15 +16514,6 @@ object VSTiEditor: TVSTiEditor
     Title = 'Export tuning'
     Left = 579
     Top = 66
-  end
-  object SynPasSyn1: TSynPasSyn
-    CommentAttri.Foreground = clSilver
-    KeyAttri.Foreground = clWhite
-    KeyAttri.Style = []
-    DelphiVersion = dvDelphi5
-    PackageSource = False
-    Left = 196
-    Top = 100
   end
   object PopupMenuEditor: TPopupMenu
     OwnerDraw = True
