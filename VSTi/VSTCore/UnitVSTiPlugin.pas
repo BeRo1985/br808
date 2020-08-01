@@ -3,6 +3,278 @@
  * http://www.gnu.org/licenses/lgpl.html for details
  *)
 unit UnitVSTiPlugin;
+{$ifdef fpc}
+ {$mode delphi}
+ {$ifdef cpui386}
+  {$define cpu386}
+ {$endif}
+ {$ifdef cpu386}
+  {$asmmode intel}
+ {$endif}
+ {$ifdef cpuamd64}
+  {$define cpux64}
+  {$define cpux8664}
+  {$asmmode intel}
+ {$endif}
+ {$ifdef FPC_LITTLE_ENDIAN}
+  {$define LITTLE_ENDIAN}
+ {$else}
+  {$ifdef FPC_BIG_ENDIAN}
+   {$define BIG_ENDIAN}
+  {$endif}
+ {$endif}
+ {-$pic off}
+ {$define CanInline}
+ {$ifdef FPC_HAS_TYPE_EXTENDED}
+  {$define HAS_TYPE_EXTENDED}
+ {$else}
+  {$undef HAS_TYPE_EXTENDED}
+ {$endif}
+ {$ifdef FPC_HAS_TYPE_DOUBLE}
+  {$define HAS_TYPE_DOUBLE}
+ {$else}
+  {$undef HAS_TYPE_DOUBLE}
+ {$endif}
+ {$ifdef FPC_HAS_TYPE_SINGLE}
+  {$define HAS_TYPE_SINGLE}
+ {$else}
+  {$undef HAS_TYPE_SINGLE}
+ {$endif}
+ {$if declared(RawByteString)}
+  {$define HAS_TYPE_RAWBYTESTRING}
+ {$else}
+  {$undef HAS_TYPE_RAWBYTESTRING}
+ {$ifend}
+ {$if declared(UTF8String)}
+  {$define HAS_TYPE_UTF8STRING}
+ {$else}
+  {$undef HAS_TYPE_UTF8STRING}
+ {$ifend}
+ {$if declared(UnicodeString)}
+  {$define HAS_TYPE_UNICODESTRING}
+ {$else}
+  {$undef HAS_TYPE_UNICODESTRING}
+ {$ifend}
+{$else}
+ {$realcompatibility off}
+ {$localsymbols on}
+ {$define LITTLE_ENDIAN}
+ {$ifdef cpux64}
+  {$define cpux8664}
+  {$define cpuamd64}
+  {$define cpu64}
+ {$endif}
+ {$ifndef cpu64}
+  {$define cpu32}
+ {$endif}
+ {$define HAS_TYPE_EXTENDED}
+ {$define HAS_TYPE_DOUBLE}
+ {$define HAS_TYPE_SINGLE}
+ {$ifdef conditionalexpressions}
+  {$if declared(RawByteString)}
+   {$define HAS_TYPE_RAWBYTESTRING}
+  {$else}
+   {$undef HAS_TYPE_RAWBYTESTRING}
+  {$ifend}
+  {$if declared(UTF8String)}
+   {$define HAS_TYPE_UTF8STRING}
+  {$else}
+   {$undef HAS_TYPE_UTF8STRING}
+  {$ifend}
+  {$if declared(UnicodeString)}
+   {$define HAS_TYPE_UNICODESTRING}
+  {$else}
+   {$undef HAS_TYPE_UNICODESTRING}
+  {$ifend}
+ {$else}
+  {$undef HAS_TYPE_RAWBYTESTRING}
+  {$undef HAS_TYPE_UTF8STRING}
+  {$undef HAS_TYPE_UNICODESTRING}
+ {$endif}
+ {$ifndef BCB}
+  {$ifdef ver120}
+   {$define Delphi4or5}
+  {$endif}
+  {$ifdef ver130}
+   {$define Delphi4or5}
+  {$endif}
+  {$ifdef ver140}
+   {$define Delphi6}
+  {$endif}
+  {$ifdef ver150}
+   {$define Delphi7}
+  {$endif}
+  {$ifdef ver170}
+   {$define Delphi2005}
+  {$endif}
+ {$else}
+  {$ifdef ver120}
+   {$define Delphi4or5}
+   {$define BCB4}
+  {$endif}
+  {$ifdef ver130}
+   {$define Delphi4or5}
+  {$endif}
+ {$endif}
+ {$ifdef conditionalexpressions}
+  {$if CompilerVersion>=24}
+   {$legacyifend on}
+  {$ifend}
+  {$if CompilerVersion>=14.0}
+   {$if CompilerVersion=14.0}
+    {$define Delphi6}
+   {$ifend}
+   {$define Delphi6AndUp}
+  {$ifend}
+  {$if CompilerVersion>=15.0}
+   {$if CompilerVersion=15.0}
+    {$define Delphi7}
+   {$ifend}
+   {$define Delphi7AndUp}
+  {$ifend}
+  {$if CompilerVersion>=17.0}
+   {$if CompilerVersion=17.0}
+    {$define Delphi2005}
+   {$ifend}
+   {$define Delphi2005AndUp}
+  {$ifend}
+  {$if CompilerVersion>=18.0}
+   {$if CompilerVersion=18.0}
+    {$define BDS2006}
+    {$define Delphi2006}
+   {$ifend}
+   {$define Delphi2006AndUp}
+  {$ifend}
+  {$if CompilerVersion>=18.5}
+   {$if CompilerVersion=18.5}
+    {$define Delphi2007}
+   {$ifend}
+   {$define Delphi2007AndUp}
+  {$ifend}
+  {$if CompilerVersion=19.0}
+   {$define Delphi2007Net}
+  {$ifend}
+  {$if CompilerVersion>=20.0}
+   {$if CompilerVersion=20.0}
+    {$define Delphi2009}
+   {$ifend}
+   {$define Delphi2009AndUp}
+   {$define CanInline}
+  {$ifend}
+  {$if CompilerVersion>=21.0}
+   {$if CompilerVersion=21.0}
+    {$define Delphi2010}
+   {$ifend}
+   {$define Delphi2010AndUp}
+  {$ifend}
+  {$if CompilerVersion>=22.0}
+   {$if CompilerVersion=22.0}
+    {$define DelphiXE}
+   {$ifend}
+   {$define DelphiXEAndUp}
+  {$ifend}
+  {$if CompilerVersion>=23.0}
+   {$if CompilerVersion=23.0}
+    {$define DelphiXE2}
+   {$ifend}
+   {$define DelphiXE2AndUp}
+  {$ifend}
+  {$if CompilerVersion>=24.0}
+   {$if CompilerVersion=24.0}
+    {$define DelphiXE3}
+   {$ifend}
+   {$define DelphiXE3AndUp}
+  {$ifend}
+  {$if CompilerVersion>=25.0}
+   {$if CompilerVersion=25.0}
+    {$define DelphiXE4}
+   {$ifend}
+   {$define DelphiXE4AndUp}
+  {$ifend}
+  {$if CompilerVersion>=26.0}
+   {$if CompilerVersion=26.0}
+    {$define DelphiXE5}
+   {$ifend}
+   {$define DelphiXE5AndUp}
+  {$ifend}
+  {$if CompilerVersion>=27.0}
+   {$if CompilerVersion=27.0}
+    {$define DelphiXE6}
+   {$ifend}
+   {$define DelphiXE6AndUp}
+  {$ifend}
+  {$if CompilerVersion>=28.0}
+   {$if CompilerVersion=28.0}
+    {$define DelphiXE7}
+   {$ifend}
+   {$define DelphiXE7AndUp}
+  {$ifend}
+  {$if CompilerVersion>=29.0}
+   {$if CompilerVersion=29.0}
+    {$define DelphiXE8}
+   {$ifend}
+   {$define DelphiXE8AndUp}
+  {$ifend}
+  {$if CompilerVersion>=30.0}
+   {$if CompilerVersion=30.0}
+    {$define Delphi10Seattle}
+   {$ifend}
+   {$define Delphi10SeattleAndUp}
+  {$ifend}
+  {$if CompilerVersion>=31.0}
+   {$if CompilerVersion=31.0}
+    {$define Delphi10Berlin}
+   {$ifend}
+   {$define Delphi10BerlinAndUp}
+  {$ifend}
+ {$endif}
+ {$ifndef Delphi4or5}
+  {$ifndef BCB}
+   {$define Delphi6AndUp}
+  {$endif}
+   {$ifndef Delphi6}
+    {$define BCB6OrDelphi7AndUp}
+    {$ifndef BCB}
+     {$define Delphi7AndUp}
+    {$endif}
+    {$ifndef BCB}
+     {$ifndef Delphi7}
+      {$ifndef Delphi2005}
+       {$define BDS2006AndUp}
+      {$endif}
+     {$endif}
+    {$endif}
+   {$endif}
+ {$endif}
+ {$ifdef Delphi6AndUp}
+  {$warn symbol_platform off}
+  {$warn symbol_deprecated off}
+ {$endif}
+{$endif}
+{$ifdef win32}
+ {$define windows}
+{$endif}
+{$ifdef win64}
+ {$define windows}
+{$endif}
+{$ifdef wince}
+ {$define windows}
+{$endif}
+{$ifndef HAS_TYPE_DOUBLE}
+ {$error No double floating point precision}
+{$endif}
+{$rangechecks off}
+{$extendedsyntax on}
+{$writeableconst on}
+{$hints off}
+{$booleval off}
+{$typedaddress off}
+{$stackframes off}
+{$varstringchecks on}
+{$typeinfo on}
+{$overflowchecks off}
+{$longstrings on}
+{$openstrings on}
 {$ifdef cpu64}
  {$align 8}
 {$else}
@@ -11,7 +283,7 @@ unit UnitVSTiPlugin;
 
 interface
 
-uses Windows,SysUtils,Graphics,Classes,MMSystem,UnitMIDIEvent,UnitMIDIEventList,
+uses Windows,Math,SysUtils,Graphics,Classes,MMSystem,UnitMIDIEvent,UnitMIDIEventList,
      BeRoUtils,UnitVSTiEditor,BeRoCriticalSection,BeRoStream,Functions,
      Synth,LZBRX,BeRoTinyFlexibleDataStorage,MIDIConstants,DateUtils,VersionInfo;
 
@@ -206,13 +478,19 @@ http://asseca.com/vst-24-specs/
 type TVSTiSignature=array[1..4] of ansichar;
      TVSTiString=array[0..255] of ansichar;
 
+     PNativeSignedInt=^TNativeSignedInt;
+     TNativeSignedInt={$ifdef fpc}PtrInt{$else}{$if CompilerVersion>=23.0}NativeInt{$else}{$ifdef cpu64}int64{$else}longint{$endif}{$ifend}{$endif};
+
+     PNativeUnsignedInt=^TNativeUnsignedInt;
+     TNativeUnsignedInt={$ifdef fpc}PtrUInt{$else}{$if CompilerVersion>=23.0}NativeUInt{$else}{$ifdef cpu64}uint64{$else}longword{$endif}{$ifend}{$endif};
+
      PVSTEffect=^TVSTEffect;
 
      PPSingle=^psingle;
      PPDouble=^pdouble;
 
-     TAudioMasterCallbackFunc=function(Effect:PVSTEffect;Opcode,index:longint;Value:ptrint;Ptr:pointer;Opt:single):ptrint; cdecl;
-     TDispatcherFunc=function(Effect:PVSTEffect;Opcode,index:longint;Value:ptrint;Ptr:pointer;Opt:single):ptrint; cdecl;
+     TAudioMasterCallbackFunc=function(Effect:PVSTEffect;Opcode,index:longint;Value:TNativeSignedInt;Ptr:pointer;Opt:single):TNativeSignedInt; cdecl;
+     TDispatcherFunc=function(Effect:PVSTEffect;Opcode,index:longint;Value:TNativeSignedInt;Ptr:pointer;Opt:single):TNativeSignedInt; cdecl;
      TProcessProc=procedure(Effect:PVSTEffect;Inputs,Outputs:PPSingle;SampleFrames:longint); cdecl;
      TProcessDoubleProc=procedure(Effect:PVSTEffect;Inputs,Outputs:PPDouble;SampleFrames:longint); cdecl;
      TSetParameterProc=procedure(Effect:PVSTEffect;index:longint;Parameter:single); cdecl;
@@ -227,7 +505,7 @@ type TVSTiSignature=array[1..4] of ansichar;
       GetParameter:TGetParameterFunc;
       NumPrograms,NumParams,NumInputs,NumOutputs,Flags:longint;
       ReservedForHost:pointer;
-      Resvd2:ptrint;
+      Resvd2:TNativeSignedInt;
       InitialDelay,RealQualities,OffQualities:longint;
       IORatio:single;
       vObject,User:pointer;
@@ -265,7 +543,7 @@ type TVSTiSignature=array[1..4] of ansichar;
      PVSTEvents=^TVSTEvents;
      TVSTEvents=record
       NumEvents:longint;
-      Reserved:ptrint;
+      Reserved:TNativeSignedInt;
       Events:array[0..1] of PVSTEvent;
      end;
 
@@ -280,9 +558,9 @@ type TVSTiSignature=array[1..4] of ansichar;
      PVSTMIDISysExEvent=^TVSTMIDISysExEvent;
      TVSTMIDISysExEvent=record
       vType,ByteSize,DeltaFrames,Flags,DumpBytes:longint;
-      Resvd1:ptrint;
+      Resvd1:TNativeSignedInt;
       SysExDump:pbyte;
-      Resv2:ptrint;
+      Resv2:TNativeSignedInt;
      end;
 
      PVSTPinProperties=^TVSTPinProperties;
@@ -429,7 +707,7 @@ type TVSTiSignature=array[1..4] of ansichar;
 
        constructor CreatePlugin(AAudioMaster:TAudioMasterCallbackFunc);
        destructor Destroy; override;
-       function Dispatcher(Opcode,index:longint;Value:ptrint;Ptr:pointer;Opt:single):ptrint;
+       function Dispatcher(Opcode,index:longint;Value:TNativeSignedInt;Ptr:pointer;Opt:single):TNativeSignedInt;
        procedure ChangeProgramText(ProgramNr:integer);
        procedure ChangeProgram(ChannelIndex,ProgramNr:integer);
        procedure ProcessEx(Input,Output:pointer;Samples:longint;Replace,UseDoubles:boolean);
@@ -510,7 +788,7 @@ begin
  result:=ord(C4)+(ord(C3) shl 8)+(ord(C2) shl 16)+(ord(C1) shl 24);
 end;
 
-function DispatchEffectClass(Effect:PVSTEffect;Opcode,index:longint;Value:ptrint;Ptr:pointer;Opt:single):ptrint; cdecl;
+function DispatchEffectClass(Effect:PVSTEffect;Opcode,index:longint;Value:TNativeSignedInt;Ptr:pointer;Opt:single):TNativeSignedInt; cdecl;
 var VSTiPlugin:TVSTiPlugin;
 begin
  VSTiPlugin:=Effect^.vObject;
@@ -565,10 +843,10 @@ begin
  FillChar(VSTEffect,sizeof(TVSTEffect),#0);
 
  VSTEffect.Magic:=FourCharToLong('V','s','t','P');
- VSTEffect.Dispatcher:=DispatchEffectClass;
- VSTEffect.Process:=ProcessClass;
- VSTEffect.SetParameter:=SetParameterClass;
- VSTEffect.GetParameter:=GetParameterClass;
+ VSTEffect.Dispatcher:=@DispatchEffectClass;
+ VSTEffect.Process:=@ProcessClass;
+ VSTEffect.SetParameter:=@SetParameterClass;
+ VSTEffect.GetParameter:=@GetParameterClass;
  VSTEffect.NumPrograms:=VSTNumPrograms;
  VSTEffect.NumParams:=VSTNumParams;
  VSTEffect.NumInputs:=VSTiNumInputs;
@@ -763,7 +1041,7 @@ begin
  inherited Destroy;
 end;
 
-function TVSTiPlugin.Dispatcher(Opcode,index:longint;Value:ptrint;Ptr:pointer;Opt:single):ptrint;
+function TVSTiPlugin.Dispatcher(Opcode,index:longint;Value:TNativeSignedInt;Ptr:pointer;Opt:single):TNativeSignedInt;
 var pe:PERect;
     KeyCode:TVSTKeyCode;
 begin
@@ -1129,6 +1407,7 @@ begin
 end;
 
 procedure TVSTiPlugin.ProcessEx(Input,Output:pointer;Samples:longint;Replace,UseDoubles:boolean);
+const FPUExceptionMask:TFPUExceptionMask=[exInvalidOp,exDenormalized,exZeroDivide,exOverflow,exUnderflow,exPrecision];
 var ChannelCounter,SampleCounter:integer;
     Buffer:PSynthBufferSample;
     SrcSample,DestSample:psingle;
@@ -1136,6 +1415,7 @@ var ChannelCounter,SampleCounter:integer;
     Value,ibs:single;
     t1,t2,tf:int64;
     OldFCW:word;
+    OldFPUExceptionMask:TFPUExceptionMask;
 begin
 {$ifdef cpu386}
  asm
@@ -1143,7 +1423,9 @@ begin
   fldcw word Ptr SynthFCW
  end;
 {$endif}
+ OldFPUExceptionMask:=GetExceptionMask;
  try
+  SetExceptionMask(FPUExceptionMask);
   AudioCriticalSection.Enter;
   try
    begin
@@ -1221,7 +1503,7 @@ begin
     Track.DoAudioProcessing:=DoOutputAudio;
     QueryPerformanceFrequency(tf);
     QueryPerformanceCounter(t1);
-    Track.Master:=TVSTiPlugin(InstanceInfo.VSTiPluginInstancesList[0])=self;
+    Track.Master:=assigned(InstanceInfo) and (TVSTiPlugin(InstanceInfo^.VSTiPluginInstancesList[0])=self);
     SynthFillBuffer(@Track,Samples,InputBuffer);
     QueryPerformanceCounter(t2);
     if tf=0 then begin
@@ -1377,6 +1659,7 @@ begin
    end;
   end;
  finally
+  SetExceptionMask(OldFPUExceptionMask);
 {$ifdef cpu386}
   asm
    fldcw word Ptr OldFCW
@@ -2324,7 +2607,7 @@ begin
      MainSubStorage:=TBeRoTinyFlexibleDataStorageList.Create;
      MainStorage.Add('BRIN',STORAGEToStorageValue(MainSubStorage));
      if assigned(InstanceInfo) then begin
-      MainSubStorage.Add('MAST',BOOLEANToStorageValue(((InstanceInfo.VSTiPluginInstancesList.Count>0) and (InstanceInfo.VSTiPluginInstancesList[0]=self)) or ((InstanceInfo.VSTiPluginInstancesList.Count<2))));
+      MainSubStorage.Add('MAST',BOOLEANToStorageValue(((InstanceInfo^.VSTiPluginInstancesList.Count>0) and (InstanceInfo^.VSTiPluginInstancesList[0]=self)) or ((InstanceInfo^.VSTiPluginInstancesList.Count<2))));
      end else begin
       MainSubStorage.Add('MAST',BOOLEANToStorageValue(true));
      end;
@@ -3244,10 +3527,10 @@ begin
         if assigned(InstanceInfo) and assigned(InstanceInfo^.VSTiPluginInstancesCriticalSection) then begin
          InstanceInfo^.VSTiPluginInstancesCriticalSection.Enter;
          try
-          if TVSTiPlugin(InstanceInfo.VSTiPluginInstancesList[0])<>self then begin
-           i:=InstanceInfo.VSTiPluginInstancesList.IndexOf(self);
+          if TVSTiPlugin(InstanceInfo^.VSTiPluginInstancesList[0])<>self then begin
+           i:=InstanceInfo^.VSTiPluginInstancesList.IndexOf(self);
            if i>=0 then begin
-            InstanceInfo.VSTiPluginInstancesList.Exchange(0,i);
+            InstanceInfo^.VSTiPluginInstancesList.Exchange(0,i);
            end;
           end;
          except
@@ -3300,8 +3583,8 @@ begin
    InstanceInfo^.VSTiPluginInstancesCriticalSection.Enter;
   end;
   try
-   if (InstanceInfo.VSTiPluginInstancesList.Count>0) and ((InstanceInfo.VSTiPluginInstancesList[0]<>self) and (InstanceInfo.VSTiPluginInstancesList[0]<>Sender)) then begin
-    TVSTiPlugin(InstanceInfo.VSTiPluginInstancesList[0]).RecordMIDIStart(self);
+   if (InstanceInfo^.VSTiPluginInstancesList.Count>0) and ((InstanceInfo^.VSTiPluginInstancesList[0]<>self) and (InstanceInfo^.VSTiPluginInstancesList[0]<>Sender)) then begin
+    TVSTiPlugin(InstanceInfo^.VSTiPluginInstancesList[0]).RecordMIDIStart(self);
     if assigned(InstanceInfo^.VSTiPluginInstancesCriticalSection) then begin
      InstanceInfo^.VSTiPluginInstancesCriticalSection.Leave;
     end;
@@ -3315,7 +3598,7 @@ begin
     InstanceInfo^.VSTiPluginInstancesCriticalSection.Leave;
    end;
   end;
-  if (InstanceInfo.VSTiPluginInstancesList.Count>0) and (InstanceInfo.VSTiPluginInstancesList[0]=self) then begin
+  if (InstanceInfo^.VSTiPluginInstancesList.Count>0) and (InstanceInfo^.VSTiPluginInstancesList[0]=self) then begin
    InstanceInfo^.VSTiPluginInstancesCriticalSection.Enter;
   end;
  end;
@@ -3333,9 +3616,9 @@ begin
  except
  end;
  if assigned(InstanceInfo) then begin
-  if (InstanceInfo.VSTiPluginInstancesList.Count>0) and (InstanceInfo.VSTiPluginInstancesList[0]=self) then begin
-   for i:=1 to InstanceInfo.VSTiPluginInstancesList.Count-1 do begin
-    TVSTiPlugin(InstanceInfo.VSTiPluginInstancesList[i]).RecordMIDIStart(self);
+  if (InstanceInfo^.VSTiPluginInstancesList.Count>0) and (InstanceInfo^.VSTiPluginInstancesList[0]=self) then begin
+   for i:=1 to InstanceInfo^.VSTiPluginInstancesList.Count-1 do begin
+    TVSTiPlugin(InstanceInfo^.VSTiPluginInstancesList[i]).RecordMIDIStart(self);
    end;
    InstanceInfo^.VSTiPluginInstancesCriticalSection.Leave;
   end;
@@ -3352,8 +3635,8 @@ begin
    InstanceInfo^.VSTiPluginInstancesCriticalSection.Enter;
   end;
   try
-   if (InstanceInfo.VSTiPluginInstancesList.Count>0) and ((InstanceInfo.VSTiPluginInstancesList[0]<>self) and (InstanceInfo.VSTiPluginInstancesList[0]<>Sender)) then begin
-    TVSTiPlugin(InstanceInfo.VSTiPluginInstancesList[0]).RecordMIDIStop(self);
+   if (InstanceInfo^.VSTiPluginInstancesList.Count>0) and ((InstanceInfo^.VSTiPluginInstancesList[0]<>self) and (InstanceInfo^.VSTiPluginInstancesList[0]<>Sender)) then begin
+    TVSTiPlugin(InstanceInfo^.VSTiPluginInstancesList[0]).RecordMIDIStop(self);
     if assigned(InstanceInfo^.VSTiPluginInstancesCriticalSection) then begin
      InstanceInfo^.VSTiPluginInstancesCriticalSection.Leave;
     end;
@@ -3367,10 +3650,10 @@ begin
     InstanceInfo^.VSTiPluginInstancesCriticalSection.Leave;
    end;
   end;
-  if (InstanceInfo.VSTiPluginInstancesList.Count>0) and (InstanceInfo.VSTiPluginInstancesList[0]=self) then begin
+  if (InstanceInfo^.VSTiPluginInstancesList.Count>0) and (InstanceInfo^.VSTiPluginInstancesList[0]=self) then begin
    InstanceInfo^.VSTiPluginInstancesCriticalSection.Enter;
-   for i:=1 to InstanceInfo.VSTiPluginInstancesList.Count-1 do begin
-    TVSTiPlugin(InstanceInfo.VSTiPluginInstancesList[i]).RecordMIDIStop(self);
+   for i:=1 to InstanceInfo^.VSTiPluginInstancesList.Count-1 do begin
+    TVSTiPlugin(InstanceInfo^.VSTiPluginInstancesList[i]).RecordMIDIStop(self);
    end;
   end;
  end;
@@ -3396,16 +3679,16 @@ begin
   end;
   if assigned(InstanceInfo) then begin
    ExportMIDIStartPosition:=p;
-   if (InstanceInfo.VSTiPluginInstancesList.Count>0) and (InstanceInfo.VSTiPluginInstancesList[0]=self) then begin
-    for i:=1 to InstanceInfo.VSTiPluginInstancesList.Count-1 do begin
-     p:=TVSTiPlugin(InstanceInfo.VSTiPluginInstancesList[i]).ExportMIDIStartPosition;
+   if (InstanceInfo^.VSTiPluginInstancesList.Count>0) and (InstanceInfo^.VSTiPluginInstancesList[0]=self) then begin
+    for i:=1 to InstanceInfo^.VSTiPluginInstancesList.Count-1 do begin
+     p:=TVSTiPlugin(InstanceInfo^.VSTiPluginInstancesList[i]).ExportMIDIStartPosition;
      if (p>=0) and (p<ExportMIDIStartPosition) then begin
       ExportMIDIStartPosition:=p;
      end;
     end;
-    for i:=0 to InstanceInfo.VSTiPluginInstancesList.Count-1 do begin
-     for j:=0 to TVSTiPlugin(InstanceInfo.VSTiPluginInstancesList[i]).ExportMIDIEventList.Count-1 do begin
-      MIDIEventItem:=TVSTiPlugin(InstanceInfo.VSTiPluginInstancesList[i]).ExportMIDIEventList[j];
+    for i:=0 to InstanceInfo^.VSTiPluginInstancesList.Count-1 do begin
+     for j:=0 to TVSTiPlugin(InstanceInfo^.VSTiPluginInstancesList[i]).ExportMIDIEventList.Count-1 do begin
+      MIDIEventItem:=TVSTiPlugin(InstanceInfo^.VSTiPluginInstancesList[i]).ExportMIDIEventList[j];
       if not assigned(MIDIEventItem) then continue;
       if MIDIEventItem.DeltaFrames>ExportMIDIStartPosition then begin
        dec(MIDIEventItem.DeltaFrames,ExportMIDIStartPosition);
@@ -3414,7 +3697,7 @@ begin
       end;
      end;
     end;
-   end else if InstanceInfo.VSTiPluginInstancesList.Count<2 then begin
+   end else if InstanceInfo^.VSTiPluginInstancesList.Count<2 then begin
     if p<0 then begin
      p:=0;
     end;
@@ -3445,7 +3728,7 @@ begin
  except
  end;
  if assigned(InstanceInfo) then begin
-  if (InstanceInfo.VSTiPluginInstancesList.Count>0) and (InstanceInfo.VSTiPluginInstancesList[0]=self) then begin
+  if (InstanceInfo^.VSTiPluginInstancesList.Count>0) and (InstanceInfo^.VSTiPluginInstancesList[0]=self) then begin
    InstanceInfo^.VSTiPluginInstancesCriticalSection.Leave;
   end;
  end;
@@ -4198,11 +4481,11 @@ var Counter,DataCounter,ChannelCounter,CommandCounter,ControllerCounter,
 begin
  try
   if assigned(InstanceInfo) then begin
-   if (InstanceInfo.VSTiPluginInstancesList.Count>0) and ((InstanceInfo.VSTiPluginInstancesList[0]<>self) and (InstanceInfo.VSTiPluginInstancesList[0]<>Sender)) then begin
-    result:=TVSTiPlugin(InstanceInfo.VSTiPluginInstancesList[0]).GenerateBMF(BMFStream,BankStream,self);
+   if (InstanceInfo^.VSTiPluginInstancesList.Count>0) and ((InstanceInfo^.VSTiPluginInstancesList[0]<>self) and (InstanceInfo^.VSTiPluginInstancesList[0]<>Sender)) then begin
+    result:=TVSTiPlugin(InstanceInfo^.VSTiPluginInstancesList[0]).GenerateBMF(BMFStream,BankStream,self);
     exit;
    end;
-   if (InstanceInfo.VSTiPluginInstancesList.Count>0) and (InstanceInfo.VSTiPluginInstancesList[0]=self) then begin
+   if (InstanceInfo^.VSTiPluginInstancesList.Count>0) and (InstanceInfo^.VSTiPluginInstancesList[0]=self) then begin
     InstanceInfo^.VSTiPluginInstancesCriticalSection.Enter;
    end;
   end;
@@ -4414,12 +4697,12 @@ begin
 
   if assigned(InstanceInfo) then begin
    SubTrackOffset:=8;
-   if (InstanceInfo.VSTiPluginInstancesList.Count>0) and (InstanceInfo.VSTiPluginInstancesList[0]=self) then begin
-    for i:=1 to InstanceInfo.VSTiPluginInstancesList.Count-1 do begin
+   if (InstanceInfo^.VSTiPluginInstancesList.Count>0) and (InstanceInfo^.VSTiPluginInstancesList[0]=self) then begin
+    for i:=1 to InstanceInfo^.VSTiPluginInstancesList.Count-1 do begin
      SubBMFStream:=TBeRoMemoryStream.Create;
      SubBankStream:=TBeRoMemoryStream.Create;
-     if TVSTiPlugin(InstanceInfo.VSTiPluginInstancesList[i]).GenerateBank(SubBankStream,true) then begin
-      if not TVSTiPlugin(InstanceInfo.VSTiPluginInstancesList[i]).GenerateBMF(SubBMFStream,SubBankStream,self) then begin
+     if TVSTiPlugin(InstanceInfo^.VSTiPluginInstancesList[i]).GenerateBank(SubBankStream,true) then begin
+      if not TVSTiPlugin(InstanceInfo^.VSTiPluginInstancesList[i]).GenerateBMF(SubBMFStream,SubBankStream,self) then begin
        result:=false;
        MemoryStream.Destroy;
        exit;
@@ -4451,7 +4734,7 @@ begin
   setlength(MIDIEvents,0);
 
   if assigned(InstanceInfo) then begin
-   if (InstanceInfo.VSTiPluginInstancesList.Count>0) and (InstanceInfo.VSTiPluginInstancesList[0]=self) then begin
+   if (InstanceInfo^.VSTiPluginInstancesList.Count>0) and (InstanceInfo^.VSTiPluginInstancesList[0]=self) then begin
     InstanceInfo^.VSTiPluginInstancesCriticalSection.Leave;
    end;
   end;
@@ -5195,7 +5478,7 @@ begin
 end;
 
 var MappingHandle:THandle;
-    MappingName:string;
+    MappingName:ansistring;
 
 procedure AddInstance;
 begin

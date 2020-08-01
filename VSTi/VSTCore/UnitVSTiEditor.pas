@@ -3394,117 +3394,145 @@ end;
 procedure TVSTiEditor.AudioStatusTimerTimer(Sender: TObject);
 const Div1000=1/1000;
       TimeFactor=25;
+      FPUExceptionMask:TFPUExceptionMask=[exInvalidOp,exDenormalized,exZeroDivide,exOverflow,exUnderflow,exPrecision];
 var VSTiPlugin:TVSTiPlugin;
 //    FPSFactor:SINGLE;
     ARect:TRect;
     Poly,Counter,SubCounter,Count,NewInstanceMode:integer;
     S:string;
+    OldFPUExceptionMask:TFPUExceptionMask;
 begin
- begin
-  try
-   if assigned(InstanceInfo) and assigned(InstanceInfo^.VSTiPluginInstancesCriticalSection) then begin
-    InstanceInfo^.VSTiPluginInstancesCriticalSection.Enter;
-   end;
+ OldFPUExceptionMask:=GetExceptionMask;
+ try
+  SetExceptionMask(FPUExceptionMask);
+//SetFPURoundMode(rmNearest);
+  begin
    try
-    if assigned(InstanceInfo) then begin
-     Count:=InstanceInfo^.NumberOfVSTiPluginInstances;
-     if Count>1 then begin
-      if TVSTiPlugin(Plugin).ExportMIDIDoRecord then begin
-       s:='Stop';
-      end else begin
-       s:='Record';
-      end;
-      if APluginExportMIDIDoRecord<>TVSTiPlugin(Plugin).ExportMIDIDoRecord then begin
-       APluginExportMIDIDoRecord:=TVSTiPlugin(Plugin).ExportMIDIDoRecord;
-       ButtonExportMIDIRecordStop.Caption:=s;
-      end;
-     end;
-    end else begin
-     Count:=1;
+    if assigned(InstanceInfo) and assigned(InstanceInfo^.VSTiPluginInstancesCriticalSection) then begin
+     InstanceInfo^.VSTiPluginInstancesCriticalSection.Enter;
     end;
-    if OldInstanceCount<>Count then begin
-     OldInstanceCount:=Count;
-     if Count=1 then begin
-      SGTK0PanelInstanceCount.Caption:='1 instance';
+    try
+     if assigned(InstanceInfo) then begin
+      Count:=InstanceInfo^.NumberOfVSTiPluginInstances;
+      if Count>1 then begin
+       if TVSTiPlugin(Plugin).ExportMIDIDoRecord then begin
+        s:='Stop';
+       end else begin
+        s:='Record';
+       end;
+       if APluginExportMIDIDoRecord<>TVSTiPlugin(Plugin).ExportMIDIDoRecord then begin
+        APluginExportMIDIDoRecord:=TVSTiPlugin(Plugin).ExportMIDIDoRecord;
+        ButtonExportMIDIRecordStop.Caption:=s;
+       end;
+      end;
      end else begin
-      SGTK0PanelInstanceCount.Caption:=inttostr(Count)+' instances';
+      Count:=1;
      end;
-    end;
-    if assigned(InstanceInfo) then begin
-     if OldInstanceCount=1 then begin
+     if OldInstanceCount<>Count then begin
+      OldInstanceCount:=Count;
+      if Count=1 then begin
+       SGTK0PanelInstanceCount.Caption:='1 instance';
+      end else begin
+       SGTK0PanelInstanceCount.Caption:=inttostr(Count)+' instances';
+      end;
+     end;
+     if assigned(InstanceInfo) then begin
+      if OldInstanceCount=1 then begin
+       NewInstanceMode:=0;
+      end else begin
+       if TVSTiPlugin(InstanceInfo.VSTiPluginInstancesList[0])=Plugin then begin
+        NewInstanceMode:=1;
+       end else begin
+        NewInstanceMode:=2;
+       end;
+      end;
+     end else begin
       NewInstanceMode:=0;
-     end else begin
-      if TVSTiPlugin(InstanceInfo.VSTiPluginInstancesList[0])=Plugin then begin
-       NewInstanceMode:=1;
-      end else begin
-       NewInstanceMode:=2;
+     end;
+     if InstanceMode<>NewInstanceMode then begin
+      InstanceMode:=NewInstanceMode;
+      case InstanceMode of
+       1:begin
+        SGTK0PanelMasterSlave.Caption:='Master';
+       end;
+       2:begin
+        SGTK0PanelMasterSlave.Caption:='Slave';
+       end;
+       else begin
+        SGTK0PanelMasterSlave.Caption:='Single';
+       end;
       end;
      end;
-    end else begin
-     NewInstanceMode:=0;
+    finally
     end;
-    if InstanceMode<>NewInstanceMode then begin
-     InstanceMode:=NewInstanceMode;
-     case InstanceMode of
-      1:begin
-       SGTK0PanelMasterSlave.Caption:='Master';
-      end;
-      2:begin
-       SGTK0PanelMasterSlave.Caption:='Slave';
-      end;
-      else begin
-       SGTK0PanelMasterSlave.Caption:='Single';
+    if assigned(InstanceInfo) and assigned(InstanceInfo^.VSTiPluginInstancesCriticalSection) then begin
+     InstanceInfo^.VSTiPluginInstancesCriticalSection.Leave;
+    end;
+    CurrentTick:=timeGetTime;
+ //   FPSFactor:=(ABS(OldTick-CurrentTick)*Div1000)*TimeFactor;
+    OldTick:=CurrentTick;
+ //   IF FPSFactor>1 THEN FPSFactor:=1;
+    VSTiPlugin:=TVSTiPlugin(Plugin);
+    str(VSTiPlugin.CPUTime:1:1,s);
+    SGTK0PanelCPUTime.Caption:=s+'%';
+    Peaks[0]:=((20*log10(fastsqrt(VSTiPlugin.Peaks[0])))+60)/60;
+    Peaks[1]:=((20*log10(fastsqrt(VSTiPlugin.Peaks[1])))+60)/60;
+    if Peaks[0]<0 then begin
+     Peaks[0]:=0;
+    end else if Peaks[0]>1 then begin
+     Peaks[0]:=1;
+    end;
+    if Peaks[1]<0 then begin
+     Peaks[1]:=0;
+    end else if Peaks[1]>1 then begin
+     Peaks[1]:=1;
+    end;
+
+    VUBufferBitmap.Canvas.CopyRect(VUBufferBitmap.Canvas.ClipRect,VUOffBitmap.Canvas,VUOffBitmap.Canvas.ClipRect);
+    ARect:=VUOffBitmap.Canvas.ClipRect;
+    ARect:=RECT(ARect.Left,ARect.Bottom-SoftTRUNC(Peaks[0]*VUOnBitmap.Height),ARect.Right,ARect.Bottom);
+    VUBufferBitmap.Canvas.CopyRect(ARect,VUOnBitmap.Canvas,ARect);
+    ARect:=VUBufferBitmap.Canvas.ClipRect;
+    Frame3D(VUBufferBitmap.Canvas,ARect,TVSTiPlugin(Plugin).ColorBorderCache,TVSTiPlugin(Plugin).ColorBorderCache,1);
+ // Frame3D(VUBufferBitmap.Canvas,ARect,clBtnShadow,clBtnHighlight,2);
+    PaintBoxPeakLeft.Canvas.CopyRect(VUBufferBitmap.Canvas.ClipRect,VUBufferBitmap.Canvas,VUBufferBitmap.Canvas.ClipRect);
+
+    VUBufferBitmap.Canvas.CopyRect(VUBufferBitmap.Canvas.ClipRect,VUOffBitmap.Canvas,VUOffBitmap.Canvas.ClipRect);
+    ARect:=VUOffBitmap.Canvas.ClipRect;
+    ARect:=RECT(ARect.Left,ARect.Bottom-SoftTRUNC(Peaks[1]*VUOnBitmap.Height),ARect.Right,ARect.Bottom);
+    VUBufferBitmap.Canvas.CopyRect(ARect,VUOnBitmap.Canvas,ARect);
+    ARect:=VUBufferBitmap.Canvas.ClipRect;
+    Frame3D(VUBufferBitmap.Canvas,ARect,TVSTiPlugin(Plugin).ColorBorderCache,TVSTiPlugin(Plugin).ColorBorderCache,1);
+ // Frame3D(VUBufferBitmap.Canvas,ARect,clBtnShadow,clBtnHighlight,2);
+    PaintBoxPeakRight.Canvas.CopyRect(VUBufferBitmap.Canvas.ClipRect,VUBufferBitmap.Canvas,VUBufferBitmap.Canvas.ClipRect);
+
+    for Counter:=0 to NumberOfChannels-1 do begin
+     Poly:=0;
+     for SubCounter:=0 to NumberOfVoices-1 do begin
+      if (VSTiPlugin.Track.Voices[SubCounter].Active) and
+         (VSTiPlugin.Track.Voices[SubCounter].Channel=@VSTiPlugin.Track.Channels[Counter]) then begin
+       inc(Poly);
       end;
      end;
+     S:=INTTOSTR(Poly);
+     if length(S)<2 then begin
+      S:='0'+S;
+     end;
+     if PanelChnPoly[Counter].Caption<>S then begin
+      PanelChnPoly[Counter].Caption:=S;
+     end;
+     S:=INTTOSTR(VSTiPlugin.Track.Channels[Counter].Patch);
+     while length(S)<3 do begin
+      S:='0'+S;
+     end;
+     if PanelChnPrg[Counter].Caption<>S then begin
+      PanelChnPrg[Counter].Caption:=S;
+     end;
     end;
-   finally
-   end;
-   if assigned(InstanceInfo) and assigned(InstanceInfo^.VSTiPluginInstancesCriticalSection) then begin
-    InstanceInfo^.VSTiPluginInstancesCriticalSection.Leave;
-   end;
-   CurrentTick:=timeGetTime;
-//   FPSFactor:=(ABS(OldTick-CurrentTick)*Div1000)*TimeFactor;
-   OldTick:=CurrentTick;
-//   IF FPSFactor>1 THEN FPSFactor:=1;
-   VSTiPlugin:=TVSTiPlugin(Plugin);
-   str(VSTiPlugin.CPUTime:1:1,s);
-   SGTK0PanelCPUTime.Caption:=s+'%';
-   Peaks[0]:=((20*log10(fastsqrt(VSTiPlugin.Peaks[0])))+60)/60;
-   Peaks[1]:=((20*log10(fastsqrt(VSTiPlugin.Peaks[1])))+60)/60;
-   if Peaks[0]<0 then begin
-    Peaks[0]:=0;
-   end else if Peaks[0]>1 then begin
-    Peaks[0]:=1;
-   end;
-   if Peaks[1]<0 then begin
-    Peaks[1]:=0;
-   end else if Peaks[1]>1 then begin
-    Peaks[1]:=1;
-   end;
 
-   VUBufferBitmap.Canvas.CopyRect(VUBufferBitmap.Canvas.ClipRect,VUOffBitmap.Canvas,VUOffBitmap.Canvas.ClipRect);
-   ARect:=VUOffBitmap.Canvas.ClipRect;
-   ARect:=RECT(ARect.Left,ARect.Bottom-SoftTRUNC(Peaks[0]*VUOnBitmap.Height),ARect.Right,ARect.Bottom);
-   VUBufferBitmap.Canvas.CopyRect(ARect,VUOnBitmap.Canvas,ARect);
-   ARect:=VUBufferBitmap.Canvas.ClipRect;
-   Frame3D(VUBufferBitmap.Canvas,ARect,TVSTiPlugin(Plugin).ColorBorderCache,TVSTiPlugin(Plugin).ColorBorderCache,1);
-// Frame3D(VUBufferBitmap.Canvas,ARect,clBtnShadow,clBtnHighlight,2);
-   PaintBoxPeakLeft.Canvas.CopyRect(VUBufferBitmap.Canvas.ClipRect,VUBufferBitmap.Canvas,VUBufferBitmap.Canvas.ClipRect);
-
-   VUBufferBitmap.Canvas.CopyRect(VUBufferBitmap.Canvas.ClipRect,VUOffBitmap.Canvas,VUOffBitmap.Canvas.ClipRect);
-   ARect:=VUOffBitmap.Canvas.ClipRect;
-   ARect:=RECT(ARect.Left,ARect.Bottom-SoftTRUNC(Peaks[1]*VUOnBitmap.Height),ARect.Right,ARect.Bottom);
-   VUBufferBitmap.Canvas.CopyRect(ARect,VUOnBitmap.Canvas,ARect);
-   ARect:=VUBufferBitmap.Canvas.ClipRect;
-   Frame3D(VUBufferBitmap.Canvas,ARect,TVSTiPlugin(Plugin).ColorBorderCache,TVSTiPlugin(Plugin).ColorBorderCache,1);
-// Frame3D(VUBufferBitmap.Canvas,ARect,clBtnShadow,clBtnHighlight,2);
-   PaintBoxPeakRight.Canvas.CopyRect(VUBufferBitmap.Canvas.ClipRect,VUBufferBitmap.Canvas,VUBufferBitmap.Canvas.ClipRect);
-
-   for Counter:=0 to NumberOfChannels-1 do begin
     Poly:=0;
-    for SubCounter:=0 to NumberOfVoices-1 do begin
-     if (VSTiPlugin.Track.Voices[SubCounter].Active) and
-        (VSTiPlugin.Track.Voices[SubCounter].Channel=@VSTiPlugin.Track.Channels[Counter]) then begin
+    for Counter:=0 to NumberOfVoices-1 do begin
+     if VSTiPlugin.Track.Voices[Counter].Active then begin
       inc(Poly);
      end;
     end;
@@ -3512,52 +3540,33 @@ begin
     if length(S)<2 then begin
      S:='0'+S;
     end;
-    if PanelChnPoly[Counter].Caption<>S then begin
-     PanelChnPoly[Counter].Caption:=S;
+    if PanelGlobalPoly.Caption<>S then begin
+     PanelGlobalPoly.Caption:=S;
     end;
-    S:=INTTOSTR(VSTiPlugin.Track.Channels[Counter].Patch);
-    while length(S)<3 do begin
-     S:='0'+S;
-    end;
-    if PanelChnPrg[Counter].Caption<>S then begin
-     PanelChnPrg[Counter].Caption:=S;
-    end;
-   end;
 
-   Poly:=0;
-   for Counter:=0 to NumberOfVoices-1 do begin
-    if VSTiPlugin.Track.Voices[Counter].Active then begin
-     inc(Poly);
+    if WaveEditor.Focused<>WaveEditor.OldFocused then begin
+     WaveEditor.Invalidate;
     end;
-   end;
-   S:=INTTOSTR(Poly);
-   if length(S)<2 then begin
-    S:='0'+S;
-   end;
-   if PanelGlobalPoly.Caption<>S then begin
-    PanelGlobalPoly.Caption:=S;
-   end;
 
-   if WaveEditor.Focused<>WaveEditor.OldFocused then begin
-    WaveEditor.Invalidate;
+   finally
    end;
-
+   if (ActiveControl<>EnvelopeForm) and (PageControlGlobal.ActivePage=TabSheetInstruments) and (PageControlInstrument.ActivePage=TabSheetInstrumentVoice) and (PageControlInstrumentVoice.ActivePage=TabSheetInstrumentVoiceEnvelopes) then begin
+    EnvelopeForm.DrawView;
+   end;
+   if PanelTopViewGraphics.Visible then begin
+    ImageTopViewGraphicsPaint(nil);
+   end;
+   ExportMIDIUpdate;
+  end;
+  try
+   if DoSynMemoInstrumentSampleScriptCodeSelLength then begin
+    DoSynMemoInstrumentSampleScriptCodeSelLength:=false;
+    //SynMemoInstrumentSampleScriptCode.SelLength:=0;
+   end;
   finally
   end;
-  if (ActiveControl<>EnvelopeForm) and (PageControlGlobal.ActivePage=TabSheetInstruments) and (PageControlInstrument.ActivePage=TabSheetInstrumentVoice) and (PageControlInstrumentVoice.ActivePage=TabSheetInstrumentVoiceEnvelopes) then begin
-   EnvelopeForm.DrawView;
-  end;
-  if PanelTopViewGraphics.Visible then begin
-   ImageTopViewGraphicsPaint(nil);
-  end;
-  ExportMIDIUpdate;
- end;
- try
-  if DoSynMemoInstrumentSampleScriptCodeSelLength then begin
-   DoSynMemoInstrumentSampleScriptCodeSelLength:=false;
-   //SynMemoInstrumentSampleScriptCode.SelLength:=0;
-  end;
  finally
+  SetExceptionMask(OldFPUExceptionMask);
  end;
 end;
 

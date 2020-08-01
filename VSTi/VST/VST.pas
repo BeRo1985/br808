@@ -4,7 +4,7 @@
  *       http://sourceforge.net/projects/delphiasiovst/
  *       http://www.kvraudio.com/forum/viewtopic.php?p=1905347
  *       http://www.kvraudio.com/forum/printview.php?t=143587&start=0
- *       https://web.archive.org/web/20150811000350/http://asseca.org/vst-24-specs/index.html (was: http://www.asseca.org/vst-24-specs/index.html )
+ *       http://www.asseca.org/vst-24-specs/index.html
  *
  * Zlib license:
  * 
@@ -30,7 +30,276 @@
 unit VST;
 {$ifdef fpc}
  {$mode delphi}
+ {$ifdef cpui386}
+  {$define cpu386}
+ {$endif}
+ {$ifdef cpu386}
+  {$asmmode intel}
+ {$endif}
+ {$ifdef cpuamd64}
+  {$define cpux64}
+  {$define cpux8664}
+  {$asmmode intel}
+ {$endif}
+ {$ifdef FPC_LITTLE_ENDIAN}
+  {$define LITTLE_ENDIAN}
+ {$else}
+  {$ifdef FPC_BIG_ENDIAN}
+   {$define BIG_ENDIAN}
+  {$endif}
+ {$endif}
+ {-$pic off}
+ {$define CanInline}
+ {$ifdef FPC_HAS_TYPE_EXTENDED}
+  {$define HAS_TYPE_EXTENDED}
+ {$else}
+  {$undef HAS_TYPE_EXTENDED}
+ {$endif}
+ {$ifdef FPC_HAS_TYPE_DOUBLE}
+  {$define HAS_TYPE_DOUBLE}
+ {$else}
+  {$undef HAS_TYPE_DOUBLE}
+ {$endif}
+ {$ifdef FPC_HAS_TYPE_SINGLE}
+  {$define HAS_TYPE_SINGLE}
+ {$else}
+  {$undef HAS_TYPE_SINGLE}
+ {$endif}
+ {$if declared(RawByteString)}
+  {$define HAS_TYPE_RAWBYTESTRING}
+ {$else}
+  {$undef HAS_TYPE_RAWBYTESTRING}
+ {$ifend}
+ {$if declared(UTF8String)}
+  {$define HAS_TYPE_UTF8STRING}
+ {$else}
+  {$undef HAS_TYPE_UTF8STRING}
+ {$ifend}
+ {$if declared(UnicodeString)}
+  {$define HAS_TYPE_UNICODESTRING}
+ {$else}
+  {$undef HAS_TYPE_UNICODESTRING}
+ {$ifend}
+{$else}
+ {$realcompatibility off}
+ {$localsymbols on}
+ {$define LITTLE_ENDIAN}
+ {$ifdef cpux64}
+  {$define cpux8664}
+  {$define cpuamd64}
+  {$define cpu64}
+ {$endif}
+ {$ifndef cpu64}
+  {$define cpu32}
+ {$endif}
+ {$define HAS_TYPE_EXTENDED}
+ {$define HAS_TYPE_DOUBLE}
+ {$define HAS_TYPE_SINGLE}
+ {$ifdef conditionalexpressions}
+  {$if declared(RawByteString)}
+   {$define HAS_TYPE_RAWBYTESTRING}
+  {$else}
+   {$undef HAS_TYPE_RAWBYTESTRING}
+  {$ifend}
+  {$if declared(UTF8String)}
+   {$define HAS_TYPE_UTF8STRING}
+  {$else}
+   {$undef HAS_TYPE_UTF8STRING}
+  {$ifend}
+  {$if declared(UnicodeString)}
+   {$define HAS_TYPE_UNICODESTRING}
+  {$else}
+   {$undef HAS_TYPE_UNICODESTRING}
+  {$ifend}
+ {$else}
+  {$undef HAS_TYPE_RAWBYTESTRING}
+  {$undef HAS_TYPE_UTF8STRING}
+  {$undef HAS_TYPE_UNICODESTRING}
+ {$endif}
+ {$ifndef BCB}
+  {$ifdef ver120}
+   {$define Delphi4or5}
+  {$endif}
+  {$ifdef ver130}
+   {$define Delphi4or5}
+  {$endif}
+  {$ifdef ver140}
+   {$define Delphi6}
+  {$endif}
+  {$ifdef ver150}
+   {$define Delphi7}
+  {$endif}
+  {$ifdef ver170}
+   {$define Delphi2005}
+  {$endif}
+ {$else}
+  {$ifdef ver120}
+   {$define Delphi4or5}
+   {$define BCB4}
+  {$endif}
+  {$ifdef ver130}
+   {$define Delphi4or5}
+  {$endif}
+ {$endif}
+ {$ifdef conditionalexpressions}
+  {$if CompilerVersion>=24}
+   {$legacyifend on}
+  {$ifend}
+  {$if CompilerVersion>=14.0}
+   {$if CompilerVersion=14.0}
+    {$define Delphi6}
+   {$ifend}
+   {$define Delphi6AndUp}
+  {$ifend}
+  {$if CompilerVersion>=15.0}
+   {$if CompilerVersion=15.0}
+    {$define Delphi7}
+   {$ifend}
+   {$define Delphi7AndUp}
+  {$ifend}
+  {$if CompilerVersion>=17.0}
+   {$if CompilerVersion=17.0}
+    {$define Delphi2005}
+   {$ifend}
+   {$define Delphi2005AndUp}
+  {$ifend}
+  {$if CompilerVersion>=18.0}
+   {$if CompilerVersion=18.0}
+    {$define BDS2006}
+    {$define Delphi2006}
+   {$ifend}
+   {$define Delphi2006AndUp}
+  {$ifend}
+  {$if CompilerVersion>=18.5}
+   {$if CompilerVersion=18.5}
+    {$define Delphi2007}
+   {$ifend}
+   {$define Delphi2007AndUp}
+  {$ifend}
+  {$if CompilerVersion=19.0}
+   {$define Delphi2007Net}
+  {$ifend}
+  {$if CompilerVersion>=20.0}
+   {$if CompilerVersion=20.0}
+    {$define Delphi2009}
+   {$ifend}
+   {$define Delphi2009AndUp}
+   {$define CanInline}
+  {$ifend}
+  {$if CompilerVersion>=21.0}
+   {$if CompilerVersion=21.0}
+    {$define Delphi2010}
+   {$ifend}
+   {$define Delphi2010AndUp}
+  {$ifend}
+  {$if CompilerVersion>=22.0}
+   {$if CompilerVersion=22.0}
+    {$define DelphiXE}
+   {$ifend}
+   {$define DelphiXEAndUp}
+  {$ifend}
+  {$if CompilerVersion>=23.0}
+   {$if CompilerVersion=23.0}
+    {$define DelphiXE2}
+   {$ifend}
+   {$define DelphiXE2AndUp}
+  {$ifend}
+  {$if CompilerVersion>=24.0}
+   {$if CompilerVersion=24.0}
+    {$define DelphiXE3}
+   {$ifend}
+   {$define DelphiXE3AndUp}
+  {$ifend}
+  {$if CompilerVersion>=25.0}
+   {$if CompilerVersion=25.0}
+    {$define DelphiXE4}
+   {$ifend}
+   {$define DelphiXE4AndUp}
+  {$ifend}
+  {$if CompilerVersion>=26.0}
+   {$if CompilerVersion=26.0}
+    {$define DelphiXE5}
+   {$ifend}
+   {$define DelphiXE5AndUp}
+  {$ifend}
+  {$if CompilerVersion>=27.0}
+   {$if CompilerVersion=27.0}
+    {$define DelphiXE6}
+   {$ifend}
+   {$define DelphiXE6AndUp}
+  {$ifend}
+  {$if CompilerVersion>=28.0}
+   {$if CompilerVersion=28.0}
+    {$define DelphiXE7}
+   {$ifend}
+   {$define DelphiXE7AndUp}
+  {$ifend}
+  {$if CompilerVersion>=29.0}
+   {$if CompilerVersion=29.0}
+    {$define DelphiXE8}
+   {$ifend}
+   {$define DelphiXE8AndUp}
+  {$ifend}
+  {$if CompilerVersion>=30.0}
+   {$if CompilerVersion=30.0}
+    {$define Delphi10Seattle}
+   {$ifend}
+   {$define Delphi10SeattleAndUp}
+  {$ifend}
+  {$if CompilerVersion>=31.0}
+   {$if CompilerVersion=31.0}
+    {$define Delphi10Berlin}
+   {$ifend}
+   {$define Delphi10BerlinAndUp}
+  {$ifend}
+ {$endif}
+ {$ifndef Delphi4or5}
+  {$ifndef BCB}
+   {$define Delphi6AndUp}
+  {$endif}
+   {$ifndef Delphi6}
+    {$define BCB6OrDelphi7AndUp}
+    {$ifndef BCB}
+     {$define Delphi7AndUp}
+    {$endif}
+    {$ifndef BCB}
+     {$ifndef Delphi7}
+      {$ifndef Delphi2005}
+       {$define BDS2006AndUp}
+      {$endif}
+     {$endif}
+    {$endif}
+   {$endif}
+ {$endif}
+ {$ifdef Delphi6AndUp}
+  {$warn symbol_platform off}
+  {$warn symbol_deprecated off}
+ {$endif}
 {$endif}
+{$ifdef win32}
+ {$define windows}
+{$endif}
+{$ifdef win64}
+ {$define windows}
+{$endif}
+{$ifdef wince}
+ {$define windows}
+{$endif}
+{$ifndef HAS_TYPE_DOUBLE}
+ {$error No double floating point precision}
+{$endif}
+{$rangechecks off}
+{$extendedsyntax on}
+{$writeableconst on}
+{$hints off}
+{$booleval off}
+{$typedaddress off}
+{$stackframes off}
+{$varstringchecks on}
+{$typeinfo on}
+{$overflowchecks off}
+{$longstrings on}
+{$openstrings on}
 {$ifdef cpu64}
  {$align 8}
 {$else}
@@ -514,23 +783,19 @@ type PSmallInt=^smallint;
      PLongInt=^longint;
      PInt64=^int64;
 
-{$ifndef fpc}
-{$ifdef cpu64}
-     ptrint=int64;
-     ptruint=qword;
-{$else}
-     ptrint=longint;
-     ptruint=longword;
-{$endif}
-{$endif}
+     PNativeSignedInt=^TNativeSignedInt;
+     TNativeSignedInt={$ifdef fpc}TNativeSignedInt{$else}{$if CompilerVersion>=23.0}NativeUInt{$else}{$ifdef cpu64}int64{$else}longint{$endif}{$ifend}{$endif};
+
+     PNativeUnsignedInt=^TNativeUnsignedInt;
+     TNativeUnsignedInt={$ifdef fpc}PtrUInt{$else}{$if CompilerVersion>=23.0}NativeUInt{$else}{$ifdef cpu64}uint64{$else}longword{$endif}{$ifend}{$endif};
 
      PEffect=^TEffect;
 
      PPSingle=^psingle;
      PPDouble=^pdouble;
 
-     TAudioMasterCallbackFunc=function(Effect:PEffect;Opcode,Index:longint;Value:ptrint;Ptr:pointer;Opt:single):ptrint; cdecl;
-     TDispatcherFunc=function(Effect:PEffect;Opcode,Index:longint;Value:ptrint;Ptr:pointer;Opt:single):ptrint; cdecl;
+     TAudioMasterCallbackFunc=function(Effect:PEffect;Opcode,Index:longint;Value:TNativeSignedInt;Ptr:pointer;Opt:single):TNativeSignedInt; cdecl;
+     TDispatcherFunc=function(Effect:PEffect;Opcode,Index:longint;Value:TNativeSignedInt;Ptr:pointer;Opt:single):TNativeSignedInt; cdecl;
      TProcessProc=procedure(Effect:PEffect;Inputs,Outputs:PPSingle;SampleFrames:longint); cdecl;
      TProcessDoubleProc=procedure(Effect:PEffect;Inputs,Outputs:PPDouble;SampleFrames:longint); cdecl;
      TSetParameterProc=procedure(Effect:PEffect;Index:longint;Parameter:single); cdecl;
@@ -545,7 +810,7 @@ type PSmallInt=^smallint;
       GetParameter:TGetParameterFunc;
       NumPrograms,NumParams,NumInputs,NumOutputs,Flags:longint;
       ReservedForHost:pointer;
-      Resv2:ptrint;
+      Resv2:TNativeSignedInt;
       InitialDelay,RealQualities,OffQualities:longint;
       IORatio:single;
       vObject,User:pointer;
@@ -570,7 +835,7 @@ type PSmallInt=^smallint;
      PVSTEvents=^TVSTEvents;
      TVSTEvents=record
       NumEvents:longint;
-      Reserved:ptrint;
+      Reserved:TNativeSignedInt;
       Events:array[0..1] of PVSTEvent;
      end;
 
@@ -585,9 +850,9 @@ type PSmallInt=^smallint;
      PVSTMIDISysExEvent=^TVSTMIDISysExEvent;
      TVSTMIDISysExEvent=record
       vType,ByteSize,DeltaFrames,Flags,DumpBytes:longint;
-      Resvd1:ptrint;
+      Resvd1:TNativeSignedInt;
       SysExDump:pbyte;
-      Resv2:ptrint;
+      Resv2:TNativeSignedInt;
      end;
 
      PVSTTimeInfo=^TVSTTimeInfo;
@@ -739,7 +1004,7 @@ type PSmallInt=^smallint;
       SizeReturnPath:longint;
       ReturnMultiplePaths:^pansichar;
       NumReturnPaths:longint;
-      Reserved:ptrint;
+      Reserved:TNativeSignedInt;
       ReservedForFuture:array[0..115] of byte;
      end;
 
@@ -813,7 +1078,7 @@ type PSmallInt=^smallint;
       public
        constructor Create(anAudioMaster:TAudioMasterCallbackFunc;aNumPrograms,aNumParams:longint);
        destructor Destroy; override;
-       function Dispatcher(Opcode,Index:longint;Value:ptrint;Ptr:pointer;Opt:single):ptrint; virtual;
+       function Dispatcher(Opcode,Index:longint;Value:TNativeSignedInt;Ptr:pointer;Opt:single):TNativeSignedInt; virtual;
        procedure Open; virtual;
        procedure Close; virtual;
        procedure Suspend; virtual;
@@ -915,7 +1180,7 @@ type PSmallInt=^smallint;
        function GetHostVendorString(Text:pansichar):boolean; virtual;
        function GetHostProductString(Text:pansichar):boolean; virtual;
        function GetHostVendorVersion:longint; virtual;
-       function HostVendorSpecific(Arg1:longint;Arg2:ptrint;PtrArg:pointer;FloatArg:single):ptrint; virtual;  
+       function HostVendorSpecific(Arg1:longint;Arg2:TNativeSignedInt;PtrArg:pointer;FloatArg:single):TNativeSignedInt; virtual;
        function CanHostDo(Text:pansichar):longint; virtual;                                                                   
        function GetHostLanguage:longint;
        procedure IsSynth(State:boolean); virtual;
@@ -926,7 +1191,7 @@ type PSmallInt=^smallint;
        function GetVendorString(Text:pansichar):boolean; virtual;
        function GetProductString(Text:pansichar):boolean; virtual;
        function GetVendorVersion:longint; virtual;
-       function VendorSpecific(Arg:longint;Arg2:ptrint;PtrArg:pointer;FloatArg:single):ptrint; virtual;
+       function VendorSpecific(Arg:longint;Arg2:TNativeSignedInt;PtrArg:pointer;FloatArg:single):TNativeSignedInt; virtual;
        function CanDo(Text:pansichar):longint; virtual;
        function GetVstVersion:longint; virtual;
        function GetPlugCategory:longint; virtual;
@@ -954,7 +1219,7 @@ type PSmallInt=^smallint;
        function OfflineRun(Offline:PVstOfflineTask;Count:longint):boolean; virtual;
        function OfflineGetNumPasses:longint; virtual;
        function OfflineGetNumMetaPasses:longint; virtual;
-       function Dispatcher(Opcode,Index:longint;Value:ptrint;Ptr:pointer;Opt:single):ptrint; override;
+       function Dispatcher(Opcode,Index:longint;Value:TNativeSignedInt;Ptr:pointer;Opt:single):TNativeSignedInt; override;
        procedure Resume; override;
        procedure WantEvents(Filter:longint); virtual;
        function TempoAt(Pos:longint):longint; virtual;
@@ -986,7 +1251,7 @@ type PSmallInt=^smallint;
        function GetChunkFile(NativePath:pansichar):boolean; virtual;
      end;
 
-function DispatchEffectClass(Effect:PEffect;Opcode,Index:longint;Value:ptrint;Ptr:pointer;Opt:single):ptrint; cdecl;
+function DispatchEffectClass(Effect:PEffect;Opcode,Index:longint;Value:TNativeSignedInt;Ptr:pointer;Opt:single):TNativeSignedInt; cdecl;
 function GetParameterClass(Effect:PEffect;Index:longint):single; cdecl;
 procedure SetParameterClass(Effect:PEffect;Index:longint;Value:single); cdecl;
 procedure processClass(Effect:PEffect;Inputs,Outputs:PPSingle;SampleFrames:longint); cdecl;
@@ -1002,7 +1267,7 @@ begin
  result:=byte(C4) or (byte(C3) shl 8) or (byte(C2) shl 16) or (byte(C1) shl 24);
 end;
 
-function DispatchEffectClass(Effect:PEffect;Opcode,Index:longint;Value:ptrint;Ptr:pointer;Opt:single):ptrint; cdecl;
+function DispatchEffectClass(Effect:PEffect;Opcode,Index:longint;Value:TNativeSignedInt;Ptr:pointer;Opt:single):TNativeSignedInt; cdecl;
 var obj:TAudioEffect;
 begin
  obj:=Effect^.vObject;
@@ -1205,7 +1470,7 @@ begin
  FEffect.NumOutputs:=Outputs;
 end;
 
-function TAudioEffect.Dispatcher(Opcode,Index:longint;Value:ptrint;Ptr:pointer;Opt:single):ptrint;
+function TAudioEffect.Dispatcher(Opcode,Index:longint;Value:TNativeSignedInt;Ptr:pointer;Opt:single):TNativeSignedInt;
 var pe:PERect;
 begin
  result:=0;
@@ -1217,7 +1482,7 @@ begin
    Close;
   end;
   effSetProgram:begin
-   if Value<NumPrograms then begin
+   if int64(Value)<int64(NumPrograms) then begin
     SetProgram(Value);
    end;
   end;
@@ -1638,7 +1903,7 @@ begin
  result:=0;
 end;
 
-function TAudioEffectExtended.HostVendorSpecific(Arg1:longint;Arg2:ptrint;PtrArg:pointer;FloatArg:single):ptrint;
+function TAudioEffectExtended.HostVendorSpecific(Arg1:longint;Arg2:TNativeSignedInt;PtrArg:pointer;FloatArg:single):TNativeSignedInt;
 begin
  if assigned(FAudioMaster) then begin
   result:=FAudioMaster(@FEffect,audioMasterVendorSpecific,Arg1,Arg2,PtrArg,FloatArg);
@@ -1706,7 +1971,7 @@ begin
  end;
 end;
 
-function TAudioEffectExtended.VendorSpecific(Arg:longint;Arg2:ptrint;PtrArg:pointer;FloatArg:single):ptrint;
+function TAudioEffectExtended.VendorSpecific(Arg:longint;Arg2:TNativeSignedInt;PtrArg:pointer;FloatArg:single):TNativeSignedInt;
 begin
  result:=0;
 end;
@@ -1734,7 +1999,7 @@ begin
  end;
 end;
 
-function TAudioEffectExtended.Dispatcher(Opcode,Index:longint;Value:ptrint;Ptr:pointer;Opt:single):ptrint;
+function TAudioEffectExtended.Dispatcher(Opcode,Index:longint;Value:TNativeSignedInt;Ptr:pointer;Opt:single):TNativeSignedInt;
 var KeyCode:TVSTKeyCode;
 begin
  result:=0;
@@ -1778,7 +2043,7 @@ begin
    result:=ReportCurrentPosition;
   end;
   effGetDestinationBuffer:begin
-   result:=ptrint(ReportDestinationBuffer);
+   result:=TNativeSignedInt(ReportDestinationBuffer);
   end;
   effOfflineNotify:begin
    result:=ord(OfflineNotify(Ptr,Value,Index<>0));
@@ -1827,7 +2092,7 @@ begin
    result:=ord(GetErrorText(Ptr));
   end;
   effGetIcon:begin
-   result:=ptrint(GetIcon);
+   result:=TNativeSignedInt(GetIcon);
   end;
   effSetViewPosition:begin
    result:=ord(SetViewPosition(Index,Value));

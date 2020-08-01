@@ -8,176 +8,177 @@
   resources were bound to the produced executable.
 */
 
-#define Vcl_Consts_SStyleInvalidParameter 65168
-#define Vcl_Consts_SStyleFeatureNotSupported 65169
-#define Vcl_Consts_SStyleNotRegistered 65170
-#define Vcl_Consts_SStyleUnregisterError 65171
-#define Vcl_Consts_SStyleNotRegisteredNoName 65172
-#define Vcl_Consts_sBeginInvokeNoHandle 65173
-#define System_Win_ComConst_SOleError 65174
-#define System_Win_ComConst_SNoMethod 65175
-#define System_Win_ComConst_SVarNotObject 65176
-#define System_Win_ComConst_STooManyParams 65177
-#define Vcl_Consts_SLogin 65184
-#define Vcl_Consts_STrayIconRemoveError 65185
-#define Vcl_Consts_SWindowsVistaRequired 65186
-#define Vcl_Consts_STaskDlgButtonCaption 65187
-#define Vcl_Consts_STaskDlgRadioButtonCaption 65188
-#define Vcl_Consts_SInvalidTaskDlgButtonCaption 65189
-#define Vcl_Consts_SStyleLoadError 65190
-#define Vcl_Consts_SStyleLoadErrors 65191
-#define Vcl_Consts_SStyleRegisterError 65192
-#define Vcl_Consts_SStyleClassRegisterError 65193
-#define Vcl_Consts_SStyleNotFound 65194
-#define Vcl_Consts_SStyleClassNotFound 65195
-#define Vcl_Consts_SStyleInvalidHandle 65196
-#define Vcl_Consts_SStyleFormatError 65197
-#define Vcl_Consts_SStyleHookClassRegistered 65198
-#define Vcl_Consts_SStyleHookClassNotRegistered 65199
-#define Vcl_Consts_SIconToClipboard 65200
-#define Vcl_Consts_SCannotOpenClipboard 65201
-#define Vcl_Consts_SInvalidMemoSize 65202
-#define Vcl_Consts_SInvalidPrinterOp 65203
-#define Vcl_Consts_SNoDefaultPrinter 65204
-#define Vcl_Consts_SDuplicateMenus 65205
-#define Vcl_Consts_SDockedCtlNeedsName 65206
-#define Vcl_Consts_SDockTreeRemoveError 65207
-#define Vcl_Consts_SDockZoneNotFound 65208
-#define Vcl_Consts_SDockZoneHasNoCtl 65209
-#define Vcl_Consts_SDockZoneVersionConflict 65210
-#define Vcl_Consts_SPromptArrayTooShort 65211
-#define Vcl_Consts_SPromptArrayEmpty 65212
-#define Vcl_Consts_SUsername 65213
-#define Vcl_Consts_SPassword 65214
-#define Vcl_Consts_SDomain 65215
-#define Vcl_Consts_SmkcPgUp 65216
-#define Vcl_Consts_SmkcPgDn 65217
-#define Vcl_Consts_SmkcEnd 65218
-#define Vcl_Consts_SmkcHome 65219
-#define Vcl_Consts_SmkcLeft 65220
-#define Vcl_Consts_SmkcUp 65221
-#define Vcl_Consts_SmkcRight 65222
-#define Vcl_Consts_SmkcDown 65223
-#define Vcl_Consts_SmkcIns 65224
-#define Vcl_Consts_SmkcDel 65225
-#define Vcl_Consts_SmkcShift 65226
-#define Vcl_Consts_SmkcCtrl 65227
-#define Vcl_Consts_SmkcAlt 65228
-#define Vcl_Consts_SOutOfRange 65229
-#define Vcl_Consts_sAllFilter 65230
-#define Vcl_Consts_SInsertLineError 65231
-#define Vcl_Consts_SMsgDlgNo 65232
-#define Vcl_Consts_SMsgDlgOK 65233
-#define Vcl_Consts_SMsgDlgCancel 65234
-#define Vcl_Consts_SMsgDlgHelp 65235
-#define Vcl_Consts_SMsgDlgAbort 65236
-#define Vcl_Consts_SMsgDlgRetry 65237
-#define Vcl_Consts_SMsgDlgIgnore 65238
-#define Vcl_Consts_SMsgDlgAll 65239
-#define Vcl_Consts_SMsgDlgNoToAll 65240
-#define Vcl_Consts_SMsgDlgYesToAll 65241
-#define Vcl_Consts_SMsgDlgClose 65242
-#define Vcl_Consts_SmkcBkSp 65243
-#define Vcl_Consts_SmkcTab 65244
-#define Vcl_Consts_SmkcEsc 65245
-#define Vcl_Consts_SmkcEnter 65246
-#define Vcl_Consts_SmkcSpace 65247
-#define Vcl_Consts_SCloseButton 65248
-#define Vcl_Consts_SIgnoreButton 65249
-#define Vcl_Consts_SRetryButton 65250
-#define Vcl_Consts_SAbortButton 65251
-#define Vcl_Consts_SAllButton 65252
-#define Vcl_Consts_SCannotDragForm 65253
-#define Vcl_Consts_SVMetafiles 65254
-#define Vcl_Consts_SVEnhMetafiles 65255
-#define Vcl_Consts_SVIcons 65256
-#define Vcl_Consts_SVBitmaps 65257
-#define Vcl_Consts_SVTIFFImages 65258
-#define Vcl_Consts_SMsgDlgWarning 65259
-#define Vcl_Consts_SMsgDlgError 65260
-#define Vcl_Consts_SMsgDlgInformation 65261
-#define Vcl_Consts_SMsgDlgConfirm 65262
-#define Vcl_Consts_SMsgDlgYes 65263
-#define Vcl_Consts_SMenuNotFound 65264
-#define Vcl_Consts_SNoTimers 65265
-#define Vcl_Consts_SNotPrinting 65266
-#define Vcl_Consts_SPrinting 65267
-#define Vcl_Consts_SPrinterIndexError 65268
-#define Vcl_Consts_SInvalidPrinter 65269
-#define Vcl_Consts_SDeviceOnPort 65270
-#define Vcl_Consts_SGroupIndexTooLow 65271
-#define Vcl_Consts_SNoMDIForm 65272
-#define Vcl_Consts_SImageCanvasNeedsBitmap 65273
-#define Vcl_Consts_SControlParentSetToSelf 65274
-#define Vcl_Consts_SOKButton 65275
-#define Vcl_Consts_SCancelButton 65276
-#define Vcl_Consts_SYesButton 65277
-#define Vcl_Consts_SNoButton 65278
-#define Vcl_Consts_SHelpButton 65279
-#define Vcl_Consts_SImageIndexError 65280
-#define Vcl_Consts_SImageReadFail 65281
-#define Vcl_Consts_SImageWriteFail 65282
-#define Vcl_Consts_SWindowDCError 65283
-#define Vcl_Consts_SWindowClass 65284
-#define Vcl_Consts_SCannotFocus 65285
-#define Vcl_Consts_SParentRequired 65286
-#define Vcl_Consts_SControlPath 65287
-#define Vcl_Consts_SParentGivenNotAParent 65288
-#define Vcl_Consts_SMDIChildNotVisible 65289
-#define Vcl_Consts_SVisibleChanged 65290
-#define Vcl_Consts_SCannotShowModal 65291
-#define Vcl_Consts_SScrollBarRange 65292
-#define Vcl_Consts_SPropertyOutOfRange 65293
-#define Vcl_Consts_SMenuIndexError 65294
-#define Vcl_Consts_SMenuReinserted 65295
-#define Vcl_Consts_SInvalidIcon 65296
-#define Vcl_Consts_SInvalidMetafile 65297
-#define Vcl_Consts_SInvalidPixelFormat 65298
-#define Vcl_Consts_SScanLine 65299
-#define Vcl_Consts_SChangeIconSize 65300
-#define Vcl_Consts_SChangeWicSize 65301
-#define Vcl_Consts_SUnknownExtension 65302
-#define Vcl_Consts_SUnknownClipboardFormat 65303
-#define Vcl_Consts_SUnknownStreamFormat 65304
-#define Vcl_Consts_SOutOfResources 65305
-#define Vcl_Consts_SNoCanvasHandle 65306
-#define Vcl_Consts_SInvalidTextFormatFlag 65307
-#define Vcl_Consts_SInvalidImageSize 65308
-#define Vcl_Consts_SInvalidImageList 65309
-#define Vcl_Consts_SReplaceImage 65310
-#define Vcl_Consts_SInsertImage 65311
-#define System_RTLConsts_SWindowsServer2016 65312
-#define System_RTLConsts_SWindows8 65313
-#define System_RTLConsts_SWindows8Point1 65314
-#define System_RTLConsts_SWindows10 65315
-#define System_RTLConsts_sObserverUnsupported 65316
-#define System_RTLConsts_sObserverMultipleSingleCast 65317
-#define System_RTLConsts_sObserverNoInterface 65318
-#define System_RTLConsts_sObserverNoSinglecastFound 65319
-#define System_RTLConsts_sObserverNoMulticastFound 65320
-#define System_RTLConsts_sObserverNotAvailable 65321
-#define System_RTLConsts_SInvalidDateString 65322
-#define System_RTLConsts_SInvalidTimeString 65323
-#define System_RTLConsts_SInvalidOffsetString 65324
-#define System_RTLConsts_sMustWaitOnOneEvent 65325
-#define System_RTLConsts_sBeginInvokeDestroying 65326
-#define Vcl_Consts_SInvalidBitmap 65327
-#define System_RTLConsts_SServiceNotFound 65328
-#define System_RTLConsts_SVersionStr 65329
-#define System_RTLConsts_SSPVersionStr 65330
-#define System_RTLConsts_SVersion32 65331
-#define System_RTLConsts_SVersion64 65332
-#define System_RTLConsts_SWindows 65333
-#define System_RTLConsts_SWindowsVista 65334
-#define System_RTLConsts_SWindowsServer2008 65335
-#define System_RTLConsts_SWindows7 65336
-#define System_RTLConsts_SWindowsServer2008R2 65337
-#define System_RTLConsts_SWindows2000 65338
-#define System_RTLConsts_SWindowsXP 65339
-#define System_RTLConsts_SWindowsServer2003 65340
-#define System_RTLConsts_SWindowsServer2003R2 65341
-#define System_RTLConsts_SWindowsServer2012 65342
-#define System_RTLConsts_SWindowsServer2012R2 65343
+#define Vcl_Consts_SStyleHookClassNotRegistered 65168
+#define Vcl_Consts_SStyleInvalidParameter 65169
+#define Vcl_Consts_SStyleFeatureNotSupported 65170
+#define Vcl_Consts_SStyleNotRegistered 65171
+#define Vcl_Consts_SStyleUnregisterError 65172
+#define Vcl_Consts_SStyleNotRegisteredNoName 65173
+#define Vcl_Consts_sBeginInvokeNoHandle 65174
+#define System_Win_ComConst_SOleError 65175
+#define System_Win_ComConst_SNoMethod 65176
+#define System_Win_ComConst_SVarNotObject 65177
+#define System_Win_ComConst_STooManyParams 65178
+#define Vcl_Consts_SDomain 65184
+#define Vcl_Consts_SLogin 65185
+#define Vcl_Consts_STrayIconRemoveError 65186
+#define Vcl_Consts_SWindowsVistaRequired 65187
+#define Vcl_Consts_STaskDlgButtonCaption 65188
+#define Vcl_Consts_STaskDlgRadioButtonCaption 65189
+#define Vcl_Consts_SInvalidTaskDlgButtonCaption 65190
+#define Vcl_Consts_SStyleLoadError 65191
+#define Vcl_Consts_SStyleLoadErrors 65192
+#define Vcl_Consts_SStyleRegisterError 65193
+#define Vcl_Consts_SStyleClassRegisterError 65194
+#define Vcl_Consts_SStyleNotFound 65195
+#define Vcl_Consts_SStyleClassNotFound 65196
+#define Vcl_Consts_SStyleInvalidHandle 65197
+#define Vcl_Consts_SStyleFormatError 65198
+#define Vcl_Consts_SStyleHookClassRegistered 65199
+#define Vcl_Consts_SInsertLineError 65200
+#define Vcl_Consts_SIconToClipboard 65201
+#define Vcl_Consts_SCannotOpenClipboard 65202
+#define Vcl_Consts_SInvalidMemoSize 65203
+#define Vcl_Consts_SInvalidPrinterOp 65204
+#define Vcl_Consts_SNoDefaultPrinter 65205
+#define Vcl_Consts_SDuplicateMenus 65206
+#define Vcl_Consts_SDockedCtlNeedsName 65207
+#define Vcl_Consts_SDockTreeRemoveError 65208
+#define Vcl_Consts_SDockZoneNotFound 65209
+#define Vcl_Consts_SDockZoneHasNoCtl 65210
+#define Vcl_Consts_SDockZoneVersionConflict 65211
+#define Vcl_Consts_SPromptArrayTooShort 65212
+#define Vcl_Consts_SPromptArrayEmpty 65213
+#define Vcl_Consts_SUsername 65214
+#define Vcl_Consts_SPassword 65215
+#define Vcl_Consts_SmkcSpace 65216
+#define Vcl_Consts_SmkcPgUp 65217
+#define Vcl_Consts_SmkcPgDn 65218
+#define Vcl_Consts_SmkcEnd 65219
+#define Vcl_Consts_SmkcHome 65220
+#define Vcl_Consts_SmkcLeft 65221
+#define Vcl_Consts_SmkcUp 65222
+#define Vcl_Consts_SmkcRight 65223
+#define Vcl_Consts_SmkcDown 65224
+#define Vcl_Consts_SmkcIns 65225
+#define Vcl_Consts_SmkcDel 65226
+#define Vcl_Consts_SmkcShift 65227
+#define Vcl_Consts_SmkcCtrl 65228
+#define Vcl_Consts_SmkcAlt 65229
+#define Vcl_Consts_SOutOfRange 65230
+#define Vcl_Consts_sAllFilter 65231
+#define Vcl_Consts_SMsgDlgYes 65232
+#define Vcl_Consts_SMsgDlgNo 65233
+#define Vcl_Consts_SMsgDlgOK 65234
+#define Vcl_Consts_SMsgDlgCancel 65235
+#define Vcl_Consts_SMsgDlgHelp 65236
+#define Vcl_Consts_SMsgDlgAbort 65237
+#define Vcl_Consts_SMsgDlgRetry 65238
+#define Vcl_Consts_SMsgDlgIgnore 65239
+#define Vcl_Consts_SMsgDlgAll 65240
+#define Vcl_Consts_SMsgDlgNoToAll 65241
+#define Vcl_Consts_SMsgDlgYesToAll 65242
+#define Vcl_Consts_SMsgDlgClose 65243
+#define Vcl_Consts_SmkcBkSp 65244
+#define Vcl_Consts_SmkcTab 65245
+#define Vcl_Consts_SmkcEsc 65246
+#define Vcl_Consts_SmkcEnter 65247
+#define Vcl_Consts_SHelpButton 65248
+#define Vcl_Consts_SCloseButton 65249
+#define Vcl_Consts_SIgnoreButton 65250
+#define Vcl_Consts_SRetryButton 65251
+#define Vcl_Consts_SAbortButton 65252
+#define Vcl_Consts_SAllButton 65253
+#define Vcl_Consts_SCannotDragForm 65254
+#define Vcl_Consts_SVMetafiles 65255
+#define Vcl_Consts_SVEnhMetafiles 65256
+#define Vcl_Consts_SVIcons 65257
+#define Vcl_Consts_SVBitmaps 65258
+#define Vcl_Consts_SVTIFFImages 65259
+#define Vcl_Consts_SMsgDlgWarning 65260
+#define Vcl_Consts_SMsgDlgError 65261
+#define Vcl_Consts_SMsgDlgInformation 65262
+#define Vcl_Consts_SMsgDlgConfirm 65263
+#define Vcl_Consts_SMenuReinserted 65264
+#define Vcl_Consts_SMenuNotFound 65265
+#define Vcl_Consts_SNoTimers 65266
+#define Vcl_Consts_SNotPrinting 65267
+#define Vcl_Consts_SPrinting 65268
+#define Vcl_Consts_SPrinterIndexError 65269
+#define Vcl_Consts_SInvalidPrinter 65270
+#define Vcl_Consts_SDeviceOnPort 65271
+#define Vcl_Consts_SGroupIndexTooLow 65272
+#define Vcl_Consts_SNoMDIForm 65273
+#define Vcl_Consts_SImageCanvasNeedsBitmap 65274
+#define Vcl_Consts_SControlParentSetToSelf 65275
+#define Vcl_Consts_SOKButton 65276
+#define Vcl_Consts_SCancelButton 65277
+#define Vcl_Consts_SYesButton 65278
+#define Vcl_Consts_SNoButton 65279
+#define Vcl_Consts_SInsertImage 65280
+#define Vcl_Consts_SImageIndexError 65281
+#define Vcl_Consts_SImageReadFail 65282
+#define Vcl_Consts_SImageWriteFail 65283
+#define Vcl_Consts_SWindowDCError 65284
+#define Vcl_Consts_SWindowClass 65285
+#define Vcl_Consts_SCannotFocus 65286
+#define Vcl_Consts_SParentRequired 65287
+#define Vcl_Consts_SControlPath 65288
+#define Vcl_Consts_SParentGivenNotAParent 65289
+#define Vcl_Consts_SMDIChildNotVisible 65290
+#define Vcl_Consts_SVisibleChanged 65291
+#define Vcl_Consts_SCannotShowModal 65292
+#define Vcl_Consts_SScrollBarRange 65293
+#define Vcl_Consts_SPropertyOutOfRange 65294
+#define Vcl_Consts_SMenuIndexError 65295
+#define Vcl_Consts_SInvalidBitmap 65296
+#define Vcl_Consts_SInvalidIcon 65297
+#define Vcl_Consts_SInvalidMetafile 65298
+#define Vcl_Consts_SInvalidPixelFormat 65299
+#define Vcl_Consts_SScanLine 65300
+#define Vcl_Consts_SChangeIconSize 65301
+#define Vcl_Consts_SChangeWicSize 65302
+#define Vcl_Consts_SUnknownExtension 65303
+#define Vcl_Consts_SUnknownClipboardFormat 65304
+#define Vcl_Consts_SUnknownStreamFormat 65305
+#define Vcl_Consts_SOutOfResources 65306
+#define Vcl_Consts_SNoCanvasHandle 65307
+#define Vcl_Consts_SInvalidTextFormatFlag 65308
+#define Vcl_Consts_SInvalidImageSize 65309
+#define Vcl_Consts_SInvalidImageList 65310
+#define Vcl_Consts_SReplaceImage 65311
+#define System_RTLConsts_SWindowsServer2012R2 65312
+#define System_RTLConsts_SWindowsServer2016 65313
+#define System_RTLConsts_SWindows8 65314
+#define System_RTLConsts_SWindows8Point1 65315
+#define System_RTLConsts_SWindows10 65316
+#define System_RTLConsts_sObserverUnsupported 65317
+#define System_RTLConsts_sObserverMultipleSingleCast 65318
+#define System_RTLConsts_sObserverNoInterface 65319
+#define System_RTLConsts_sObserverNoSinglecastFound 65320
+#define System_RTLConsts_sObserverNoMulticastFound 65321
+#define System_RTLConsts_sObserverNotAvailable 65322
+#define System_RTLConsts_SInvalidDateString 65323
+#define System_RTLConsts_SInvalidTimeString 65324
+#define System_RTLConsts_SInvalidOffsetString 65325
+#define System_RTLConsts_sMustWaitOnOneEvent 65326
+#define System_RTLConsts_sBeginInvokeDestroying 65327
+#define System_RTLConsts_SByRefArgMismatch 65328
+#define System_RTLConsts_SServiceNotFound 65329
+#define System_RTLConsts_SVersionStr 65330
+#define System_RTLConsts_SSPVersionStr 65331
+#define System_RTLConsts_SVersion32 65332
+#define System_RTLConsts_SVersion64 65333
+#define System_RTLConsts_SWindows 65334
+#define System_RTLConsts_SWindowsVista 65335
+#define System_RTLConsts_SWindowsServer2008 65336
+#define System_RTLConsts_SWindows7 65337
+#define System_RTLConsts_SWindowsServer2008R2 65338
+#define System_RTLConsts_SWindows2000 65339
+#define System_RTLConsts_SWindowsXP 65340
+#define System_RTLConsts_SWindowsServer2003 65341
+#define System_RTLConsts_SWindowsServer2003R2 65342
+#define System_RTLConsts_SWindowsServer2012 65343
 #define System_RTLConsts_sTimespanElementTooLong 65344
 #define System_RTLConsts_SNoContext 65345
 #define System_RTLConsts_SNoContextFound 65346
@@ -192,8 +193,8 @@
 #define System_RTLConsts_SGenericDuplicateItem 65355
 #define System_RTLConsts_SInsufficientRtti 65356
 #define System_RTLConsts_SParameterCountMismatch 65357
-#define System_RTLConsts_SNonPublicType 65358
-#define System_RTLConsts_SByRefArgMismatch 65359
+#define System_RTLConsts_SParameterCountExceeded 65358
+#define System_RTLConsts_SNonPublicType 65359
 #define System_RTLConsts_SParamIsNegative 65360
 #define System_RTLConsts_SInputBufferExceed 65361
 #define System_RTLConsts_SInvalidCharsInPath 65362
@@ -372,6 +373,7 @@
 #define System_SysConst_SDivByZero 65535
 STRINGTABLE
 BEGIN
+	Vcl_Consts_SStyleHookClassNotRegistered,	L"Class '%s' is not registered for '%s'"
 	Vcl_Consts_SStyleInvalidParameter,	L"%s parameter cannot be nil"
 	Vcl_Consts_SStyleFeatureNotSupported,	L"Feature not supported by this style"
 	Vcl_Consts_SStyleNotRegistered,	L"Style '%s' is not registered"
@@ -382,6 +384,7 @@ BEGIN
 	System_Win_ComConst_SNoMethod,	L"Method '%s' not supported by automation object"
 	System_Win_ComConst_SVarNotObject,	L"Variant does not reference an automation object"
 	System_Win_ComConst_STooManyParams,	L"Dispatch methods do not support more than 64 parameters"
+	Vcl_Consts_SDomain,	L"&Domain"
 	Vcl_Consts_SLogin,	L"Login"
 	Vcl_Consts_STrayIconRemoveError,	L"Cannot remove shell notification icon"
 	Vcl_Consts_SWindowsVistaRequired,	L"%s requires Windows Vista or later"
@@ -397,7 +400,7 @@ BEGIN
 	Vcl_Consts_SStyleInvalidHandle,	L"Invalid style handle"
 	Vcl_Consts_SStyleFormatError,	L"Invalid style format"
 	Vcl_Consts_SStyleHookClassRegistered,	L"Class '%s' is already registered for '%s'"
-	Vcl_Consts_SStyleHookClassNotRegistered,	L"Class '%s' is not registered for '%s'"
+	Vcl_Consts_SInsertLineError,	L"Unable to insert a line"
 	Vcl_Consts_SIconToClipboard,	L"Clipboard does not support Icons"
 	Vcl_Consts_SCannotOpenClipboard,	L"Cannot open clipboard: %s"
 	Vcl_Consts_SInvalidMemoSize,	L"Text exceeds memo capacity"
@@ -413,7 +416,7 @@ BEGIN
 	Vcl_Consts_SPromptArrayEmpty,	L"Prompt array must not be empty"
 	Vcl_Consts_SUsername,	L"&Username"
 	Vcl_Consts_SPassword,	L"&Password"
-	Vcl_Consts_SDomain,	L"&Domain"
+	Vcl_Consts_SmkcSpace,	L"Space"
 	Vcl_Consts_SmkcPgUp,	L"PgUp"
 	Vcl_Consts_SmkcPgDn,	L"PgDn"
 	Vcl_Consts_SmkcEnd,	L"End"
@@ -429,7 +432,7 @@ BEGIN
 	Vcl_Consts_SmkcAlt,	L"Alt+"
 	Vcl_Consts_SOutOfRange,	L"Value must be between %d and %d"
 	Vcl_Consts_sAllFilter,	L"All"
-	Vcl_Consts_SInsertLineError,	L"Unable to insert a line"
+	Vcl_Consts_SMsgDlgYes,	L"&Yes"
 	Vcl_Consts_SMsgDlgNo,	L"&No"
 	Vcl_Consts_SMsgDlgOK,	L"OK"
 	Vcl_Consts_SMsgDlgCancel,	L"Cancel"
@@ -445,7 +448,7 @@ BEGIN
 	Vcl_Consts_SmkcTab,	L"Tab"
 	Vcl_Consts_SmkcEsc,	L"Esc"
 	Vcl_Consts_SmkcEnter,	L"Enter"
-	Vcl_Consts_SmkcSpace,	L"Space"
+	Vcl_Consts_SHelpButton,	L"&Help"
 	Vcl_Consts_SCloseButton,	L"&Close"
 	Vcl_Consts_SIgnoreButton,	L"&Ignore"
 	Vcl_Consts_SRetryButton,	L"&Retry"
@@ -461,7 +464,7 @@ BEGIN
 	Vcl_Consts_SMsgDlgError,	L"Error"
 	Vcl_Consts_SMsgDlgInformation,	L"Information"
 	Vcl_Consts_SMsgDlgConfirm,	L"Confirm"
-	Vcl_Consts_SMsgDlgYes,	L"&Yes"
+	Vcl_Consts_SMenuReinserted,	L"Menu inserted twice"
 	Vcl_Consts_SMenuNotFound,	L"Sub-menu is not in menu"
 	Vcl_Consts_SNoTimers,	L"Not enough timers available"
 	Vcl_Consts_SNotPrinting,	L"Printer is not currently printing"
@@ -477,7 +480,7 @@ BEGIN
 	Vcl_Consts_SCancelButton,	L"Cancel"
 	Vcl_Consts_SYesButton,	L"&Yes"
 	Vcl_Consts_SNoButton,	L"&No"
-	Vcl_Consts_SHelpButton,	L"&Help"
+	Vcl_Consts_SInsertImage,	L"Unable to Insert Image"
 	Vcl_Consts_SImageIndexError,	L"Invalid ImageList Index"
 	Vcl_Consts_SImageReadFail,	L"Failed to read ImageList data from stream"
 	Vcl_Consts_SImageWriteFail,	L"Failed to write ImageList data to stream"
@@ -493,7 +496,7 @@ BEGIN
 	Vcl_Consts_SScrollBarRange,	L"Scrollbar property out of range"
 	Vcl_Consts_SPropertyOutOfRange,	L"%s property out of range"
 	Vcl_Consts_SMenuIndexError,	L"Menu index out of range"
-	Vcl_Consts_SMenuReinserted,	L"Menu inserted twice"
+	Vcl_Consts_SInvalidBitmap,	L"Bitmap image is not valid"
 	Vcl_Consts_SInvalidIcon,	L"Icon image is not valid"
 	Vcl_Consts_SInvalidMetafile,	L"Metafile is not valid"
 	Vcl_Consts_SInvalidPixelFormat,	L"Invalid pixel format"
@@ -509,7 +512,7 @@ BEGIN
 	Vcl_Consts_SInvalidImageSize,	L"Invalid image size"
 	Vcl_Consts_SInvalidImageList,	L"Invalid ImageList"
 	Vcl_Consts_SReplaceImage,	L"Unable to Replace Image"
-	Vcl_Consts_SInsertImage,	L"Unable to Insert Image"
+	System_RTLConsts_SWindowsServer2012R2,	L"Windows Server 2012 R2"
 	System_RTLConsts_SWindowsServer2016,	L"Windows Server 2016"
 	System_RTLConsts_SWindows8,	L"Windows 8"
 	System_RTLConsts_SWindows8Point1,	L"Windows 8.1"
@@ -525,7 +528,7 @@ BEGIN
 	System_RTLConsts_SInvalidOffsetString,	L"Invalid time Offset string: %s"
 	System_RTLConsts_sMustWaitOnOneEvent,	L"Must wait on at least one event"
 	System_RTLConsts_sBeginInvokeDestroying,	L"Cannot call BeginInvoke on a TComponent in the process of destruction"
-	Vcl_Consts_SInvalidBitmap,	L"Bitmap image is not valid"
+	System_RTLConsts_SByRefArgMismatch,	L"VAR and OUT arguments must match parameter type exactly"
 	System_RTLConsts_SServiceNotFound,	L"Specified Login Credential Service not found"
 	System_RTLConsts_SVersionStr,	L"%s (Version %d.%d, Build %d, %5:s)"
 	System_RTLConsts_SSPVersionStr,	L"%s Service Pack %4:d (Version %1:d.%2:d, Build %3:d, %5:s)"
@@ -541,7 +544,6 @@ BEGIN
 	System_RTLConsts_SWindowsServer2003,	L"Windows Server 2003"
 	System_RTLConsts_SWindowsServer2003R2,	L"Windows Server 2003 R2"
 	System_RTLConsts_SWindowsServer2012,	L"Windows Server 2012"
-	System_RTLConsts_SWindowsServer2012R2,	L"Windows Server 2012 R2"
 	System_RTLConsts_sTimespanElementTooLong,	L"Timespan element too long"
 	System_RTLConsts_SNoContext,	L"No context-sensitive help installed"
 	System_RTLConsts_SNoContextFound,	L"No help found for context %d"
@@ -556,8 +558,8 @@ BEGIN
 	System_RTLConsts_SGenericDuplicateItem,	L"Duplicates not allowed"
 	System_RTLConsts_SInsufficientRtti,	L"Insufficient RTTI available to support this operation"
 	System_RTLConsts_SParameterCountMismatch,	L"Parameter count mismatch"
+	System_RTLConsts_SParameterCountExceeded,	L"Parameter count exceeded"
 	System_RTLConsts_SNonPublicType,	L"Type '%s' is not declared in the interface section of a unit"
-	System_RTLConsts_SByRefArgMismatch,	L"VAR and OUT arguments must match parameter type exactly"
 	System_RTLConsts_SParamIsNegative,	L"Parameter %s cannot be a negative value"
 	System_RTLConsts_SInputBufferExceed,	L"Input buffer exceeded for %s = %d, %s = %d"
 	System_RTLConsts_SInvalidCharsInPath,	L"Invalid characters in path"
@@ -736,10 +738,10 @@ BEGIN
 	System_SysConst_SDivByZero,	L"Division by zero"
 END
 
-/* c:\program files (x86)\embarcadero\studio\21.0\lib\Win32\release\Dialogs.res */
-/* c:\program files (x86)\embarcadero\studio\21.0\lib\Win32\release\Controls.res */
-/* c:\program files (x86)\embarcadero\studio\21.0\lib\Win32\release\Buttons.res */
-/* c:\program files (x86)\embarcadero\studio\21.0\lib\Win32\release\SPIN.RES */
+/* c:\program files (x86)\embarcadero\studio\21.0\lib\Win64\release\Dialogs.res */
+/* c:\program files (x86)\embarcadero\studio\21.0\lib\Win64\release\Controls.res */
+/* c:\program files (x86)\embarcadero\studio\21.0\lib\Win64\release\Buttons.res */
+/* c:\program files (x86)\embarcadero\studio\21.0\lib\Win64\release\SPIN.RES */
 /* D:\GitHubSVN\BR808.github\trunk\VSTi\VSTCore\UnitFormEnvelopeEditor.DFM */
 /* D:\GitHubSVN\BR808.github\trunk\VSTi\VSTCore\UnitVSTiFormModulationMatrixItem.DFM */
 /* D:\GitHubSVN\BR808.github\trunk\VSTi\VSTCore\UnitVSTiEditor.DFM */

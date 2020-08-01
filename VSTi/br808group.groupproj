@@ -9,6 +9,9 @@
         <Projects Include="C:\Users\BeRo\Documents\Embarcadero\Studio\Projects\UnitVSTiGUI.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="D:\BeRoProjects\BeRoVSTiHost\BeRoVSTiHost.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -35,14 +38,23 @@
     <Target Name="UnitVSTiGUI:Make">
         <MSBuild Projects="C:\Users\BeRo\Documents\Embarcadero\Studio\Projects\UnitVSTiGUI.dproj" Targets="Make"/>
     </Target>
+    <Target Name="BeRoVSTiHost">
+        <MSBuild Projects="D:\BeRoProjects\BeRoVSTiHost\BeRoVSTiHost.dproj"/>
+    </Target>
+    <Target Name="BeRoVSTiHost:Clean">
+        <MSBuild Projects="D:\BeRoProjects\BeRoVSTiHost\BeRoVSTiHost.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="BeRoVSTiHost:Make">
+        <MSBuild Projects="D:\BeRoProjects\BeRoVSTiHost\BeRoVSTiHost.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="BR808;UnitVSTiGUI"/>
+        <CallTarget Targets="BR808;UnitVSTiGUI;BeRoVSTiHost"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="BR808:Clean;UnitVSTiGUI:Clean"/>
+        <CallTarget Targets="BR808:Clean;UnitVSTiGUI:Clean;BeRoVSTiHost:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="BR808:Make;UnitVSTiGUI:Make"/>
+        <CallTarget Targets="BR808:Make;UnitVSTiGUI:Make;BeRoVSTiHost:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

@@ -8,7 +8,7 @@
         <AppType>Library</AppType>
         <FrameworkType>None</FrameworkType>
         <ProjectVersion>19.0</ProjectVersion>
-        <Platform Condition="'$(Platform)'==''">Win32</Platform>
+        <Platform Condition="'$(Platform)'==''">Win64</Platform>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
         <Base>true</Base>
@@ -133,7 +133,7 @@
         <Debugger_RunParams>d:\GitHubSVN\BR808.github\trunk\VSTi\BR808.dll</Debugger_RunParams>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
-        <Debugger_HostApplication>D:\GitHubSVN\BR808.github\trunk\VSTi\BeRoVSTiHost64.exe</Debugger_HostApplication>
+        <Debugger_HostApplication>d:\BeRoProjects\BeRoVSTiHost\debug\win64\BeRoVSTiHost.exe</Debugger_HostApplication>
         <Debugger_RunParams>d:\GitHubSVN\BR808.github\trunk\VSTi\BR808.dll</Debugger_RunParams>
     </PropertyGroup>
     <ItemGroup>

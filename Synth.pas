@@ -654,8 +654,8 @@ uses {$ifdef win32}Windows,{$else}{$ifdef win64}Windows,{$endif}{$endif}Math;
 {$endif}
 
 {$ifndef fpc}
-type ptruint=longword;
-     ptrint=longint;
+type ptruint={$if CompilerVersion>=23.0}NativeUInt{$else}{$ifdef cpu64}uint64{$else}longword{$endif}{$ifend};
+     ptrint={$if CompilerVersion>=23.0}NativeInt{$else}{$ifdef cpu64}int64{$else}longint{$endif}{$ifend};
 {$endif}
 
 const BR808SynthesizerVersion:longword=$00000004;
