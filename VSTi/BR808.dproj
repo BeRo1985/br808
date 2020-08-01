@@ -3,7 +3,7 @@
         <ProjectGuid>{99DF4939-E0C8-470B-8872-7FE9D1905C08}</ProjectGuid>
         <MainSource>BR808.dpr</MainSource>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Debug</Config>
+        <Config Condition="'$(Config)'==''">Release</Config>
         <TargetedPlatforms>3</TargetedPlatforms>
         <AppType>Library</AppType>
         <FrameworkType>None</FrameworkType>
