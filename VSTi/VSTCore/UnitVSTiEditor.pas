@@ -2047,6 +2047,7 @@ type
       ScrollPos: Integer);
     procedure SGTK0ButtonSampleMultiLoadClick(Sender: TObject);
     procedure SGTK0ButtonInstrumentClearClick(Sender: TObject);
+    procedure PanelModulationMatrixItemsResize(Sender: TObject);
   private
     { Private-Deklarationen }
     OldWidth,OldHeight:integer;
@@ -3618,6 +3619,17 @@ begin
  PopupMenuInstruments.Popup(Mouse.CursorPos.X,Mouse.CursorPos.Y);
 end;
 
+procedure TVSTiEditor.PanelModulationMatrixItemsResize(Sender: TObject);
+var Counter:integer;
+begin
+ for Counter:=0 to MaxVisibleModulationMatrixItems-1 do begin
+  if assigned(FormModulationMatrixItems[Counter]) then begin
+{  FormModulationMatrixItems[Counter].Left:=5;
+   FormModulationMatrixItems[Counter].Top:=5+((FormModulationMatrixItems[Counter].Height+5)*Counter);}
+  end;
+ end;
+end;
+
 procedure TVSTiEditor.SelectIns1Click(Sender: TObject);
 var APlugin:TVSTiPlugin;
 begin
@@ -4973,6 +4985,8 @@ begin
        FormModulationMatrixItems[Counter].DoUp:=DoModulationMatrixItemUp;
        FormModulationMatrixItems[Counter].DoDown:=DoModulationMatrixItemDown;
        FormModulationMatrixItems[Counter].EditorUpdate;
+       FormModulationMatrixItems[Counter].Left:=5;
+       FormModulationMatrixItems[Counter].Top:=5+((FormModulationMatrixItems[Counter].Height+5)*Counter);
       end else begin
        FormModulationMatrixItems[Counter].Visible:=false;
       end;

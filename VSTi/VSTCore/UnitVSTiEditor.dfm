@@ -1284,10 +1284,6 @@ object VSTiEditor: TVSTiEditor
                 object TabSheetInstrumentVoice: TSGTK0TabSheet
                   BorderWidth = 5
                   Caption = 'Voice'
-                  ExplicitLeft = 0
-                  ExplicitTop = 0
-                  ExplicitWidth = 0
-                  ExplicitHeight = 0
                   object PageControlInstrumentVoice: TSGTK0PageControl
                     Left = 0
                     Top = 0
@@ -1310,10 +1306,6 @@ object VSTiEditor: TVSTiEditor
                     object TabSheetInstrumentVoiceOscillators: TSGTK0TabSheet
                       BorderWidth = 5
                       Caption = 'Oscillators'
-                      ExplicitLeft = 0
-                      ExplicitTop = 0
-                      ExplicitWidth = 0
-                      ExplicitHeight = 0
                       object TabControlInstrumentVoiceOscillators: TSGTK0TabControl
                         Left = 0
                         Top = 0
@@ -2889,10 +2881,6 @@ object VSTiEditor: TVSTiEditor
                     object TabSheetInstrumentVoiceADSRs: TSGTK0TabSheet
                       BorderWidth = 5
                       Caption = 'ADSRs'
-                      ExplicitLeft = 0
-                      ExplicitTop = 0
-                      ExplicitWidth = 0
-                      ExplicitHeight = 0
                       object TabControlInstrumentVoiceADSRs: TSGTK0TabControl
                         Left = 0
                         Top = 0
@@ -3485,10 +3473,6 @@ object VSTiEditor: TVSTiEditor
                     object TabSheetInstrumentVoiceEnvelopes: TSGTK0TabSheet
                       BorderWidth = 5
                       Caption = 'Envelopes'
-                      ExplicitLeft = 0
-                      ExplicitTop = 0
-                      ExplicitWidth = 0
-                      ExplicitHeight = 0
                       object TabControlInstrumentVoiceEnvelopes: TSGTK0TabControl
                         Left = 0
                         Top = 0
@@ -3669,10 +3653,6 @@ object VSTiEditor: TVSTiEditor
                             ActivePage = TabSheetEnvEdit
                             object TabSheetEnvEdit: TSGTK0TabSheet
                               Caption = 'Edit'
-                              ExplicitLeft = 0
-                              ExplicitTop = 0
-                              ExplicitWidth = 0
-                              ExplicitHeight = 0
                               object Label22: TLabel
                                 Left = 20
                                 Top = 10
@@ -3739,10 +3719,6 @@ object VSTiEditor: TVSTiEditor
                             end
                             object TabSheetEnvADSR: TSGTK0TabSheet
                               Caption = 'ADSR'
-                              ExplicitLeft = 0
-                              ExplicitTop = 0
-                              ExplicitWidth = 0
-                              ExplicitHeight = 0
                               object Label92: TLabel
                                 Left = 6
                                 Top = 9
@@ -3912,10 +3888,6 @@ object VSTiEditor: TVSTiEditor
                             end
                             object TabSheetEnvTranceGate: TSGTK0TabSheet
                               Caption = 'TranceGate'
-                              ExplicitLeft = 0
-                              ExplicitTop = 0
-                              ExplicitWidth = 0
-                              ExplicitHeight = 0
                               object Label102: TLabel
                                 Left = 437
                                 Top = 5
@@ -4228,10 +4200,6 @@ object VSTiEditor: TVSTiEditor
                             end
                             object TabSheetEnvAmplifer: TSGTK0TabSheet
                               Caption = 'Amplifer'
-                              ExplicitLeft = 0
-                              ExplicitTop = 0
-                              ExplicitWidth = 0
-                              ExplicitHeight = 0
                               object Label104: TLabel
                                 Left = 4
                                 Top = 16
@@ -4284,10 +4252,6 @@ object VSTiEditor: TVSTiEditor
                     object TabSheetInstrumentVoiceLFOs: TSGTK0TabSheet
                       BorderWidth = 5
                       Caption = 'LFOs'
-                      ExplicitLeft = 0
-                      ExplicitTop = 0
-                      ExplicitWidth = 0
-                      ExplicitHeight = 0
                       object TabControlInstrumentVoiceLFOs: TSGTK0TabControl
                         Left = 0
                         Top = 0
@@ -4732,10 +4696,6 @@ object VSTiEditor: TVSTiEditor
                     object TabSheetInstrumentVoiceFilters: TSGTK0TabSheet
                       BorderWidth = 5
                       Caption = 'Filters'
-                      ExplicitLeft = 0
-                      ExplicitTop = 0
-                      ExplicitWidth = 0
-                      ExplicitHeight = 0
                       object TabControlInstrumentVoiceFilters: TSGTK0TabControl
                         Left = 0
                         Top = 0
@@ -5155,10 +5115,6 @@ object VSTiEditor: TVSTiEditor
                     object TabSheetVoiceInstrumentDistortion: TSGTK0TabSheet
                       BorderWidth = 5
                       Caption = 'Distortion'
-                      ExplicitLeft = 0
-                      ExplicitTop = 0
-                      ExplicitWidth = 0
-                      ExplicitHeight = 0
                       object SGTK0TabControlVoiceDistortion: TSGTK0TabControl
                         Left = 0
                         Top = 0
@@ -5436,10 +5392,6 @@ object VSTiEditor: TVSTiEditor
                       BorderWidth = 5
                       Caption = 'Gate'
                       TabVisible = False
-                      ExplicitLeft = 0
-                      ExplicitTop = 0
-                      ExplicitWidth = 0
-                      ExplicitHeight = 0
                     end
                     object TabSheetInstrumentVoiceSignalRouteOrder: TSGTK0TabSheet
                       BorderWidth = 5
@@ -5479,10 +5431,6 @@ object VSTiEditor: TVSTiEditor
                 object TabSheetInstrumentChannel: TSGTK0TabSheet
                   BorderWidth = 5
                   Caption = 'Channel'
-                  ExplicitLeft = 0
-                  ExplicitTop = 0
-                  ExplicitWidth = 0
-                  ExplicitHeight = 0
                   object PageControlInstrumentChannel: TSGTK0PageControl
                     Left = 0
                     Top = 0
@@ -5507,10 +5455,6 @@ object VSTiEditor: TVSTiEditor
                     object TabSheetInstrumentChannelDistortion: TSGTK0TabSheet
                       BorderWidth = 5
                       Caption = 'Distortion'
-                      ExplicitLeft = 0
-                      ExplicitTop = 0
-                      ExplicitWidth = 0
-                      ExplicitHeight = 0
                       object SGTK0TabControlChannelDistortion: TSGTK0TabControl
                         Left = 0
                         Top = 0
@@ -5787,10 +5731,6 @@ object VSTiEditor: TVSTiEditor
                     object TabSheetInstrumentChannelFilter: TSGTK0TabSheet
                       BorderWidth = 5
                       Caption = 'Filter'
-                      ExplicitLeft = 0
-                      ExplicitTop = 0
-                      ExplicitWidth = 0
-                      ExplicitHeight = 0
                       object SGTK0TabControlChannelFilter: TSGTK0TabControl
                         Left = 0
                         Top = 0
@@ -6199,10 +6139,6 @@ object VSTiEditor: TVSTiEditor
                     object TabSheetInstrumentChannelDelay: TSGTK0TabSheet
                       BorderWidth = 5
                       Caption = 'Delay'
-                      ExplicitLeft = 0
-                      ExplicitTop = 0
-                      ExplicitWidth = 0
-                      ExplicitHeight = 0
                       object SGTK0TabControlChannelDelay: TSGTK0TabControl
                         Left = 0
                         Top = 0
@@ -6632,10 +6568,6 @@ object VSTiEditor: TVSTiEditor
                       Caption = 'Chorus/Flanger'
                       ParentShowHint = False
                       ShowHint = False
-                      ExplicitLeft = 0
-                      ExplicitTop = 0
-                      ExplicitWidth = 0
-                      ExplicitHeight = 0
                       object PanelInstrumentChannelChorusFlangerFeedBackLeft: TSGTK0Panel
                         Left = 0
                         Top = 70
@@ -7411,10 +7343,6 @@ object VSTiEditor: TVSTiEditor
                     object TabSheetInstrumentChannelCompressor: TSGTK0TabSheet
                       BorderWidth = 5
                       Caption = 'Compressor'
-                      ExplicitLeft = 0
-                      ExplicitTop = 0
-                      ExplicitWidth = 0
-                      ExplicitHeight = 0
                       object PanelInstrumentChannelCompressorMode: TSGTK0Panel
                         Left = 0
                         Top = 0
@@ -7911,10 +7839,6 @@ object VSTiEditor: TVSTiEditor
                     object TabSheetInstrumentChannelSpeech: TSGTK0TabSheet
                       BorderWidth = 5
                       Caption = 'Speech'
-                      ExplicitLeft = 0
-                      ExplicitTop = 0
-                      ExplicitWidth = 0
-                      ExplicitHeight = 0
                       object PanelInstrumentChannelSpeechFrameLength: TSGTK0Panel
                         Left = 241
                         Top = 0
@@ -8598,10 +8522,6 @@ object VSTiEditor: TVSTiEditor
                       Hint = 'PitchShifter'
                       BorderWidth = 5
                       Caption = 'PitchShifter'
-                      ExplicitLeft = 0
-                      ExplicitTop = 0
-                      ExplicitWidth = 0
-                      ExplicitHeight = 0
                       object SGTK0Panel109: TSGTK0Panel
                         Left = 0
                         Top = 0
@@ -8743,10 +8663,6 @@ object VSTiEditor: TVSTiEditor
                     object TabSheetInstrumentChannelEQ: TSGTK0TabSheet
                       BorderWidth = 5
                       Caption = 'EQ'
-                      ExplicitLeft = 0
-                      ExplicitTop = 0
-                      ExplicitWidth = 0
-                      ExplicitHeight = 0
                       object SGTK0Panel121: TSGTK0Panel
                         Left = 0
                         Top = 0
@@ -9638,10 +9554,6 @@ object VSTiEditor: TVSTiEditor
                     object TabSheetInstrumentChannelLFO: TSGTK0TabSheet
                       BorderWidth = 5
                       Caption = 'LFO'
-                      ExplicitLeft = 0
-                      ExplicitTop = 0
-                      ExplicitWidth = 0
-                      ExplicitHeight = 0
                       object SGTK0Panel106: TSGTK0Panel
                         Left = 243
                         Top = 5
@@ -9731,10 +9643,6 @@ object VSTiEditor: TVSTiEditor
                 object TabSheetInstrumentSamples: TSGTK0TabSheet
                   BorderWidth = 5
                   Caption = 'Samples'
-                  ExplicitLeft = 0
-                  ExplicitTop = 0
-                  ExplicitWidth = 0
-                  ExplicitHeight = 0
                   object SGTK0Panel71: TSGTK0Panel
                     Left = 0
                     Top = 0
@@ -10153,10 +10061,6 @@ object VSTiEditor: TVSTiEditor
                           ActivePage = TabSheetSampleGeneralSettings
                           object TabSheetSampleGeneralSettings: TSGTK0TabSheet
                             Caption = 'General settings'
-                            ExplicitLeft = 0
-                            ExplicitTop = 0
-                            ExplicitWidth = 0
-                            ExplicitHeight = 0
                             object SGTK0Panel81: TSGTK0Panel
                               Left = 4
                               Top = 4
@@ -10327,10 +10231,6 @@ object VSTiEditor: TVSTiEditor
                           end
                           object TabSheetSampleLoop: TSGTK0TabSheet
                             Caption = 'Loop'
-                            ExplicitLeft = 0
-                            ExplicitTop = 0
-                            ExplicitWidth = 0
-                            ExplicitHeight = 0
                             object Label34: TLabel
                               Left = 28
                               Top = 8
@@ -10394,10 +10294,6 @@ object VSTiEditor: TVSTiEditor
                           end
                           object TabSheetSampleSustainLoop: TSGTK0TabSheet
                             Caption = 'Sustain loop'
-                            ExplicitLeft = 0
-                            ExplicitTop = 0
-                            ExplicitWidth = 0
-                            ExplicitHeight = 0
                             object Label38: TLabel
                               Left = 28
                               Top = 8
@@ -10461,10 +10357,6 @@ object VSTiEditor: TVSTiEditor
                           end
                           object TabSheetSamplePadSynth: TSGTK0TabSheet
                             Caption = 'PadSynth'
-                            ExplicitLeft = 0
-                            ExplicitTop = 0
-                            ExplicitWidth = 0
-                            ExplicitHeight = 0
                             object SGTK0Panel52: TSGTK0Panel
                               Left = 4
                               Top = 4
@@ -10720,10 +10612,6 @@ object VSTiEditor: TVSTiEditor
                           end
                           object TabSheetSamplePadSynthHarmonics: TSGTK0TabSheet
                             Caption = 'PadSynth Harmonics'
-                            ExplicitLeft = 0
-                            ExplicitTop = 0
-                            ExplicitWidth = 0
-                            ExplicitHeight = 0
                             object SGTK0Panel188: TSGTK0Panel
                               Left = 4
                               Top = 4
@@ -10922,10 +10810,6 @@ object VSTiEditor: TVSTiEditor
                             Caption = 'Script'
                             OnHide = TabSheetSampleScriptHide
                             OnShow = TabSheetSampleScriptShow
-                            ExplicitLeft = 0
-                            ExplicitTop = 0
-                            ExplicitWidth = 0
-                            ExplicitHeight = 0
                             object SGTK0ButtonInstrumentSampleScriptGenerate: TSGTK0Button
                               Left = 614
                               Top = 42
@@ -10968,10 +10852,6 @@ object VSTiEditor: TVSTiEditor
                 object TabSheetInstrumentSpeech: TSGTK0TabSheet
                   BorderWidth = 5
                   Caption = 'Speech'
-                  ExplicitLeft = 0
-                  ExplicitTop = 0
-                  ExplicitWidth = 0
-                  ExplicitHeight = 0
                   object SGTK0Panel96: TSGTK0Panel
                     Left = 0
                     Top = 0
@@ -11277,10 +11157,6 @@ object VSTiEditor: TVSTiEditor
                 object TabSheetInstrumentLink: TSGTK0TabSheet
                   BorderWidth = 5
                   Caption = 'Link'
-                  ExplicitLeft = 0
-                  ExplicitTop = 0
-                  ExplicitWidth = 0
-                  ExplicitHeight = 0
                   object SGTK0Panel198: TSGTK0Panel
                     Left = 0
                     Top = 0
@@ -11423,10 +11299,6 @@ object VSTiEditor: TVSTiEditor
                 object TabSheetInstrumentController: TSGTK0TabSheet
                   BorderWidth = 5
                   Caption = 'Controller'
-                  ExplicitLeft = 0
-                  ExplicitTop = 0
-                  ExplicitWidth = 0
-                  ExplicitHeight = 0
                   object SGTK0PanelInstrumentController: TSGTK0Panel
                     Left = 0
                     Top = 0
@@ -11450,10 +11322,6 @@ object VSTiEditor: TVSTiEditor
                 object TabSheetInstrumentTunings: TSGTK0TabSheet
                   BorderWidth = 5
                   Caption = 'Tunings'
-                  ExplicitLeft = 0
-                  ExplicitTop = 0
-                  ExplicitWidth = 0
-                  ExplicitHeight = 0
                   object CheckBoxInstrumentUseTuningTable: TSGTK0CheckBox
                     Left = 400
                     Top = 2
@@ -11537,6 +11405,7 @@ object VSTiEditor: TVSTiEditor
               Align = alClient
               TabOrder = 0
               UseDockManager = True
+              OnResize = PanelModulationMatrixItemsResize
               BevelOuter = bvNone
             end
             object ScrollbarModulationMatrixItems: TSGTK0Scrollbar
@@ -11675,10 +11544,6 @@ object VSTiEditor: TVSTiEditor
       object TabSheetGlobals: TSGTK0TabSheet
         BorderWidth = 1
         Caption = 'Globals'
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object PageControl1: TSGTK0PageControl
           Left = 0
           Top = 0
@@ -11707,10 +11572,6 @@ object VSTiEditor: TVSTiEditor
           object TabSheetGlobalsReverb: TSGTK0TabSheet
             BorderWidth = 5
             Caption = 'Reverb'
-            ExplicitLeft = 0
-            ExplicitTop = 0
-            ExplicitWidth = 0
-            ExplicitHeight = 0
             object PanelGlobalsReverbOptions: TSGTK0Panel
               Left = 0
               Top = 0
@@ -12175,10 +12036,6 @@ object VSTiEditor: TVSTiEditor
           object TabSheetGlobalsDelay: TSGTK0TabSheet
             BorderWidth = 5
             Caption = 'Delay'
-            ExplicitLeft = 0
-            ExplicitTop = 0
-            ExplicitWidth = 0
-            ExplicitHeight = 0
             object PanelGlobalsDelayWet: TSGTK0Panel
               Left = 0
               Top = 0
@@ -12585,10 +12442,6 @@ object VSTiEditor: TVSTiEditor
           object TabSheetGlobalsChorusFlanger: TSGTK0TabSheet
             BorderWidth = 5
             Caption = 'Chorus/Flanger'
-            ExplicitLeft = 0
-            ExplicitTop = 0
-            ExplicitWidth = 0
-            ExplicitHeight = 0
             object PanelGlobalsChorusFlangerWet: TSGTK0Panel
               Left = 0
               Top = 0
@@ -13343,6 +13196,7 @@ object VSTiEditor: TVSTiEditor
                 Height = 17
                 Min = 1
                 Max = 32
+                Position = 1
                 Kind = sbHorizontal
                 OnScroll = ScrollbarGlobalsChorusFlangerCountScroll
                 ButtonHighlightColor = 8355584
@@ -13363,10 +13217,6 @@ object VSTiEditor: TVSTiEditor
           object TabSheetGlobalsPitchShifter: TSGTK0TabSheet
             BorderWidth = 5
             Caption = 'PitchShifter'
-            ExplicitLeft = 0
-            ExplicitTop = 0
-            ExplicitWidth = 0
-            ExplicitHeight = 0
             object SGTK0Panel113: TSGTK0Panel
               Left = 241
               Top = 0
@@ -13509,10 +13359,6 @@ object VSTiEditor: TVSTiEditor
           object TabSheetGlobalsEndFilter: TSGTK0TabSheet
             BorderWidth = 5
             Caption = 'End Filter'
-            ExplicitLeft = 0
-            ExplicitTop = 0
-            ExplicitWidth = 0
-            ExplicitHeight = 0
             object PanelGlobalsEndFilterOptions: TSGTK0Panel
               Left = 0
               Top = 0
@@ -13653,10 +13499,6 @@ object VSTiEditor: TVSTiEditor
           object TabSheetGlobalsEQ: TSGTK0TabSheet
             BorderWidth = 5
             Caption = 'EQ'
-            ExplicitLeft = 0
-            ExplicitTop = 0
-            ExplicitWidth = 0
-            ExplicitHeight = 0
             object SGTK0Panel130: TSGTK0Panel
               Left = 0
               Top = 0
@@ -14509,10 +14351,6 @@ object VSTiEditor: TVSTiEditor
           object TabSheetGlobalsCompressor: TSGTK0TabSheet
             BorderWidth = 5
             Caption = 'Compressor'
-            ExplicitLeft = 0
-            ExplicitTop = 0
-            ExplicitWidth = 0
-            ExplicitHeight = 0
             object PanelGlobalsCompressorMode: TSGTK0Panel
               Left = 0
               Top = 0
@@ -14997,10 +14835,6 @@ object VSTiEditor: TVSTiEditor
           object TabSheetGlobalsClock: TSGTK0TabSheet
             BorderWidth = 5
             Caption = 'Clock'
-            ExplicitLeft = 0
-            ExplicitTop = 0
-            ExplicitWidth = 0
-            ExplicitHeight = 0
             object SGTK0Panel79: TSGTK0Panel
               Left = 0
               Top = 0
@@ -15115,10 +14949,6 @@ object VSTiEditor: TVSTiEditor
           object TabSheetGlobalsVoices: TSGTK0TabSheet
             BorderWidth = 5
             Caption = 'Voices'
-            ExplicitLeft = 0
-            ExplicitTop = 0
-            ExplicitWidth = 0
-            ExplicitHeight = 0
             object SGTK0Panel172: TSGTK0Panel
               Left = 0
               Top = 0
@@ -15178,10 +15008,6 @@ object VSTiEditor: TVSTiEditor
           object TabSheetGlobalsFinalCompressor: TSGTK0TabSheet
             BorderWidth = 5
             Caption = 'Final Compressor'
-            ExplicitLeft = 0
-            ExplicitTop = 0
-            ExplicitWidth = 0
-            ExplicitHeight = 0
             object PanelGlobalsFinalCompressorMode: TSGTK0Panel
               Left = 0
               Top = 0
@@ -15631,10 +15457,6 @@ object VSTiEditor: TVSTiEditor
           object TabSheetGlobalsOversample: TSGTK0TabSheet
             BorderWidth = 5
             Caption = 'Oversample'
-            ExplicitLeft = 0
-            ExplicitTop = 0
-            ExplicitWidth = 0
-            ExplicitHeight = 0
             object SGTK0Panel169: TSGTK0Panel
               Left = 0
               Top = 0
@@ -15791,10 +15613,6 @@ object VSTiEditor: TVSTiEditor
           object TabSheetGlobalsOutput: TSGTK0TabSheet
             BorderWidth = 5
             Caption = 'Output'
-            ExplicitLeft = 0
-            ExplicitTop = 0
-            ExplicitWidth = 0
-            ExplicitHeight = 0
             object SGTK0Panel194: TSGTK0Panel
               Left = 0
               Top = 0
@@ -15829,10 +15647,6 @@ object VSTiEditor: TVSTiEditor
           object TabSheetGlobalsRamping: TSGTK0TabSheet
             BorderWidth = 5
             Caption = 'Ramping'
-            ExplicitLeft = 0
-            ExplicitTop = 0
-            ExplicitWidth = 0
-            ExplicitHeight = 0
             object SGTK0Panel202: TSGTK0Panel
               Left = 0
               Top = 0
@@ -15926,10 +15740,6 @@ object VSTiEditor: TVSTiEditor
       object TabSheetExport: TSGTK0TabSheet
         BorderWidth = 1
         Caption = 'Export'
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object SGTK0Panel145: TSGTK0Panel
           Left = 4
           Top = 4
