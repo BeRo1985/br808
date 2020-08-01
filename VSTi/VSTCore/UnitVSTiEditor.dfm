@@ -124,7 +124,7 @@ object VSTiEditor: TVSTiEditor
             Cursor = crHandPoint
             Alignment = taCenter
             AutoSize = False
-            Caption = 'Copyright (C) 2004-2011, Benjamin '#39'BeRo'#39' Rosseaux'
+            Caption = 'Copyright (C) 2004-2020, Benjamin '#39'BeRo'#39' Rosseaux'
             Color = 2105344
             Font.Charset = ANSI_CHARSET
             Font.Color = clAqua
@@ -373,6 +373,7 @@ object VSTiEditor: TVSTiEditor
               Caption = 'SSE'
               ParentColor = False
               TabOrder = 0
+              Visible = False
               OnClick = CheckBoxSSEClick
             end
             object SGTK0Panel193: TSGTK0Panel

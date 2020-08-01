@@ -2,14 +2,14 @@ unit VersionInfo;
 
 interface
 
-const CompileDate='2012.05.11';
-      BuildNumber='340';
-      BuildNumberValue=340;
+const CompileDate='2020.08.02';
+      BuildNumber='341';
+      BuildNumberValue=341;
 
       RunForever=true;
-      RunUntilYear=2012;
-      RunUntilMonth=6;
-      RunUntilDay=10;
+      RunUntilYear=2020;
+      RunUntilMonth=8;
+      RunUntilDay=2;
 
 implementation
 
