@@ -84,9 +84,7 @@ begin
 {$IFDEF FPC}
  FCriticalSection:=TCriticalSection.Create;
 {$ELSE}
- {$IFDEF WIN32}
  InitializeCriticalSection(FCriticalSection);
- {$ENDIF}
 {$ENDIF}
  FEntered:=false;
  FLevel:=0;
