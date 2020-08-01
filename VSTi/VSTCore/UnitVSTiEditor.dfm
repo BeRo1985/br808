@@ -373,7 +373,6 @@ object VSTiEditor: TVSTiEditor
               Caption = 'SSE'
               ParentColor = False
               TabOrder = 0
-              TabStop = True
               OnClick = CheckBoxSSEClick
             end
             object SGTK0Panel193: TSGTK0Panel
