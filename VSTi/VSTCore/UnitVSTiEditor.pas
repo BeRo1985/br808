@@ -12,7 +12,7 @@ uses PEUtilsEx{,Core},
   BeRoCriticalSection,Spin, ComCtrls, CheckLst, Synth, MMSYSTEM,
   UnitFormEnvelopeEditor, AppEvnts, Menus, UnitVSTiGUI,
   UnitVSTiFormModulationMatrixitem, UnitWaveEditor, BeRoUtils, BeRoFFT,
-  BeRoStringToDouble, BeRoDoubleToString, SynEdit;
+  BeRoStringToDouble, BeRoDoubleToString;
 
 const Software='BR808';
       RegPath='Software\Benjamin Rosseaux\'+Software+'\';
@@ -2180,13 +2180,13 @@ begin
  result:=S;
 end;
 
-function SoftSQRT(Value:single):single; stdcall;
+{function SoftSQRT(Value:single):single; stdcall;
 asm
  SUB dword PTR Value,$3f800000
  SAR dword PTR Value,1
  ADD dword PTR Value,$3f800000
  FLD dword PTR Value
-end;
+end;}
 
 function FastSQRT(Value:single):single;
 const f0d5:single=0.5;
@@ -2197,7 +2197,7 @@ begin
  result:=Value*(f0d5*(result*(3-(Value*sqr(result)))));
 end;
 
-function POWEX:single; assembler; register; {$IFDEF FPC}NOSTACKFRAME;{$ENDIF}
+(*function POWEX:single; assembler; register; {$IFDEF FPC}NOSTACKFRAME;{$ENDIF}
 asm
  FYL2X
  FLD1
@@ -2214,7 +2214,7 @@ asm
  FLD dword PTR Exponent
  FLD dword PTR Number
  CALL POWEX
-end;
+end;*)
 
 function LOG10(X:single):single;
 const DivLN10:single=0.4342944819;
@@ -3353,7 +3353,7 @@ begin
   APlugin:=TVSTiPlugin(Plugin);
   index:=ComboBoxSamples.ItemIndex;
   if (index>=0) and (index<MaxSamples) then begin
-   Frequency:=440*POW(2,((APlugin.Track.Samples[APlugin.CurrentProgram and $7f,index].Header.Note-69)-(APlugin.Track.Samples[APlugin.CurrentProgram and $7f,index].Header.FineTune/$100000000))/12);
+   Frequency:=440*POWER(2,((APlugin.Track.Samples[APlugin.CurrentProgram and $7f,index].Header.Note-69)-(APlugin.Track.Samples[APlugin.CurrentProgram and $7f,index].Header.FineTune/$100000000))/12);
    if abs(Frequency)>=1e-12 then begin
     APlugin.Track.Samples[APlugin.CurrentProgram and $7f,index].Header.PhaseSamples:=SoftTRUNC((APlugin.Track.Samples[APlugin.CurrentProgram and $7f,index].Header.SampleRate/Frequency)+0.5);
     EditSamplesPhaseSamples.Text:=inttostr(APlugin.Track.Samples[APlugin.CurrentProgram and $7f,index].Header.PhaseSamples);
@@ -3648,7 +3648,7 @@ end;
 const cw:word=$133f;
       bw:word=0;
 
-function F_POWER(Number,Exponent:single):single; assembler; stdcall;
+{function F_POWER(Number,Exponent:single):single; assembler; stdcall;
 asm
  fstcw bw
  fldcw cw
@@ -3663,13 +3663,13 @@ asm
  FSCALE
  FSTP ST(1)
  fldcw bw
-end;
+end;}
 
 procedure TVSTiEditor.DrawADSR;
  function EnvExp(FromValue,ToValue:single;Counter,Duration:integer):single;
  begin
   if Counter<Duration then begin
-   result:=FromValue*F_POWER(ToValue/FromValue,Counter/Duration);
+   result:=FromValue*POWER(ToValue/FromValue,Counter/Duration);
   end else begin
    result:=ToValue;
   end;
@@ -3715,13 +3715,13 @@ var SampleCounter,H:integer;
     ADSRCoefX:=0;
    end;
    emEXP:begin
-    ADSRCoefA:=F_POWER(Factor,1/Samples);
+    ADSRCoefA:=POWER(Factor,1/Samples);
     ADSRCoefB:=0;
     ADSRCoefC:=CurrentLevel;
     ADSRCoefX:=(1/Factor)*(NextLevel-CurrentLevel);
    end;
    emLOG:begin
-    ADSRCoefA:=F_POWER(1/Factor,1/Samples);
+    ADSRCoefA:=POWER(1/Factor,1/Samples);
     ADSRCoefB:=0;
     ADSRCoefC:=NextLevel;
     ADSRCoefX:=CurrentLevel-NextLevel;
@@ -3775,10 +3775,10 @@ begin
    Targets[esRELEASE]:=0;
 
    Samples[esNONE]:=1;
-   Samples[esATTACK]:=SoftTRUNC(F_POWER(0.00005,1-(ScrollBarInstrumentVoiceADSRAttack.Position*fCI255))*2000000);
-   Samples[esDECAY]:=SoftTRUNC(F_POWER(0.00005,1-(ScrollBarInstrumentVoiceADSRDecay.Position*fCI255))*2000000);
-   Samples[esSUSTAIN]:=SoftTRUNC(F_POWER(0.00005,1-(ScrollBarInstrumentVoiceADSRSustain.Position*fCI255))*2000000);
-   Samples[esRELEASE]:=SoftTRUNC(F_POWER(0.00005,1-(ScrollBarInstrumentVoiceADSRRelease.Position*fCI255))*2000000);
+   Samples[esATTACK]:=SoftTRUNC(POWER(0.00005,1-(ScrollBarInstrumentVoiceADSRAttack.Position*fCI255))*2000000);
+   Samples[esDECAY]:=SoftTRUNC(POWER(0.00005,1-(ScrollBarInstrumentVoiceADSRDecay.Position*fCI255))*2000000);
+   Samples[esSUSTAIN]:=SoftTRUNC(POWER(0.00005,1-(ScrollBarInstrumentVoiceADSRSustain.Position*fCI255))*2000000);
+   Samples[esRELEASE]:=SoftTRUNC(POWER(0.00005,1-(ScrollBarInstrumentVoiceADSRRelease.Position*fCI255))*2000000);
 
    Modes[esNONE]:=emNONE;
    Modes[esATTACK]:=ComboBoxInstrumentVoiceADSRAttack.ItemIndex;
@@ -5930,7 +5930,7 @@ begin
   S:='0'+S;
  end;
  LabelInstrumentVoiceOscillatorGlide.Caption:=S;
- str(SoftTRUNC((POW(2,ScrollPos*fCI255)-1)*(1000*2{0.125})),s);
+ str(SoftTRUNC((POWER(2,ScrollPos*fCI255)-1)*(1000*2{0.125})),s);
  ScrollbarInstrumentVoiceOscillatorGlide.Track.Caption:=s+' ms';
  ItemNr:=TabControlInstrumentVoiceOscillators.ActiveTab;
  if not InChange then begin
@@ -6082,7 +6082,7 @@ begin
  end;
  LabelInstrumentVoiceADSRAttack.Caption:=S;
  ItemNr:=TabControlInstrumentVoiceADSRs.ActiveTab;
- str(SoftTRUNC(F_POWER(0.00005,1-(ScrollPos*fCI255))*2000000)*0.01:1:2,s);
+ str(SoftTRUNC(POWER(0.00005,1-(ScrollPos*fCI255))*2000000)*0.01:1:2,s);
  ScrollBarInstrumentVoiceADSRAttack.Track.Caption:=s+' ms';
  if not InChange then begin
   if assigned(DataCriticalSection) then begin
@@ -6109,7 +6109,7 @@ begin
   S:='0'+S;
  end;
  LabelInstrumentVoiceADSRDecay.Caption:=S;
- str(SoftTRUNC(F_POWER(0.00005,1-(ScrollPos*fCI255))*2000000)*0.01:1:2,s);
+ str(SoftTRUNC(POWER(0.00005,1-(ScrollPos*fCI255))*2000000)*0.01:1:2,s);
  ScrollBarInstrumentVoiceADSRDecay.Track.Caption:=s+' ms';
  ItemNr:=TabControlInstrumentVoiceADSRs.ActiveTab;
  if not InChange then begin
@@ -6137,7 +6137,7 @@ begin
   S:='0'+S;
  end;
  LabelInstrumentVoiceADSRSustain.Caption:=S;
- str(SoftTRUNC(F_POWER(0.00005,1-(ScrollPos*fCI255))*2000000)*0.01:1:2,s);
+ str(SoftTRUNC(POWER(0.00005,1-(ScrollPos*fCI255))*2000000)*0.01:1:2,s);
  ScrollBarInstrumentVoiceADSRSustain.Track.Caption:=s+' ms';
  ItemNr:=TabControlInstrumentVoiceADSRs.ActiveTab;
  if not InChange then begin
@@ -6165,7 +6165,7 @@ begin
   S:='0'+S;
  end;
  LabelInstrumentVoiceADSRRelease.Caption:=S;
- str(SoftTRUNC(F_POWER(0.00005,1-(ScrollPos*fCI255))*2000000)*0.01:1:2,s);
+ str(SoftTRUNC(POWER(0.00005,1-(ScrollPos*fCI255))*2000000)*0.01:1:2,s);
  ScrollBarInstrumentVoiceADSRRelease.Track.Caption:=s+' ms';
  ItemNr:=TabControlInstrumentVoiceADSRs.ActiveTab;
  if not InChange then begin
@@ -6543,7 +6543,7 @@ begin
   S:='0'+S;
  end;
  LabelInstrumentVoiceLFORate.Caption:=S;
- str(POW(0.0001,(255-ScrollPos)*fci255)*100:1:4,s);
+ str(POWER(0.0001,(255-ScrollPos)*fci255)*100:1:4,s);
  s:=s+' Hz';
  ScrollbarInstrumentVoiceLFORate.Track.Caption:=s;
  ItemNr:=TabControlInstrumentVoiceLFOs.ActiveTab;
@@ -6636,7 +6636,7 @@ begin
  if ScrollPos=0 then begin
   s:='0';
  end else begin
-  str(SoftTRUNC(POW(0.00005,1-(ScrollPos*fCI255))*(100000*20))/100:1:2,s);
+  str(SoftTRUNC(POWER(0.00005,1-(ScrollPos*fCI255))*(100000*20))/100:1:2,s);
  end;
  s:=s+' ms';
  ScrollbarInstrumentVoiceLFOSweep.Track.Caption:=s;
@@ -6958,7 +6958,7 @@ begin
  if ScrollPos=0 then begin
   s:='0.0';
  end else begin
-  str(ln(POW(10,ScrollPos/40))*20/ln(10):1:2,s);
+  str(ln(POWER(10,ScrollPos/40))*20/ln(10):1:2,s);
  end;
  ScrollbarInstrumentVoiceFilterAmplify.Track.Caption:=s+' dB';
  ItemNr:=TabControlInstrumentVoiceFilters.ActiveTab;
@@ -7575,7 +7575,7 @@ begin
  if ScrollPos=0 then begin
   s:='0.0';
  end else begin
-  str(ln(POW(10,ScrollPos/40))*20/ln(10):1:2,s);
+  str(ln(POWER(10,ScrollPos/40))*20/ln(10):1:2,s);
  end;
  ScrollbarInstrumentChannelFilterAmplify.Track.Caption:=s+' dB';
  if not InChange then begin
@@ -8071,7 +8071,7 @@ begin
   S:='0'+S;
  end;
  LabelInstrumentChannelChorusFlangerLFORateLeft.Caption:=S;
- str(POW(((ScrollPos*fci255)*0.99)+0.01,1.5)*100:1:2,s);
+ str(POWER(((ScrollPos*fci255)*0.99)+0.01,1.5)*100:1:2,s);
  s:=s+' Hz';
  ScrollbarInstrumentChannelChorusFlangerLFORateLeft.Track.Caption:=s;
  if not InChange then begin
@@ -8097,7 +8097,7 @@ begin
   S:='0'+S;
  end;
  LabelInstrumentChannelChorusFlangerLFORateRight.Caption:=S;
- str(POW(((ScrollPos*fci255)*0.99)+0.01,1.5)*100:1:2,s);
+ str(POWER(((ScrollPos*fci255)*0.99)+0.01,1.5)*100:1:2,s);
  s:=s+' Hz';
  ScrollbarInstrumentChannelChorusFlangerLFORateRight.Track.Caption:=s;
  if not InChange then begin
@@ -8403,7 +8403,7 @@ begin
  if ScrollPos=0 then begin
   s:='0.0';
  end else begin
-  str(ln(POW(10,ScrollPos*fci999m4))*20/ln(10):1:2,s);
+  str(ln(POWER(10,ScrollPos*fci999m4))*20/ln(10):1:2,s);
  end;
  ScrollbarInstrumentChannelCompressorOutGain.Track.Caption:=s+' dB';
  if not InChange then begin
@@ -9373,7 +9373,7 @@ begin
   S:='0'+S;
  end;
  LabelGlobalsChorusFlangerLFORateLeft.Caption:=S;
- str(POW(((ScrollPos*fci255)*0.99)+0.01,1.5)*100:1:2,s);
+ str(POWER(((ScrollPos*fci255)*0.99)+0.01,1.5)*100:1:2,s);
  s:=s+' Hz';
  ScrollbarGlobalsChorusFlangerLFORateLeft.Track.Caption:=s;
  if not InChange then begin
@@ -9399,7 +9399,7 @@ begin
   S:='0'+S;
  end;
  LabelGlobalsChorusFlangerLFORateRight.Caption:=S;
- str(POW(((ScrollPos*fci255)*0.99)+0.01,1.5)*100:1:2,s);
+ str(POWER(((ScrollPos*fci255)*0.99)+0.01,1.5)*100:1:2,s);
  s:=s+' Hz';
  ScrollbarGlobalsChorusFlangerLFORateRight.Track.Caption:=s;
  if not InChange then begin
@@ -9767,7 +9767,7 @@ begin
  if ScrollPos=0 then begin
   s:='0.0';
  end else begin
-  str(ln(POW(10,ScrollPos*fci999m4))*20/ln(10):1:2,s);
+  str(ln(POWER(10,ScrollPos*fci999m4))*20/ln(10):1:2,s);
  end;
  ScrollbarGlobalsCompressorOutGain.Track.Caption:=s+' dB';
  if not InChange then begin
@@ -9994,7 +9994,7 @@ begin
  if ScrollPos=0 then begin
   s:='0.0';
  end else begin
-  str(ln(POW(10,ScrollPos*fci999m4))*20/ln(10):1:2,s);
+  str(ln(POWER(10,ScrollPos*fci999m4))*20/ln(10):1:2,s);
  end;
  ScrollbarGlobalsFinalCompressorOutGain.Track.Caption:=s+' dB';
  if not InChange then begin
@@ -11670,7 +11670,7 @@ begin
  end;
 end;
 
-function fpowex:single; assembler; register; {$IFDEF FPC}NOSTACKFRAME;{$ENDIF}
+(*function fpowex:single; assembler; register; {$IFDEF FPC}NOSTACKFRAME;{$ENDIF}
 asm
  fyl2x
  fld1
@@ -11687,7 +11687,7 @@ asm
  fld dword ptr Exponent
  fld dword ptr Number
  call fpowex
-end;
+end;*)
 
 const CurrentSample:PSynthSample=nil;
 
@@ -16371,7 +16371,7 @@ begin
   S:='0'+S;
  end;
  LabelChannelLFORate.Caption:=S;
- str(POW(0.0001,(255-ScrollPos)*fci255)*100:1:4,s);
+ str(POWER(0.0001,(255-ScrollPos)*fci255)*100:1:4,s);
  s:=s+' Hz';
  ScrollbarChannelLFORate.Track.Caption:=s;
  if not InChange then begin

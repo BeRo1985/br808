@@ -92,7 +92,7 @@ unit BeRoPascalScript;
 
 interface
 
-uses SysUtils;
+uses SysUtils,Math;
 
 const OPNone=-1;
       OPAdd=0;
@@ -647,7 +647,7 @@ begin
  end;
 end;
 
-function arctan(const x:single):single; assembler; stdcall;
+{function arctan(const x:single):single; assembler; stdcall;
 asm
  fld dword ptr x
  fld1
@@ -659,7 +659,7 @@ asm
  fld dword ptr y
  fld dword ptr x
  fpatan
-end;
+end;}
 
 function arcsin(const x:single):single;
 begin
@@ -688,7 +688,7 @@ begin
  end;
 end;
 
-function log2(const x:single):single; assembler; stdcall;
+{function log2(const x:single):single; assembler; stdcall;
 asm
  fld1
  fld dword ptr x
@@ -711,7 +711,7 @@ asm
  fld dword ptr x
  fyl2x
  fdiv
-end;
+end;   }
 
 function cosh(const x:single):single;
 begin
@@ -5356,7 +5356,7 @@ end;
 
 procedure TBeRoPascalScript.Run;
 {$ifndef fpc}
-type ptruint=longword;
+type ptruint=NativeUInt;
 {$endif}
 var DP,SP,PC,i,MaxMemory,MemoryMask,RandomSeed:longint;
     v:longint;

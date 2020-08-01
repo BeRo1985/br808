@@ -53,9 +53,7 @@ interface
 {$IFDEF FPC}
 uses SyncObjs;
 {$ELSE}
- {$IFDEF WIN32}
-  uses Windows,Messages;
- {$ENDIF}
+uses Windows,Messages;
 {$ENDIF}
 
 type TBeRoCriticalSection=class
@@ -65,9 +63,7 @@ type TBeRoCriticalSection=class
 {$IFDEF FPC}
        FCriticalSection:TCriticalSection;
 {$ELSE}
- {$IFDEF WIN32}
        FCriticalSection:TRTLCriticalSection;
- {$ENDIF}
 {$ENDIF}
       protected
       public
@@ -101,9 +97,7 @@ begin
 {$IFDEF FPC}
  FCriticalSection.Free;
 {$ELSE}
- {$IFDEF WIN32}
  DeleteCriticalSection(FCriticalSection);
- {$ENDIF}
 {$ENDIF}
  inherited Destroy;
 end;
@@ -117,9 +111,7 @@ begin
   result:=false;
  end;
 {$ELSE}
- {$IFDEF WIN32}
  result:=TryEnterCriticalSection(FCriticalSection);
- {$ENDIF}
 {$ENDIF}
  if result then begin
   inc(FLevel);
@@ -154,9 +146,7 @@ begin
   FCriticalSection.Leave;
  end;
 {$ELSE}
- {$IFDEF WIN32}
  LeaveCriticalSection(FCriticalSection);
- {$ENDIF}
 {$ENDIF}
 end;
 

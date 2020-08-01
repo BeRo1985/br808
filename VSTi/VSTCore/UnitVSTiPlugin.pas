@@ -1137,10 +1137,12 @@ var ChannelCounter,SampleCounter:integer;
     t1,t2,tf:int64;
     OldFCW:word;
 begin
+{$ifdef cpu386}
  asm
   fstcw word Ptr OldFCW
   fldcw word Ptr SynthFCW
  end;
+{$endif}
  try
   AudioCriticalSection.Enter;
   try
@@ -1375,9 +1377,11 @@ begin
    end;
   end;
  finally
+{$ifdef cpu386}
   asm
    fldcw word Ptr OldFCW
   end;
+{$endif}
  end;
 end;
 
@@ -1448,7 +1452,7 @@ procedure TVSTiPlugin.SetParameter(index:longint;Value:single);
 begin
  try
   if (index>=0) and (index<VSTiNumPrograms) then begin
-   SetParameterEx(index,FTRUNC(Value*127));
+   SetParameterEx(index,TRUNC(Value*127));
   end;
  except
  end;

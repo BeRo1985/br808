@@ -646,8 +646,10 @@ function ResumeThread(hThread: THandle): DWORD; stdcall; external 'kernel32.dll'
 uses Windows,MMSystem;
 {$endif}
 {$else}
-uses {$ifdef win32}Windows,{$endif}Math;
+uses {$ifdef win32}Windows,{$else}{$ifdef win64}Windows,{$endif}{$endif}Math;
+{$ifndef win64}
 {$define UseOwnMath}
+{$endif}
 {$endif}
 {$endif}
 
@@ -2824,7 +2826,7 @@ type pbyte=^byte;
 
 function ComparePAnsiChar(a,b:pansichar):boolean; register;
 
-function LinkTRI(RawCode:pointer;RawCodeSize:longint;var CodeSize:longint;var EntryPoint:pointer;GetExternalPointer:TGetExternalPointer;SetPublicPointer:TSetPublicPointer):pointer;
+//function LinkTRI(RawCode:pointer;RawCodeSize:longint;var CodeSize:longint;var EntryPoint:pointer;GetExternalPointer:TGetExternalPointer;SetPublicPointer:TSetPublicPointer):pointer;
 
 procedure GetMemAligned(var p;Size:longint);
 procedure FreeMemAligned(const p);
@@ -3667,7 +3669,7 @@ end;
 {$else}
 function power(Number,Exponent:single):single;
 begin
- result:=EXP(Exponent*LN(Nummer));
+ result:=EXP(Exponent*LN(Number));
 end;
 
 function ROUND64(X:single):int64;
@@ -4010,6 +4012,7 @@ begin
  end;
 end;
 
+(*
 function LinkTRI(RawCode:pointer;RawCodeSize:longint;var CodeSize:longint;var EntryPoint:pointer;GetExternalPointer:TGetExternalPointer;SetPublicPointer:TSetPublicPointer):pointer;
 {$ifndef fpc}
 type ptruint=longword;
@@ -4185,6 +4188,7 @@ begin
   end;
  end;
 end;
+  *)
 
 {$ifdef cpuamd64}                                              
 function InterlockedCompareExchange128Ex(Target,NewValue,Comperand:pointer):boolean; assembler; register;
@@ -6629,7 +6633,7 @@ begin
 end;
 {$endif}
 {$endif}
-                                  
+
 function Syntharctan(const x:single):single;{$ifdef UseOwnMath} assembler; stdcall; {$ifdef caninline}inline;{$endif}
 asm
  fld dword ptr x
@@ -12575,9 +12579,9 @@ begin
 {$endif}
 {$else}
  if Index<low(TBandlimitedMap) then begin
-  Index:=low(TBandlimitedMap):
+  Index:=low(TBandlimitedMap);
  end else if Index>high(TBandlimitedMap) then begin
-  Index:=high(TBandlimitedMap):
+  Index:=high(TBandlimitedMap);
  end;
 {$endif}
  BandlimitedWaveTable:=@BandlimitedWaveTables[Track^.BandlimitedMap[Index]];
@@ -12807,13 +12811,21 @@ begin
   if SSEExt and Track^.UseSSE then begin
    SynthFillFloatSSE(@Track^.WorkBuffers^.ValuesInvRescaleBuffers[i],(i+1)/i,FixedWorkBufferSize);
   end else{$endif} begin
-   SynthFillFloat(@Track^.WorkBuffers^.ValuesInvRescaleBuffers[i],(i+1)/i,FixedWorkBufferSize);
+   if i=0 then begin
+    SynthFillFloat(@Track^.WorkBuffers^.ValuesInvRescaleBuffers[i],0.0,FixedWorkBufferSize);
+   end else begin
+    SynthFillFloat(@Track^.WorkBuffers^.ValuesInvRescaleBuffers[i],(i+1)/i,FixedWorkBufferSize);
+   end;
   end;
 {$ifdef UseSSE}
   if SSEExt and Track^.UseSSE then begin
    SynthFillFloatSSE(@Track^.WorkBuffers^.ValuesInvRescaleSqrBuffers[i],sqr((i+1)/i),FixedWorkBufferSize);
   end else{$endif} begin
-   SynthFillFloat(@Track^.WorkBuffers^.ValuesInvRescaleSqrBuffers[i],sqr((i+1)/i),FixedWorkBufferSize);
+   if i=0 then begin
+    SynthFillFloat(@Track^.WorkBuffers^.ValuesInvRescaleSqrBuffers[i],0.0,FixedWorkBufferSize);
+   end else begin
+    SynthFillFloat(@Track^.WorkBuffers^.ValuesInvRescaleSqrBuffers[i],sqr((i+1)/i),FixedWorkBufferSize);
+   end;
   end;
  end;
 end;

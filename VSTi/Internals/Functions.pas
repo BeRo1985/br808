@@ -25,13 +25,13 @@ unit Functions;
 
 interface
 
-function FEXP(S:single):single; assembler; pascal;
+{function FEXP(S:single):single; assembler; pascal;
 function FPOWER(Number,Exponent:single):single; assembler; stdcall;
 function FTRUNC(X:single):integer; pascal;
 function FMOD(A,B:single):single; assembler; pascal;
 function FFRAC(X:single):single; pascal;
 function FSIN(Angle:single):single;
-function FCOS(Angle:single):single;
+function FCOS(Angle:single):single;}
 function WhiteNoiseRandom:single;
 {$IFDEF CPU386}
 function Clip(Value,Min,Max:single):single; assembler; pascal;
@@ -49,7 +49,7 @@ function AreBytesEqual(const A,B;Count:integer):boolean;
 
 implementation
 
-function FEXP(S:single):single; assembler; pascal;
+{function FEXP(S:single):single; assembler; pascal;
 asm
  FLD dword PTR S
  FLDL2E
@@ -116,7 +116,7 @@ var AngleSquare:single;
 begin
  AngleSquare:=Angle*Angle;
  result:=(((((3.705e-02)*AngleSquare)-4.967e-01)*AngleSquare)+1)*Angle;
-end;
+end;}
 
 const WhiteNoiseSeed:longword=$12345678;
 function WhiteNoiseRandom:single;
@@ -192,7 +192,7 @@ end;
 
 function ConvertEnvelopeTimeToSamples(EnvTime:byte;SampleRate:single):integer;
 begin
- result:=FTRUNC(ConvertByteToExpValue(EnvTime,1)*SampleRate/1000);
+ result:=TRUNC(ConvertByteToExpValue(EnvTime,1)*SampleRate/1000);
 end;
 
 function ConvertVibratoRate(Rate:byte):single;
