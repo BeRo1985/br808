@@ -13997,7 +13997,7 @@ end;
 type TEQFSignature=array[1..27] of ansichar;
      TEQFHeader=packed record
       Signature:TEQFSignature;
-      Unknown:array[1..4] of char;
+      Unknown:array[1..4] of ansichar;
      end;
      TEQFName=array[1..257] of ansichar;
 const EQFSignatureText='Winamp EQ library file v1.1';
@@ -14524,7 +14524,7 @@ begin
 {     StandardOptions.StripResources:=true;
       StandardOptions.StripRelocationTable:=true;
       StandardOptions.FillUpLastSection:=false;
-      CompressFile(PCHAR(SaveDialogEXE.FileName),PCHAR(SaveDialogEXE.FileName),StandardOptions);}
+      CompressFile(PANSICHAR(SaveDialogEXE.FileName),PANSICHAR(SaveDialogEXE.FileName),StandardOptions);}
      end;
      freemem(dp);
      Stream.Destroy;
@@ -15581,7 +15581,7 @@ begin
      VSTProgram.ChunkMagic:=FourCharToLong('C','c','n','K');
      VSTProgram.FXMagic:=FourCharToLong('F','P','C','h');
      VSTProgram.Version:=1;
-     VSTProgram.FXID:=FourCharToLong(VSTiID[1],VSTiID[2],VSTiID[3],VSTiID[4]);
+     VSTProgram.FXID:=FourCharToLong(AnsiChar(VSTiID[1]),AnsiChar(VSTiID[2]),AnsiChar(VSTiID[3]),AnsiChar(VSTiID[4]));
      VSTProgram.FXVersion:=TVSTiPlugin(Plugin).VSTEffect.Version;
      VSTProgram.NumPrograms:=TVSTiPlugin(Plugin).VSTEffect.NumPrograms;
      SwapBigEndianData32(VSTProgram.ChunkMagic);
@@ -15634,8 +15634,8 @@ begin
     Stream.Seek(0);
     if UseChunk then begin
      Stream.read(VSTProgram,sizeof(TFXChunkSet)-sizeof(pointer));
-     ID:=FourCharToLong(VSTiID[1],VSTiID[2],VSTiID[3],VSTiID[4]);
-     ID2:=FourCharToLong(VSTiID2[1],VSTiID2[2],VSTiID2[3],VSTiID2[4]);
+     ID:=FourCharToLong(AnsiChar(VSTiID[1]),AnsiChar(VSTiID[2]),AnsiChar(VSTiID[3]),AnsiChar(VSTiID[4]));
+     ID2:=FourCharToLong(AnsiChar(VSTiID2[1]),AnsiChar(VSTiID2[2]),AnsiChar(VSTiID2[3]),AnsiChar(VSTiID2[4]));
      SwapBigEndianData32(ID);
      SwapBigEndianData32(ID2);
      if (VSTProgram.fxId=ID) or (VSTProgram.fxId=ID2) then begin
@@ -15669,7 +15669,7 @@ begin
      VSTBank.ChunkMagic:=FourCharToLong('C','c','n','K');
      VSTBank.FXMagic:=FourCharToLong('F','B','C','h');
      VSTBank.Version:=1;
-     VSTBank.FXID:=FourCharToLong(VSTiID[1],VSTiID[2],VSTiID[3],VSTiID[4]);
+     VSTBank.FXID:=FourCharToLong(AnsiChar(VSTiID[1]),AnsiChar(VSTiID[2]),AnsiChar(VSTiID[3]),AnsiChar(VSTiID[4]));
      VSTBank.FXVersion:=TVSTiPlugin(Plugin).VSTEffect.version;
      VSTBank.NumPrograms:=TVSTiPlugin(Plugin).VSTEffect.numPrograms;
      SwapBigEndianData32(VSTBank.ChunkMagic);
@@ -15713,8 +15713,8 @@ begin
     Stream.Seek(0);
     if UseChunk then begin
      Stream.read(VSTBank,sizeof(TFXChunkBank)-sizeof(pointer));
-     ID:=FourCharToLong(VSTiID[1],VSTiID[2],VSTiID[3],VSTiID[4]);
-     ID2:=FourCharToLong(VSTiID2[1],VSTiID2[2],VSTiID2[3],VSTiID2[4]);
+     ID:=FourCharToLong(AnsiChar(VSTiID[1]),AnsiChar(VSTiID[2]),AnsiChar(VSTiID[3]),AnsiChar(VSTiID[4]));
+     ID2:=FourCharToLong(AnsiChar(VSTiID2[1]),AnsiChar(VSTiID2[2]),AnsiChar(VSTiID2[3]),AnsiChar(VSTiID2[4]));
      SwapBigEndianData32(ID);
      SwapBigEndianData32(ID2);
      if (VSTBank.fxId=ID) or (VSTBank.fxId=ID2) then begin

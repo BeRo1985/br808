@@ -69,12 +69,12 @@ const HashBits=16;
       RangeCoderLengthLevels:array[0..15] of longword=(3,4,5,6,7,8,10,12,16,20,28,36,52,68,100,100);
       RangeCoderLengthExtraBits:array[0..15] of longword=(0,0,0,0,0,0,1,1,2,2,3,3,4,4,5,0);
 
-type ppchar=^pchar;
+type ppansichar=^pansichar;
      pword=^word;
      plongword=^longword;
 
      PHashNodes=^THashNodes;
-     THashNodes=array[0..HashSize-1] of pchar;
+     THashNodes=array[0..HashSize-1] of pansichar;
 
      PWordArray=^TWordArray;
      TWordArray=array[0..($7fffffff div sizeof(word))-1] of word;
@@ -381,7 +381,7 @@ begin
 end;
 
 function CompressLZBRX(SourcePointer:pointer;var DestinationPointer:pointer;SourceSize:longword;StatusHook:TLZBRXCompressStatusHook):longword;
-var Source,Destination,EndPointer,HashDataPointer:pchar;
+var Source,Destination,EndPointer,HashDataPointer:pansichar;
     Hash,FoundLength,BufferPosition,BufferSize:longword;
     Counter:integer;
     HashNodes:PHashNodes;
@@ -469,7 +469,7 @@ begin
 end;
 
 function DecompressLZBRX(SourcePointer:pointer;var DestinationPointer:pointer;SourceSize:longword;StatusHook:TLZBRXCompressStatusHook):longword;
-var Source,Destination,DestEndPointer,HashDataPointer:pchar;
+var Source,Destination,DestEndPointer,HashDataPointer:pansichar;
     LengthCount,DestSize,Hash,BufferPosition:longword;
     Counter:integer;
     HashNodes:PHashNodes;
@@ -502,7 +502,7 @@ begin
    RangeCoderResetLiteral(rc^);
    Counter:=3;
    while (Counter>0) and (BufferPosition<=SourceSize) and (ptruint(Destination)<ptruint(DestEndPointer)) do begin
-    Destination^:=char(byte(RangeCoderDecodeLiteral(rc^)));
+    Destination^:=ansichar(byte(RangeCoderDecodeLiteral(rc^)));
     inc(Destination);
     dec(Counter);
    end;
@@ -539,7 +539,7 @@ begin
     end;
 
     if (BufferPosition<=SourceSize) and (ptruint(Destination)<ptruint(DestEndPointer)) then begin
-     Destination^:=char(byte(RangeCoderDecodeLiteral(rc^)));
+     Destination^:=ansichar(byte(RangeCoderDecodeLiteral(rc^)));
      inc(Destination);
     end else begin
      break;

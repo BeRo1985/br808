@@ -56,7 +56,7 @@ type TBeRoTinyFlexibleDataStorageListSignature=packed array[1..4] of ansichar;
      TBeRoTinyFlexibleDataStorageList=class;
 
      TBeRoTinyFlexibleDataStorageValue=record
-      ValueSTRING:string;
+      ValueSTRING:utf8string;
       case DataType:TBeRoTinyFlexibleDataStorageDataType of
        bfdstNONE:();
        bfdstBYTE:(ValueBYTE:byte);
@@ -125,7 +125,7 @@ type TBeRoTinyFlexibleDataStorageListSignature=packed array[1..4] of ansichar;
        property Values[Hame:TBeRoTinyFlexibleDataStorageItemName]:TBeRoTinyFlexibleDataStorageValue read GetNameItemValue write SetNameItemValue;
      end;
 
-function StorageItemName(Value:string):TBeRoTinyFlexibleDataStorageItemName;
+function StorageItemName(Value:utf8string):TBeRoTinyFlexibleDataStorageItemName;
 function BYTEToStorageValue(Value:byte):TBeRoTinyFlexibleDataStorageValue;
 function SHORTINTToStorageValue(Value:shortint):TBeRoTinyFlexibleDataStorageValue;
 function CHARToStorageValue(Value:ansichar):TBeRoTinyFlexibleDataStorageValue;
@@ -137,7 +137,7 @@ function INT64ToStorageValue(Value:int64):TBeRoTinyFlexibleDataStorageValue;
 function UINT64ToStorageValue(Value:int64):TBeRoTinyFlexibleDataStorageValue;
 function FLOATToStorageValue(Value:single):TBeRoTinyFlexibleDataStorageValue;
 function BooleanToStorageValue(Value:boolean):TBeRoTinyFlexibleDataStorageValue;
-function STRINGToStorageValue(Value:string):TBeRoTinyFlexibleDataStorageValue;
+function STRINGToStorageValue(Value:utf8string):TBeRoTinyFlexibleDataStorageValue;
 function DataToStorageValue(Value:pointer;Size:integer):TBeRoTinyFlexibleDataStorageValue;
 function FixedDataToStorageValue(Value:pointer;Size:integer):TBeRoTinyFlexibleDataStorageValue;
 function STORAGEToStorageValue(AItemList:TBeRoTinyFlexibleDataStorageList):TBeRoTinyFlexibleDataStorageValue;
@@ -147,7 +147,7 @@ implementation
 
 const BeRoTinyFlexibleDataStorageListSignature:TBeRoTinyFlexibleDataStorageListSignature='BFDS';
 
-function StorageItemName(Value:string):TBeRoTinyFlexibleDataStorageItemName;
+function StorageItemName(Value:utf8string):TBeRoTinyFlexibleDataStorageItemName;
 begin
  result:=#0#0#0#0;
  if length(Value) in [1..4] then begin
@@ -234,7 +234,7 @@ begin
  result.ValueBOOL:=Value;
 end;
 
-function STRINGToStorageValue(Value:string):TBeRoTinyFlexibleDataStorageValue;
+function STRINGToStorageValue(Value:utf8string):TBeRoTinyFlexibleDataStorageValue;
 begin
  FILLCHAR(result,sizeof(TBeRoTinyFlexibleDataStorageValue),#0);
  result.DataType:=bfdstSTRING;
@@ -530,7 +530,7 @@ end;
 function TBeRoTinyFlexibleDataStorageList.LoadFromStream(Stream:TBeRoStream):boolean;
 var B8:byte;
     Size,NextOfs:longint;
-    S:string;
+    S:utf8string;
     AStream:TBeRoStream;
     ItemName:TBeRoTinyFlexibleDataStorageItemName;
     Value:TBeRoTinyFlexibleDataStorageValue;
@@ -641,7 +641,7 @@ var index:integer;
     AItem:TBeRoTinyFlexibleDataStorageItem;
     B8:byte;
     I32:longint;
-    S:string;
+    S:utf8string;
     AStream:TBeRoStream;
 begin
  result:=false;

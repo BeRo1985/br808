@@ -54,7 +54,7 @@ type TBeRoFlexibleDataStorageListSignature=packed array[1..4] of ansichar;
      TBeRoFlexibleDataStorageList=class;
 
      TBeRoFlexibleDataStorageValue=record
-      ValueSTRING:string;
+      ValueSTRING:utf8string;
       case DataType:TBeRoFlexibleDataStorageDataType of
        bfdstNONE:();
        bfdstBYTE:(ValueBYTE:byte);
@@ -76,7 +76,7 @@ type TBeRoFlexibleDataStorageListSignature=packed array[1..4] of ansichar;
 
      TBeRoFlexibleDataStorageItem=class
       public
-       ItemName:string;
+       ItemName:utf8string;
        Value:TBeRoFlexibleDataStorageValue;
        constructor Create;
        destructor Destroy; override;
@@ -90,23 +90,23 @@ type TBeRoFlexibleDataStorageListSignature=packed array[1..4] of ansichar;
        FList:PBeRoFlexibleDataStorageArray;
        FCount,FSize:integer;
        FSorted:boolean;
-       function GetName(index:integer):string;
-       procedure SetName(index:integer;Value:string);
+       function GetName(index:integer):utf8string;
+       procedure SetName(index:integer;Value:utf8string);
        function GetItemValue(index:integer):TBeRoFlexibleDataStorageValue;
        procedure SetItemValue(index:integer;Value:TBeRoFlexibleDataStorageValue);
-       function GetNameItemValue(name:string):TBeRoFlexibleDataStorageValue;
-       procedure SetNameItemValue(name:string;Value:TBeRoFlexibleDataStorageValue);
+       function GetNameItemValue(name:utf8string):TBeRoFlexibleDataStorageValue;
+       procedure SetNameItemValue(name:utf8string;Value:TBeRoFlexibleDataStorageValue);
        procedure SetSorted(ASorted:boolean);
       public
        constructor Create;
        destructor Destroy; override;
        procedure Clear;
-       function Add(name:string;Value:TBeRoFlexibleDataStorageValue):integer;
-       procedure Insert(index:integer;name:string;Value:TBeRoFlexibleDataStorageValue);
+       function Add(name:utf8string;Value:TBeRoFlexibleDataStorageValue):integer;
+       procedure Insert(index:integer;name:utf8string;Value:TBeRoFlexibleDataStorageValue);
        procedure Delete(index:integer);
-       function Remove(name:string):integer;
-       function Find(name:string):integer;
-       function IndexOf(name:string):integer;
+       function Remove(name:utf8string):integer;
+       function Find(name:utf8string):integer;
+       function IndexOf(name:utf8string):integer;
        procedure Exchange(Index1,Index2:integer);
        procedure SetCapacity(NewCapacity:integer);
        procedure SetCount(NewCount:integer);
@@ -118,9 +118,9 @@ type TBeRoFlexibleDataStorageListSignature=packed array[1..4] of ansichar;
        property Count:integer read FCount;
        property Capacity:integer read FSize write SetCapacity;
        property Sorted:boolean read FSorted write SetSorted;
-       property Names[index:integer]:string read GetName write SetName; default;
+       property Names[index:integer]:utf8string read GetName write SetName; default;
        property ItemValues[index:integer]:TBeRoFlexibleDataStorageValue read GetItemValue write SetItemValue;
-       property Values[Hame:string]:TBeRoFlexibleDataStorageValue read GetNameItemValue write SetNameItemValue;
+       property Values[Hame:utf8string]:TBeRoFlexibleDataStorageValue read GetNameItemValue write SetNameItemValue;
      end;
 
 function BYTEToStorageValue(Value:byte):TBeRoFlexibleDataStorageValue;
@@ -134,7 +134,7 @@ function INT64ToStorageValue(Value:int64):TBeRoFlexibleDataStorageValue;
 function UINT64ToStorageValue(Value:int64):TBeRoFlexibleDataStorageValue;
 function FLOATToStorageValue(Value:single):TBeRoFlexibleDataStorageValue;
 function BooleanToStorageValue(Value:boolean):TBeRoFlexibleDataStorageValue;
-function STRINGToStorageValue(Value:string):TBeRoFlexibleDataStorageValue;
+function STRINGToStorageValue(Value:utf8string):TBeRoFlexibleDataStorageValue;
 function DataToStorageValue(Value:pointer;Size:integer):TBeRoFlexibleDataStorageValue;
 function STORAGEToStorageValue(AItemList:TBeRoFlexibleDataStorageList):TBeRoFlexibleDataStorageValue;
 function StreamToStorageValue(Value:TBeRoStream):TBeRoFlexibleDataStorageValue;
@@ -220,7 +220,7 @@ begin
  result.ValueBOOL:=Value;
 end;
 
-function STRINGToStorageValue(Value:string):TBeRoFlexibleDataStorageValue;
+function STRINGToStorageValue(Value:utf8string):TBeRoFlexibleDataStorageValue;
 begin
  FILLCHAR(result,sizeof(TBeRoFlexibleDataStorageValue),#0);
  result.DataType:=bfdstSTRING;
@@ -328,7 +328,7 @@ begin
  end;
 end;
 
-function TBeRoFlexibleDataStorageList.Add(name:string;Value:TBeRoFlexibleDataStorageValue):integer;
+function TBeRoFlexibleDataStorageList.Add(name:utf8string;Value:TBeRoFlexibleDataStorageValue):integer;
 begin
  if FCount=FSize then begin
   if FSize>64 then begin
@@ -347,7 +347,7 @@ begin
  inc(FCount);
 end;
 
-procedure TBeRoFlexibleDataStorageList.Insert(index:integer;name:string;Value:TBeRoFlexibleDataStorageValue);
+procedure TBeRoFlexibleDataStorageList.Insert(index:integer;name:utf8string;Value:TBeRoFlexibleDataStorageValue);
 var I:integer;
 begin
  if (index>=0) and (index<FCount) then begin
@@ -384,7 +384,7 @@ begin
  end;
 end;
 
-function TBeRoFlexibleDataStorageList.Remove(name:string):integer;
+function TBeRoFlexibleDataStorageList.Remove(name:utf8string):integer;
 var I,J,K:integer;
 begin
  result:=-1;
@@ -411,7 +411,7 @@ begin
  end;
 end;
 
-function TBeRoFlexibleDataStorageList.Find(name:string):integer;
+function TBeRoFlexibleDataStorageList.Find(name:utf8string):integer;
 var I:integer;
 begin
  result:=-1;
@@ -425,7 +425,7 @@ begin
  end;
 end;
 
-function TBeRoFlexibleDataStorageList.IndexOf(name:string):integer;
+function TBeRoFlexibleDataStorageList.IndexOf(name:utf8string):integer;
 var I:integer;
 begin
  result:=-1;
@@ -449,7 +449,7 @@ begin
  end;
 end;
 
-function TBeRoFlexibleDataStorageList.GetName(index:integer):string;
+function TBeRoFlexibleDataStorageList.GetName(index:integer):utf8string;
 begin
  if (index>=0) and (index<FCount) then begin
   result:=FList^[index].ItemName;
@@ -458,7 +458,7 @@ begin
  end;
 end;
 
-procedure TBeRoFlexibleDataStorageList.SetName(index:integer;Value:string);
+procedure TBeRoFlexibleDataStorageList.SetName(index:integer;Value:utf8string);
 begin
  if (index>=0) and (index<FCount) then FList^[index].ItemName:=Value;
 end;
@@ -477,7 +477,7 @@ begin
  if (index>=0) and (index<FCount) then FList^[index].Value:=Value;
 end;
 
-function TBeRoFlexibleDataStorageList.GetNameItemValue(name:string):TBeRoFlexibleDataStorageValue;
+function TBeRoFlexibleDataStorageList.GetNameItemValue(name:utf8string):TBeRoFlexibleDataStorageValue;
 var index:integer;
 begin
  index:=IndexOf(name);
@@ -488,7 +488,7 @@ begin
  end;
 end;
 
-procedure TBeRoFlexibleDataStorageList.SetNameItemValue(name:string;Value:TBeRoFlexibleDataStorageValue);
+procedure TBeRoFlexibleDataStorageList.SetNameItemValue(name:utf8string;Value:TBeRoFlexibleDataStorageValue);
 var index:integer;
 begin
  index:=IndexOf(name);
@@ -508,10 +508,10 @@ end;
 function TBeRoFlexibleDataStorageList.LoadFromStream(Stream:TBeRoStream):boolean;
 var B8:byte;
     I32,Size,NextOfs:longint;
-    S:string;
+    S:utf8string;
     AStream:TBeRoStream;
     ItemListSignature:TBeRoFlexibleDataStorageListSignature;
-    ItemName:string;
+    ItemName:utf8string;
     Value:TBeRoFlexibleDataStorageValue;
 begin
  result:=false;
@@ -626,7 +626,7 @@ var index:integer;
     AItem:TBeRoFlexibleDataStorageItem;
     B8:byte;
     I32:longint;
-    S:string;
+    S:utf8string;
     AStream:TBeRoStream;
 begin
  result:=false;

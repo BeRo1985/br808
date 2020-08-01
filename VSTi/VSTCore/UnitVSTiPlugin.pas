@@ -203,8 +203,8 @@ http://asseca.com/vst-24-specs/
       audioMasterGetChunkFile=48;
       audioMasterGetInputSpeakerArrangement=49;
 
-type TVSTiSignature=array[1..4] of char;
-     TVSTiString=array[0..255] of char;
+type TVSTiSignature=array[1..4] of ansichar;
+     TVSTiString=array[0..255] of ansichar;
 
      PVSTEffect=^TVSTEffect;
 
@@ -287,9 +287,9 @@ type TVSTiSignature=array[1..4] of char;
 
      PVSTPinProperties=^TVSTPinProperties;
      TVSTPinProperties=record
-      vLabel:array[0..63] of char;
+      vLabel:array[0..63] of ansichar;
       Flags,ArrangementType:longint;
-      ShortLabel:array[0..7] of char;
+      ShortLabel:array[0..7] of ansichar;
       Future:array[0..47] of byte;
      end;
 
@@ -359,13 +359,13 @@ type TVSTiSignature=array[1..4] of char;
        VSTCurProgram:longint;
        VSTEffect:TVSTEffect;
 
-       ProgramNames:array[0..VSTiNumPrograms-1] of string;
-       EnvelopeNames:array[0..MaxInstruments-1,0..MaxInstrumentEnvelopes-1] of string;
-       SampleNames:array[0..MaxInstruments-1,0..MaxSamples-1] of string;
-       SampleScripts:array[0..MaxInstruments-1,0..MaxSamples-1] of string;
+       ProgramNames:array[0..VSTiNumPrograms-1] of utf8string;
+       EnvelopeNames:array[0..MaxInstruments-1,0..MaxInstrumentEnvelopes-1] of utf8string;
+       SampleNames:array[0..MaxInstruments-1,0..MaxSamples-1] of utf8string;
+       SampleScripts:array[0..MaxInstruments-1,0..MaxSamples-1] of utf8string;
        SampleScriptLanguages:array[0..MaxInstruments-1,0..MaxSamples-1] of byte;
-       SpeechTextNames:array[0..MaxInstruments-1,0..MaxSpeechTexts-1] of string;
-       SpeechTexts:array[0..MaxInstruments-1,0..MaxSpeechTexts-1] of string;
+       SpeechTextNames:array[0..MaxInstruments-1,0..MaxSpeechTexts-1] of utf8string;
+       SpeechTexts:array[0..MaxInstruments-1,0..MaxSpeechTexts-1] of utf8string;
        EnvelopeSettings:TVSTEnvelopeSettings;
        EnvelopesSettings:TVSTEnvelopesSettings;
        ExportMIDIEventList:TMIDIEventList;
@@ -377,9 +377,9 @@ type TVSTiSignature=array[1..4] of char;
        ExportMIDIID:int64;
        ExportMIDIStartPosition:int64;
        MIDIID:int64;
-       ExportTrackName:string;
-       ExportAuthor:string;
-       ExportComments:string;
+       ExportTrackName:utf8string;
+       ExportAuthor:utf8string;
+       ExportComments:utf8string;
        Buffer:psingle;
        InputBuffer:PSynthBufferSample;
        SampleRate:single;
@@ -438,15 +438,15 @@ type TVSTiSignature=array[1..4] of char;
        procedure ProcessDoubleReplacing(Input,Output:PPDouble;Samples:longint);
        procedure SetProgram(AProgram:longint);
        function GetProgram:longint;
-       procedure SetProgramName(name:pchar);
-       procedure GetProgramName(name:pchar);
+       procedure SetProgramName(name:pansichar);
+       procedure GetProgramName(name:pansichar);
        procedure SetParameterEx(index:longint;Value:byte);
        procedure SetParameter(index:longint;Value:single);
        function GetParameter(index:longint):single;
        function ProcessEvents(Events:PVSTEvents):longint;
        procedure Resume;
        procedure Suspend;
-       function GetProgramNameIndexed(Category,index:longint;Text:pchar):boolean;
+       function GetProgramNameIndexed(Category,index:longint;Text:pansichar):boolean;
        procedure SetSampleRate(ASampleRate:single);
        procedure SetBlockSize(ABlockSize:longint);
        procedure SetBlockSizeAndSampleRate(ABlockSize:longint;ASampleRate:single);
@@ -501,11 +501,11 @@ var InstanceInfo:PInstanceInfo=nil;
     InstanceID:int64=0;
     ProcessID:longword=0;
 
-function FourCharToLong(C1,C2,C3,C4:char):longint;
+function FourCharToLong(C1,C2,C3,C4:ansichar):longint;
 
 implementation
 
-function FourCharToLong(C1,C2,C3,C4:char):longint;
+function FourCharToLong(C1,C2,C3,C4:ansichar):longint;
 begin
  result:=ord(C4)+(ord(C3) shl 8)+(ord(C2) shl 16)+(ord(C1) shl 24);
 end;
@@ -549,7 +549,7 @@ begin
 end;
 
 constructor TVSTiPlugin.CreatePlugin(AAudioMaster:TAudioMasterCallbackFunc);
-var P:array[0..4096] of char;
+var P:array[0..4096] of ansichar;
     Counter,SubCounter:integer;
 begin
  inherited Create;
@@ -577,7 +577,7 @@ begin
  VSTEffect.vObject:=self;
  VSTEffect.UniqueID:=FourCharToLong('N','o','E','f');
  VSTEffect.Version:=1;
- VSTEffect.UniqueID:=FourCharToLong(VSTiID[1],VSTiID[2],VSTiID[3],VSTiID[4]);
+ VSTEffect.UniqueID:=FourCharToLong(AnsiChar(VSTiID[1]),AnsiChar(VSTiID[2]),AnsiChar(VSTiID[3]),AnsiChar(VSTiID[4]));
  VSTEffect.Flags:=effFlagsHasEditor or effFlagsCanReplacing or effFlagsProgramChunks or effFlagsIsSynth or effFlagsCanDoubleReplacing;
  VSTEffect.ProcessReplacing:=ProcessClassReplacing;
  VSTEffect.ProcessDoubleReplacing:=ProcessClassDoubleReplacing;
@@ -585,7 +585,7 @@ begin
  DoOutputAudio:=true;//RunForever or (Now<EncodeDateTime(RunUntilYear,RunUntilMonth,RunUntilDay,0,0,0,0));
 
 {if not DoOutputAudio then begin
-  MessageBox(0,pchar('Beta build trial period has expired, so it will output only silence now! Please download a new beta build.'),pchar(Software),MB_ICONINFORMATION or MB_OK);
+  MessageBox(0,pansichar('Beta build trial period has expired, so it will output only silence now! Please download a new beta build.'),pansichar(Software),MB_ICONINFORMATION or MB_OK);
  end;}
 
  Buffer:=nil;
@@ -874,20 +874,20 @@ begin
     if (index>=0) and (index<VSTEffect.NumOutputs) then begin
      case Index of
       0:begin
-       StrCopy(PVSTPinProperties(Ptr)^.vLabel,pchar(VSTiLabel+' master sum left'));
-       StrCopy(PVSTPinProperties(Ptr)^.ShortLabel,pchar(VSTiID+'MSL'));
+       StrCopy(PVSTPinProperties(Ptr)^.vLabel,pansichar(VSTiLabel+' master sum left'));
+       StrCopy(PVSTPinProperties(Ptr)^.ShortLabel,pansichar(VSTiID+'MSL'));
       end;
       1:begin
-       StrCopy(PVSTPinProperties(Ptr)^.vLabel,pchar(VSTiLabel+' master sum right'));
-       StrCopy(PVSTPinProperties(Ptr)^.ShortLabel,pchar(VSTiID+'MSR'));
+       StrCopy(PVSTPinProperties(Ptr)^.vLabel,pansichar(VSTiLabel+' master sum right'));
+       StrCopy(PVSTPinProperties(Ptr)^.ShortLabel,pansichar(VSTiID+'MSR'));
       end;
       else begin
        if (Index and 1)=0 then begin
-        StrCopy(PVSTPinProperties(Ptr)^.vLabel,pchar(VSTiLabel+' channel #'+IntToStr(index shr 1)+' left'));
-        StrCopy(PVSTPinProperties(Ptr)^.ShortLabel,pchar(VSTiID+'C'+IntToStr(index shr 1)+'L'));
+        StrCopy(PVSTPinProperties(Ptr)^.vLabel,pansichar(VSTiLabel+' channel #'+IntToStr(index shr 1)+' left'));
+        StrCopy(PVSTPinProperties(Ptr)^.ShortLabel,pansichar(VSTiID+'C'+IntToStr(index shr 1)+'L'));
        end else begin
-        StrCopy(PVSTPinProperties(Ptr)^.vLabel,pchar(VSTiLabel+' channel #'+IntToStr(index shr 1)+' right'));
-        StrCopy(PVSTPinProperties(Ptr)^.ShortLabel,pchar(VSTiID+'C'+IntToStr(index shr 1)+'R'));
+        StrCopy(PVSTPinProperties(Ptr)^.vLabel,pansichar(VSTiLabel+' channel #'+IntToStr(index shr 1)+' right'));
+        StrCopy(PVSTPinProperties(Ptr)^.ShortLabel,pansichar(VSTiID+'C'+IntToStr(index shr 1)+'R'));
        end;
       end;
      end;
@@ -909,20 +909,20 @@ begin
     if (index>=0) and (index<VSTEffect.NumOutputs) then begin
      case Index of
       0:begin
-       StrCopy(PVSTPinProperties(Ptr)^.vLabel,pchar(VSTiLabel+' master sum left'));
-       StrCopy(PVSTPinProperties(Ptr)^.ShortLabel,pchar(VSTiID+'MSL'));
+       StrCopy(PVSTPinProperties(Ptr)^.vLabel,pansichar(VSTiLabel+' master sum left'));
+       StrCopy(PVSTPinProperties(Ptr)^.ShortLabel,pansichar(VSTiID+'MSL'));
       end;
       1:begin
-       StrCopy(PVSTPinProperties(Ptr)^.vLabel,pchar(VSTiLabel+' master sum right'));
-       StrCopy(PVSTPinProperties(Ptr)^.ShortLabel,pchar(VSTiID+'MSR'));
+       StrCopy(PVSTPinProperties(Ptr)^.vLabel,pansichar(VSTiLabel+' master sum right'));
+       StrCopy(PVSTPinProperties(Ptr)^.ShortLabel,pansichar(VSTiID+'MSR'));
       end;
       else begin
        if (Index and 1)=0 then begin
-        StrCopy(PVSTPinProperties(Ptr)^.vLabel,pchar(VSTiLabel+' channel #'+IntToStr(index shr 1)+' left'));
-        StrCopy(PVSTPinProperties(Ptr)^.ShortLabel,pchar(VSTiID+'C'+IntToStr(index shr 1)+'L'));
+        StrCopy(PVSTPinProperties(Ptr)^.vLabel,pansichar(VSTiLabel+' channel #'+IntToStr(index shr 1)+' left'));
+        StrCopy(PVSTPinProperties(Ptr)^.ShortLabel,pansichar(VSTiID+'C'+IntToStr(index shr 1)+'L'));
        end else begin
-        StrCopy(PVSTPinProperties(Ptr)^.vLabel,pchar(VSTiLabel+' channel #'+IntToStr(index shr 1)+' right'));
-        StrCopy(PVSTPinProperties(Ptr)^.ShortLabel,pchar(VSTiID+'C'+IntToStr(index shr 1)+'R'));
+        StrCopy(PVSTPinProperties(Ptr)^.vLabel,pansichar(VSTiLabel+' channel #'+IntToStr(index shr 1)+' right'));
+        StrCopy(PVSTPinProperties(Ptr)^.ShortLabel,pansichar(VSTiID+'C'+IntToStr(index shr 1)+'R'));
        end;
       end;
      end;
@@ -1426,7 +1426,7 @@ begin
  end;
 end;
 
-procedure TVSTiPlugin.SetProgramName(name:pchar);
+procedure TVSTiPlugin.SetProgramName(name:pansichar);
 begin
  try
   ProgramNames[CurrentProgram and $7f]:=name;
@@ -1435,10 +1435,10 @@ begin
  end;
 end;
 
-procedure TVSTiPlugin.GetProgramName(name:pchar);
+procedure TVSTiPlugin.GetProgramName(name:pansichar);
 begin
  try
-  StrCopy(name,pchar(ProgramNames[CurrentProgram and $7f]));
+  StrCopy(name,pansichar(ProgramNames[CurrentProgram and $7f]));
  except
  end;
 end;
@@ -1578,11 +1578,11 @@ procedure TVSTiPlugin.Suspend;
 begin
 end;
 
-function TVSTiPlugin.GetProgramNameIndexed(Category,index:longint;Text:pchar):boolean;
+function TVSTiPlugin.GetProgramNameIndexed(Category,index:longint;Text:pansichar):boolean;
 begin
  try
   if index in [$00..VSTiNumPrograms-1] then begin
-   StrCopy(Text,''{PCHAR(Programs[Index].Name)});
+   StrCopy(Text,''{pansichar(Programs[Index].Name)});
    result:=true;
   end else begin
    StrCopy(Text,'');
@@ -3461,7 +3461,7 @@ type TImportMIDIEventData=array[1..4] of byte;
       Command:byte;
       Data:TImportMIDIEventData;
       SysExLength:integer;
-      SysEx:pchar;
+      SysEx:pansichar;
      end;
 
      PMIDITrack=^TMIDITrack;
@@ -5204,14 +5204,14 @@ begin
   QueryPerformanceCounter(InstanceID);
   ProcessID:=GetCurrentProcessId;
   MappingName:='br808instancesonprocess'+inttostr(ProcessID);
-  MappingHandle:=CreateFileMapping($ffffffff,nil,PAGE_READWRITE,0,sizeof(TInstanceInfo),pchar(MappingName));
+  MappingHandle:=CreateFileMappingA($ffffffff,nil,PAGE_READWRITE,0,sizeof(TInstanceInfo),pansichar(MappingName));
   if MappingHandle<>0 then begin
    if GetLastError<>ERROR_ALREADY_EXISTS then begin
     InstanceInfo:=MapViewOfFile(MappingHandle,FILE_MAP_ALL_ACCESS,0,0,sizeof(TInstanceInfo));
     fillchar(InstanceInfo^,sizeof(TInstanceInfo),#0);
     InstanceInfo^.ProcessID:=not ProcessID;
    end else begin
-    MappingHandle:=OpenFileMapping(FILE_MAP_ALL_ACCESS,false,pchar(MappingName));
+    MappingHandle:=OpenFileMappingA(FILE_MAP_ALL_ACCESS,false,pansichar(MappingName));
     if MappingHandle<>0 then begin
      InstanceInfo:=MapViewOfFile(MappingHandle,FILE_MAP_ALL_ACCESS,0,0,sizeof(TInstanceInfo));
     end;
@@ -5234,7 +5234,7 @@ end;
 procedure RemoveInstance;
 begin
  try
-  MappingHandle:=OpenFileMapping(FILE_MAP_ALL_ACCESS,false,pchar(MappingName));
+  MappingHandle:=OpenFileMappingA(FILE_MAP_ALL_ACCESS,false,pansichar(MappingName));
   if MappingHandle<>0 then begin
    InstanceInfo:=MapViewOfFile(MappingHandle,FILE_MAP_ALL_ACCESS,0,0,sizeof(TInstanceInfo));
    if InstanceInfo^.Instance=hInstance then begin

@@ -547,10 +547,6 @@ object VSTiEditor: TVSTiEditor
       object TabSheetInstruments: TSGTK0TabSheet
         BorderWidth = 1
         Caption = 'Instruments'
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         object Panel5: TSGTK0Panel
           Left = 0
           Top = 0
@@ -760,10 +756,6 @@ object VSTiEditor: TVSTiEditor
                 ActivePage = TabSheetInstrumentGlobals
                 object TabSheetInstrumentGlobals: TSGTK0TabSheet
                   Caption = 'Globals'
-                  ExplicitLeft = 0
-                  ExplicitTop = 0
-                  ExplicitWidth = 0
-                  ExplicitHeight = 0
                   object Panel46: TSGTK0Panel
                     Left = 0
                     Top = 0
