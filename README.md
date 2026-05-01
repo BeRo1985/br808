@@ -1,3 +1,7 @@
+> [!IMPORTANT]
+> The primary repository has moved to [git.rosseaux.net/BeRo1985/br808](https://git.rosseaux.net/BeRo1985/br808).
+> This GitHub repository is kept up-to-date via push mirroring.
+
 # BR808
 BR808 is a originally demoscene-originated software synthesizer, which became a bit too big for 64k intros. 
 
